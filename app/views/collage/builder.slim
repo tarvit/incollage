@@ -2,4 +2,6 @@ span.label
   | Hello
   strong= @client.user.full_name
 
-  
+ul
+  - @images.each do |im|
+    = image_tag im

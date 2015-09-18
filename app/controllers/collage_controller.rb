@@ -3,6 +3,7 @@ class CollageController < ApplicationController
 
   def builder
     @client = Instagram.client(:access_token => access_token)
+    @images = @client.user_media_feed.map{|item| item.images.low_resolution.url}
   end
 
 end
