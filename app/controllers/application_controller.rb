@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
     session[:access_token] = access_token
   end
 
+  def access_token
+    session[:access_token]
+  end
+
+  def check_authorized!
+    redirect_to auth_login_path unless authorized?
+  end
+
 end
