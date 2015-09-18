@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_filter :reload_core, if: ->{ Rails.env.development? }
+  include Incollage::Core
 
   def authorized?
     !!session[:access_token]
@@ -19,6 +21,10 @@ class ApplicationController < ActionController::Base
 
   def check_authorized!
     redirect_to auth_login_path unless authorized?
+  end
+
+  def reload_core
+    Incollage::Core.load_modules
   end
 
 end

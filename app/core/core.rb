@@ -7,9 +7,17 @@ module Incollage
 
     class << self
       def load_core_dependency module_name
-        #module_path = Rails.root.join(['app', 'core', module_name, module_name ]*?/)
-        #require module_path
-        require_relative [module_name, module_name ]*?/
+        dependency_path = Rails.root.join(['app', 'core', module_name, module_name+'.rb' ]*?/)
+        load dependency_path
+
+        submodules_path = Rails.root.join(['app', 'core', module_name, 'modules']*?/)
+
+        if Dir.exist?(submodules_path)
+          (Dir.foreach(submodules_path)).each do |submodule_path|
+            next unless submodule_path.ends_with? '.rb'
+            load [submodules_path, submodule_path]*?/
+          end
+        end
       end
 
       def load_modules
@@ -18,6 +26,7 @@ module Incollage
         end
       end
     end
+
   end
 end
 

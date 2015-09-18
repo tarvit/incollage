@@ -1,12 +1,12 @@
 class AuthController < ApplicationController
 
   def connect
-    redirect_to Instagram.authorize_url(:redirect_uri => auth_callback_url)
+    redirect_to Instagram::Connector.new(auth_callback_url).authorize_url
   end
 
   def callback
-    response = Instagram.get_access_token(params[:code], :redirect_uri => auth_callback_url)
-    authorize_access response.access_token
+    access_token = Instagram::Connector.new(auth_callback_url).get_access_token(params[:code])
+    authorize_access access_token
     redirect_to root_path
   end
 
