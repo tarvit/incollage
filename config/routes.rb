@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   namespace :auth do
     get :login
+    get :logout
     get :connect
     get :callback
   end
 end
+

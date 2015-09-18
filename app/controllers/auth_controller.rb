@@ -6,7 +6,12 @@ class AuthController < ApplicationController
 
   def callback
     response = Instagram.get_access_token(params[:code], :redirect_uri => auth_callback_url)
-    authorize response.access_token
+    authorize_access response.access_token
+    redirect_to root_path
+  end
+
+  def logout
+    restrict_access
     redirect_to root_path
   end
 

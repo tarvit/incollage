@@ -5,8 +5,12 @@ class ApplicationController < ActionController::Base
     !!session[:access_token]
   end
 
-  def authorize(access_token)
+  def authorize_access(access_token)
     session[:access_token] = access_token
+  end
+
+  def restrict_access
+    session[:access_token] = nil
   end
 
   def access_token

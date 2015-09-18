@@ -1,6 +1,10 @@
-span.label
-  | Hello
-  strong= @client.user.full_name
+p
+  span
+    = link_to 'Log out', auth_logout_path
+p
+  span.label
+    | Hello
+    strong= @client.user.full_name
 
 ul
   - @images.each do |im|
