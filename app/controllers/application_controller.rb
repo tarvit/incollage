@@ -23,8 +23,14 @@ class ApplicationController < ActionController::Base
     redirect_to auth_login_path unless authorized?
   end
 
-  def reload_core
-    Incollage::Core.load_modules
+  def self.reload_core
+    Incollage::Core.load_modules(Rails.root)
   end
+
+  def reload_core
+    self.class.reload_core
+  end
+
+  reload_core
 
 end
