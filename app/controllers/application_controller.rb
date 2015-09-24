@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :reload_core, if: ->{ Rails.env.development? }
-  include Incollage::Core
+  include Incollage
 
   def authorized?
     !!session[:access_token]
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def self.reload_core
-    Incollage::Core.load_modules(Rails.root.join('app/core'))
+    Incollage.load_modules(Rails.root.join('app/core'))
   end
 
   def reload_core

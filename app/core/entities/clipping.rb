@@ -1,0 +1,3 @@
+class Incollage::Clipping
+
+end

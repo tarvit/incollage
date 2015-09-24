@@ -1,0 +1,3 @@
+class Incollage::Collage
+
+end

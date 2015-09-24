@@ -14,4 +14,4 @@ end
 
 # load Core services
 require Rails.root.join( %w{ app core core } * ?/ )
-Incollage::Core.load_modules(Rails.root.join('app/core'))
+Incollage.load_modules(Rails.root.join('app/core'))
