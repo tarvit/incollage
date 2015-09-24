@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def self.reload_core
-    Incollage::Core.load_modules(Rails.root)
+    Incollage::Core.load_modules(Rails.root.join('app/core'))
   end
 
   def reload_core
@@ -32,5 +32,4 @@ class ApplicationController < ActionController::Base
   end
 
   reload_core
-
 end
