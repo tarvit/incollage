@@ -17,12 +17,26 @@ module Incollage
         end
       end
 
-      def load_modules(core_path)
-        Dir.foreach(core_path) do |m|
-          next if %w{ . .. }.include?(m) || !File.directory?(core_path.join(m))
-          load_core_dependency m, core_path
+      def load_modules_in(dir)
+        valid_entries(dir).each do |m|
+          load_core_dependency m, dir
         end
       end
+
+      def load_modules(core_path)
+        valid_entries(core_path).each do |dir|
+          load_modules_in core_path.join(dir)
+        end
+      end
+
+      private
+
+      def valid_entries(dir)
+        Dir.open(dir).entries.select do |entry|
+          !%w{ . .. }.include?(entry) && File.directory?(dir.join(entry))
+        end
+      end
+
     end
 
   end
