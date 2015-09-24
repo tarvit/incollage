@@ -3,12 +3,16 @@ module Incollage
   class << self
 
     def load_modules(core_path)
-      valid_directories(core_path).each do |dir|
+      global_dirs(core_path).each do |dir|
         load_modules_in core_path.join(dir)
       end
     end
 
     private
+
+    def global_dirs(dir)
+      (%w{ entities repositories interactors } + valid_directories(dir)).uniq
+    end
 
     def load_modules_in(dir)
       ruby_files(dir).each do |rb|
