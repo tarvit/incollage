@@ -4,7 +4,7 @@ require 'rails/all'
 
 Bundler.require(*Rails.groups)
 
-module Incollage
+module IncollageApp
 
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
