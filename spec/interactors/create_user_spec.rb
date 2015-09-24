@@ -3,7 +3,12 @@ require 'spec_helper'
 describe Incollage::UserCreator do
 
   it 'should create a user' do
-    Incollage::UserCreator.new(Incollage::User.new).create
+    expect(->{
+      Incollage::UserCreator.new(Incollage::User.new).create
+    }).to change{
+      Incollage::Repository.for(:user).count
+    }.by(1)
+
   end
 
 end

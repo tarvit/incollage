@@ -54,6 +54,10 @@ module Incollage
         raise NotImplementedError
       end
 
+      def count
+        all.count
+      end
+
       alias_method :take, :first
 
     end
