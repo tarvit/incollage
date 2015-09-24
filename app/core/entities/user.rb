@@ -1,3 +1,0 @@
-class Incollage::User
-
-end
