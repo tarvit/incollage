@@ -1,27 +1,27 @@
 module Incollage
 
-  class Repository
+  class Gateway
 
     class << self
       def register(type, repo)
-        repositories[type] = repo
+        gateways[type] = repo
       end
 
       def for(type)
-        repo = repositories[type.to_sym]
-        raise InvalidRepoTypeError.new(type) if repo.nil?
+        repo = gateways[type.to_sym]
+        raise InvalidGatewayTypeError.new(type) if repo.nil?
         repo
       end
 
-      def repositories
-        @repositories ||= {}
+      def gateways
+        @gateways ||= {}
       end
 
       protected
 
-      class InvalidRepoTypeError < StandardError
+      class InvalidGatewayTypeError < StandardError
         def initialize(type)
-          super("Repository type `#{type}` is not registered.")
+          super("Gateway for type `#{type}` is not registered.")
         end
       end
 
@@ -36,7 +36,7 @@ module Incollage
       private
 
       def registered_types
-        repositories.keys
+        gateways.keys
       end
     end
 
