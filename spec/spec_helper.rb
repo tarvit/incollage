@@ -17,7 +17,7 @@ RSpec.configure do |config|
     Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
     Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
 
-    Incollage::Gateway.register(:clipping_collection, Incollage::SynchronizableCollection::InMemory::Base)
+    Incollage::Gateway.register(:clippings_source, Incollage::ClippingSource::InMemory::Base)
   end
 
   config.before :each do |example|

@@ -1,5 +1,5 @@
 module Incollage
-  module SynchronizableCollection
+  module ClippingSource
     module InMemory
 
       class Base

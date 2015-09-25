@@ -3,16 +3,16 @@ module Incollage
 
     def initialize(user_id, collection_id)
       @user_id, @collection_id = user_id, collection_id
-      @clipping_collection = Gateway.for_clipping_collection.new(user_id, collection_id)
+      @clippings_source = Gateway.for_clippings_source.new(user_id, collection_id)
     end
 
     def sync
-      next_clippings = @clipping_collection.next_clippings(last_clipping_id)
+      next_clippings = @clippings_source.next_clippings(last_clipping_id)
       while !next_clippings.empty?
         next_clippings.each do |clipping|
           ClippingAdder.new(clipping).add
         end
-        next_clippings = @clipping_collection.next_clippings(last_clipping_id)
+        next_clippings = @clippings_source.next_clippings(last_clipping_id)
       end
     end
 

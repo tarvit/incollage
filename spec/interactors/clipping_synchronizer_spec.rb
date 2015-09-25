@@ -31,7 +31,7 @@ describe Incollage::ClippingSynchronizer do
     Incollage::ClippingSynchronizer.new(1, 2).sync
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    Incollage::Gateway.for_clipping_collection.add_for_user(1, 2, @new_data)
+    Incollage::Gateway.for_clippings_source.add_for_user(1, 2, @new_data)
 
     Incollage::ClippingSynchronizer.new(1, 2).sync
     expect(Incollage::Repository.for_clipping.count).to eq(5)
