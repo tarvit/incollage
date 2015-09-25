@@ -1,18 +1,14 @@
-class Incollage::Repository::InMemoryBase < Incollage::Repository::Base
+class Incollage::Repository::InMemoryBase
 
   def initialize
     init_values
   end
 
   def save(entity)
-    unless entity.id
-      entity.id = @next_id
-      @next_id += 1
-    end
-    unless entity.valid?
-      raise Incollage::Repository::EntityIsInvalidError.new(entity.error_messages)
-    end
-    @records[ entity.id ] = entity
+    populate_id_if_need(entity)
+    validate_entity(entity)
+    add_to_memory_storage(entity)
+
     entity
   end
 
@@ -57,6 +53,12 @@ class Incollage::Repository::InMemoryBase < Incollage::Repository::Base
     result[start_index..end_index]
   end
 
+  def count
+    all.count
+  end
+
+  class EntityIsInvalidError < StandardError; end
+
   private
 
   attr_reader :records
@@ -64,6 +66,23 @@ class Incollage::Repository::InMemoryBase < Incollage::Repository::Base
   def init_values
     @records = {}
     @next_id = 1
+  end
+
+  def populate_id_if_need(entity)
+    unless entity.id
+      entity.id = @next_id
+      @next_id += 1
+    end
+  end
+
+  def validate_entity(entity)
+    unless entity.valid?
+      raise EntityIsInvalidError.new(entity.error_messages)
+    end
+  end
+
+  def add_to_memory_storage(entity)
+    @records[ entity.id ] = entity
   end
 
 end

@@ -12,6 +12,4 @@ describe Incollage::ClippingAdder do
     }.by(1)
   end
 
-
-
 end

@@ -1,6 +1,6 @@
 module Incollage
 
-  module Repository
+  class Repository
 
     class << self
       def register(type, repo)
