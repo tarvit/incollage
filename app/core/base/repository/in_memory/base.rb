@@ -50,6 +50,13 @@ class Incollage::Repository::InMemoryBase < Incollage::Repository::Base
     find_all(options).last
   end
 
+  def find_all_on_page(options, page_number, per_page)
+    result = find_all(options)
+    start_index = per_page * page_number
+    end_index = [ (start_index + per_page - 1), result.length ].min
+    result[start_index..end_index]
+  end
+
   private
 
   attr_reader :records
