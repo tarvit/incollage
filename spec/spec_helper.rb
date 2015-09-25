@@ -18,6 +18,7 @@ RSpec.configure do |config|
     Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
 
     Incollage::Gateway.register(:clippings_source, Incollage::ClippingSource::InMemory::Base)
+    Incollage::Gateway.register(:color_matcher, Incollage::DirectColorMatcher.new)
   end
 
   config.before :each do |example|
