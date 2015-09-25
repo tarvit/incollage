@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Incollage::ClippingAdder do
 
   it 'should add a clipping' do
-    attrs = { user_id: 0, file_path: 'some_path', histogram_scores: [ ::Color::RGB.from_html('00ff00') ] }
+    attrs = { user_id: 0, file_path: 'some_path', histogram_scores: { 1 => '00ff00' } }
 
     expect(->{
       Incollage::ClippingAdder.new( attrs ).add
