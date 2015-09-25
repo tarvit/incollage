@@ -30,6 +30,4 @@ describe Incollage::LastUserClippingFinder do
     expect(Incollage::LastUserClippingFinder.new(1, 3).find).to be_nil
   end
 
-
-
 end
