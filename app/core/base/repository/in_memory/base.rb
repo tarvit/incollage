@@ -5,9 +5,14 @@ class Incollage::Repository::InMemoryBase < Incollage::Repository::Base
   end
 
   def save(entity)
-    entity.id = @next_id
-    @records[@next_id] = entity
-    @next_id += 1
+    unless entity.id
+      entity.id = @next_id
+      @next_id += 1
+    end
+    unless entity.valid?
+      raise Incollage::Repository::EntityIsInvalidError.new(entity.error_messages)
+    end
+    @records[ entity.id ] = entity
     entity
   end
 

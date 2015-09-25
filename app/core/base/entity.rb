@@ -12,6 +12,10 @@ module Incollage
         end
       end
 
+      def error_messages
+        errors.messages
+      end
+
     end
   end
 end

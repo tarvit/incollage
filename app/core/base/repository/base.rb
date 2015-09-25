@@ -47,5 +47,9 @@ module Incollage
       alias_method :take, :first
 
     end
+
+    class EntityIsInvalidError < StandardError
+
+    end
   end
 end

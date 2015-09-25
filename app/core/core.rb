@@ -1,4 +1,5 @@
 module Incollage
+  require 'color'
 
   class << self
 

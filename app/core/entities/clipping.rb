@@ -8,7 +8,7 @@ class Incollage::Clipping < Incollage::Entity::Base
   validates_presence_of :user_id, :library_id, :file_path, :histogram_scores
 
   def initialize(attrs)
-    DEFAULT_ATTRIBUTES.merge(attrs)
+    super DEFAULT_ATTRIBUTES.merge(attrs)
   end
 
 end
