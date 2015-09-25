@@ -46,6 +46,10 @@ class Incollage::Repository::InMemoryBase < Incollage::Repository::Base
     find_all(options).first
   end
 
+  def find_last(options)
+    find_all(options).last
+  end
+
   private
 
   attr_reader :records
