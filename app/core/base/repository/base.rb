@@ -16,7 +16,7 @@ module Incollage
         raise NotImplementedError
       end
 
-      def delete_all(entity, options={})
+      def delete_all(options={})
         raise NotImplementedError
       end
 

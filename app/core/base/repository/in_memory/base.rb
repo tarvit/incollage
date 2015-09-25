@@ -1,8 +1,7 @@
 class Incollage::Repository::InMemoryBase < Incollage::Repository::Base
 
   def initialize
-    @records = {}
-    @next_id = 1
+    init_values
   end
 
   def save(entity)
@@ -13,7 +12,7 @@ class Incollage::Repository::InMemoryBase < Incollage::Repository::Base
   end
 
   def all
-    records
+    records.values
   end
 
   def first
@@ -26,7 +25,29 @@ class Incollage::Repository::InMemoryBase < Incollage::Repository::Base
     records[last_key]
   end
 
+  def delete_all
+    init_values
+  end
+
+  def find_all(options)
+    all.select do |record|
+      options.all? do |(attr, value)|
+        record.send(attr) == value
+      end
+    end
+  end
+
+  def find(options)
+    find_all(options).first
+  end
+
   private
 
   attr_reader :records
+
+  def init_values
+    @records = {}
+    @next_id = 1
+  end
+
 end

@@ -8,11 +8,21 @@ module Incollage
       end
 
       def for(type)
-        repositories[type.to_sym]
+        repo = repositories[type.to_sym]
+        raise InvalidRepoTypeError.new(type) if repo.nil?
+        repo
       end
 
       def repositories
         @repositories ||= {}
+      end
+
+      protected
+
+      class InvalidRepoTypeError < StandardError
+        def initialize(type)
+          super("Repository type `#{type}` is not registered.")
+        end
       end
 
       def method_missing(m, *args)
