@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Incollage::LastUserClippingFinder do
+describe Incollage::ClippingFinder do
 
   before :each do
 
@@ -21,13 +21,13 @@ describe Incollage::LastUserClippingFinder do
   it 'should find last clipping of a user' do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    expect(Incollage::LastUserClippingFinder.new(1, 1).find.id).to eq(4)
-    expect(Incollage::LastUserClippingFinder.new(1, 2).find.id).to eq(1)
-    expect(Incollage::LastUserClippingFinder.new(2, 2).find.id).to eq(3)
+    expect(Incollage::ClippingFinder.new(1, 1).find_last.id).to eq(4)
+    expect(Incollage::ClippingFinder.new(1, 2).find_last.id).to eq(1)
+    expect(Incollage::ClippingFinder.new(2, 2).find_last.id).to eq(3)
 
-    expect(Incollage::LastUserClippingFinder.new(2, 1).find).to be_nil
-    expect(Incollage::LastUserClippingFinder.new(3, 1).find).to be_nil
-    expect(Incollage::LastUserClippingFinder.new(1, 3).find).to be_nil
+    expect(Incollage::ClippingFinder.new(2, 1).find_last).to be_nil
+    expect(Incollage::ClippingFinder.new(3, 1).find_last).to be_nil
+    expect(Incollage::ClippingFinder.new(1, 3).find_last).to be_nil
   end
 
 end
