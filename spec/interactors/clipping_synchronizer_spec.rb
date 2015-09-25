@@ -28,15 +28,15 @@ describe Incollage::ClippingSynchronizer do
   it 'should sync clippings' do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    Incollage::ClippingSynchronizer.new(1, 2, Incollage::SynchronizableCollection::InMemory::Base).sync
+    Incollage::ClippingSynchronizer.new(1, 2).sync
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    Incollage::SynchronizableCollection::InMemory.add_for_user(1, 2, @new_data)
+    Incollage::Gateway.for_clipping_collection.add_for_user(1, 2, @new_data)
 
-    Incollage::ClippingSynchronizer.new(1, 2, Incollage::SynchronizableCollection::InMemory::Base).sync
+    Incollage::ClippingSynchronizer.new(1, 2).sync
     expect(Incollage::Repository.for_clipping.count).to eq(5)
 
-    Incollage::ClippingSynchronizer.new(1, 2, Incollage::SynchronizableCollection::InMemory::Base).sync
+    Incollage::ClippingSynchronizer.new(1, 2).sync
     expect(Incollage::Repository.for_clipping.count).to eq(5)
   end
 

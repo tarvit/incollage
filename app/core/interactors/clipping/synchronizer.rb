@@ -1,9 +1,9 @@
 module Incollage
   class ClippingSynchronizer
 
-    def initialize(user_id, collection_id, collection_klass)
+    def initialize(user_id, collection_id)
       @user_id, @collection_id = user_id, collection_id
-      @clipping_collection = collection_klass.new(user_id, collection_id)
+      @clipping_collection = Gateway.for_clipping_collection.new(user_id, collection_id)
     end
 
     def sync
