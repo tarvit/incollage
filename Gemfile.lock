@@ -49,6 +49,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    color (1.7.1)
+    colorscore (0.0.4)
+      color
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -182,6 +185,8 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
+  color
+  colorscore
   instagram
   jbuilder (~> 2.0)
   jquery-rails

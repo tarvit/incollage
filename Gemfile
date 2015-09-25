@@ -13,6 +13,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'instagram'
 gem 'slim'
 
+gem 'color'
+gem 'colorscore'
+
 group :development, :test do
   gem 'byebug'
   gem 'pry'
