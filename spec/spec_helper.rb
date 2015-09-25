@@ -15,9 +15,10 @@ RSpec.configure do |config|
 
   def register_repos
     Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
+    Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
   end
 
-  config.before :each do
+  config.before :each do |example|
     register_repos
   end
 

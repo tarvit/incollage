@@ -1,5 +1,4 @@
 module Incollage
-
   class UserCreator
 
     def initialize(user_data)
@@ -22,5 +21,4 @@ module Incollage
     end
 
   end
-
 end
