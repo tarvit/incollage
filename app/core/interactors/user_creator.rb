@@ -7,7 +7,7 @@ module Incollage
     end
 
     def create
-      Repository.for(:user).save(@user_data)
+      Repository.for_user.save(@user_data)
     end
 
   end

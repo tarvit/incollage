@@ -2,20 +2,6 @@ module Incollage
 
   module Repository
 
-    class << self
-      def register(type, repo)
-        repositories[type] = repo
-      end
-
-      def for(type)
-        repositories[type]
-      end
-
-      def repositories
-        @repositories ||= {}
-      end
-    end
-
     class Base
 
       def save(entity, options={})

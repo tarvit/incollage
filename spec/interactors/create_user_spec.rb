@@ -6,7 +6,7 @@ describe Incollage::UserCreator do
     expect(->{
       Incollage::UserCreator.new(Incollage::User.new).create
     }).to change{
-      Incollage::Repository.for(:user).count
+      Incollage::Repository.for_user.count
     }.by(1)
 
   end
