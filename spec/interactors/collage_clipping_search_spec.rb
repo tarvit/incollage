@@ -17,7 +17,8 @@ describe Incollage::CollageClippingSearcher do
   end
 
   it 'should search clippings by colors' do
-    searcher = Incollage::CollageClippingSearcher.new(1, 1)
+    collection = Incollage::ClippingsCollection.new(1, 1, [])
+    searcher = Incollage::CollageClippingSearcher.new(collection)
 
     expect(searcher.search( [ 'ff0000' ], 1 ).map(&:id)).to eq([ 3 ])
     expect(searcher.search( [ '00ff00' ], 1 ).map(&:id)).to eq([ 1 ])

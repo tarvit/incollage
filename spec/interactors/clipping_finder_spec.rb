@@ -28,25 +28,25 @@ describe Incollage::ClippingFinder do
   it 'should find last clipping of a user within a collection' do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    expect(Incollage::ClippingFinder.new(@user_a, @collection_a).find_last.id).to eq(4)
-    expect(Incollage::ClippingFinder.new(@user_a, @collection_b).find_last.id).to eq(1)
-    expect(Incollage::ClippingFinder.new(@user_b, @collection_b).find_last.id).to eq(3)
+    expect(finder(@user_a, @collection_a).find_last.id).to eq(4)
+    expect(finder(@user_a, @collection_b).find_last.id).to eq(1)
+    expect(finder(@user_b, @collection_b).find_last.id).to eq(3)
 
-    expect(Incollage::ClippingFinder.new(@user_c, @collection_a).find_last).to be_nil
-    expect(Incollage::ClippingFinder.new(@user_b, @collection_a).find_last).to be_nil
-    expect(Incollage::ClippingFinder.new(@user_a, @collection_c).find_last).to be_nil
+    expect(finder(@user_c, @collection_a).find_last).to be_nil
+    expect(finder(@user_b, @collection_a).find_last).to be_nil
+    expect(finder(@user_a, @collection_c).find_last).to be_nil
   end
 
   it 'should find first clipping of a user within a collection' do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    expect(Incollage::ClippingFinder.new(@user_a, @collection_a).find.id).to eq(2)
-    expect(Incollage::ClippingFinder.new(@user_a, @collection_b).find.id).to eq(1)
-    expect(Incollage::ClippingFinder.new(@user_b, @collection_b).find.id).to eq(3)
+    expect(finder(@user_a, @collection_a).find.id).to eq(2)
+    expect(finder(@user_a, @collection_b).find.id).to eq(1)
+    expect(finder(@user_b, @collection_b).find.id).to eq(3)
 
-    expect(Incollage::ClippingFinder.new(@user_c, @collection_a).find).to be_nil
-    expect(Incollage::ClippingFinder.new(@user_b, @collection_a).find).to be_nil
-    expect(Incollage::ClippingFinder.new(@user_a, @collection_c).find).to be_nil
+    expect(finder(@user_c, @collection_a).find).to be_nil
+    expect(finder(@user_b, @collection_a).find).to be_nil
+    expect(finder(@user_a, @collection_c).find).to be_nil
   end
 
   context 'More data' do
@@ -65,7 +65,7 @@ describe Incollage::ClippingFinder do
     end
 
     it 'should paginate clippings' do
-      finder = Incollage::ClippingFinder.new(@user_a, @collection_a)
+      finder = finder(@user_a, @collection_a)
 
       expect(finder.find_all.count).to eq(10)
 
@@ -80,6 +80,10 @@ describe Incollage::ClippingFinder do
       expect(finder.find_page(0, 100).map(&:id)).to eq([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
     end
 
+  end
+
+  def finder(user_id, collection_id)
+    Incollage::ClippingFinder.new(Incollage::ClippingsCollection.new(user_id, collection_id, []))
   end
 
 end

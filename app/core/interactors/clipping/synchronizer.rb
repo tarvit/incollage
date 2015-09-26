@@ -1,25 +1,25 @@
 module Incollage
   class ClippingSynchronizer
 
-    def initialize(user_id, collection_id)
-      @user_id, @collection_id = user_id, collection_id
-      @clippings_source = Gateway.for_clippings_source.new(user_id, collection_id)
+    def initialize(clipping_collection)
+      @clipping_collection = clipping_collection
+      @clippings_source = Gateway.for_clippings_source
     end
 
     def sync
-      next_clippings = @clippings_source.next_clippings(last_clipping_id)
+      next_clippings = @clippings_source.next_clippings(@clipping_collection, last_clipping_id)
       while !next_clippings.empty?
         next_clippings.each do |clipping|
           ClippingAdder.new(clipping).add
         end
-        next_clippings = @clippings_source.next_clippings(last_clipping_id)
+        next_clippings = @clippings_source.next_clippings(@clipping_collection, last_clipping_id)
       end
     end
 
     private
 
     def last_clipping_id
-      last_synchronized_clipping = ClippingFinder.new(@user_id, @collection_id).find_last
+      last_synchronized_clipping = ClippingFinder.new(@clipping_collection).find_last
       last_synchronized_clipping.id || 0
     end
 

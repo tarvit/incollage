@@ -4,12 +4,8 @@ module Incollage
 
       class Base
 
-        def initialize(user_id, collection_id)
-          @user_id, @collection_id = user_id, collection_id
-        end
-
-        def next_clippings(last_clipping_id)
-          clippings = self.class.user_collection(@user_id, @collection_id)
+        def next_clippings(collection, last_clipping_id)
+          clippings = self.class.user_collection(collection.user_id, collection.id)
           clippings.select do |clipping_data|
             clipping_data[:id] > last_clipping_id
           end

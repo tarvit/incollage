@@ -1,8 +1,8 @@
 module Incollage
   class ClippingFinder
 
-    def initialize(user_id, collection_id)
-      @user_id, @collection_id = user_id, collection_id
+    def initialize(clipping_collection)
+      @clipping_collection = clipping_collection
     end
 
     def find
@@ -24,7 +24,7 @@ module Incollage
     protected
 
     def search_attrs
-      { user_id: @user_id, collection_id: @collection_id }
+      { user_id: @clipping_collection.user_id, collection_id: @clipping_collection.id }
     end
 
   end
