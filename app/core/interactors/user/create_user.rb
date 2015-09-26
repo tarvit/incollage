@@ -1,5 +1,5 @@
 module Incollage
-  class UserCreator
+  class CreateUser
 
     def initialize(user_data)
       @user_data = user_data

@@ -1,5 +1,5 @@
 module Incollage
-  class ClippingAdder
+  class AddClipping
 
     def initialize(clipping_data)
       @clipping_data = clipping_data

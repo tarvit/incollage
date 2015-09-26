@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Incollage::ClippingSynchronizer do
+describe Incollage::SynchronizeClippings do
 
   before :each do
 
@@ -14,7 +14,7 @@ describe Incollage::ClippingSynchronizer do
     end
 
     data.each do |att|
-      Incollage::ClippingAdder.new(att).add
+      Incollage::AddClipping.new(att).add
     end
 
     @new_data = [
@@ -29,15 +29,15 @@ describe Incollage::ClippingSynchronizer do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
     collection = Incollage::ClippingsCollection.new(1, 2, [])
 
-    Incollage::ClippingSynchronizer.new(collection).sync
+    Incollage::SynchronizeClippings.new(collection).sync
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
     Incollage::Gateway.for_clippings_source.class.add_for_user(collection.user_id, collection.id, @new_data)
 
-    Incollage::ClippingSynchronizer.new(collection).sync
+    Incollage::SynchronizeClippings.new(collection).sync
     expect(Incollage::Repository.for_clipping.count).to eq(5)
 
-    Incollage::ClippingSynchronizer.new(collection).sync
+    Incollage::SynchronizeClippings.new(collection).sync
     expect(Incollage::Repository.for_clipping.count).to eq(5)
   end
 

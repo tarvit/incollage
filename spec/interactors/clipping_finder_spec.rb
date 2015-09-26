@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Incollage::ClippingFinder do
+describe Incollage::FindClippings do
 
   before :each do
     @user_a = 1
@@ -21,7 +21,7 @@ describe Incollage::ClippingFinder do
     end
 
     data.each do |att|
-      Incollage::ClippingAdder.new(att).add
+      Incollage::AddClipping.new(att).add
     end
   end
 
@@ -60,7 +60,7 @@ describe Incollage::ClippingFinder do
                 collection_id: @collection_a,
                 file_path: 'some_path',
                 histogram: Incollage::Histogram.new(1 => '00ff00') }
-        Incollage::ClippingAdder.new(att).add
+        Incollage::AddClipping.new(att).add
       end
     end
 
@@ -83,7 +83,7 @@ describe Incollage::ClippingFinder do
   end
 
   def finder(user_id, collection_id)
-    Incollage::ClippingFinder.new(Incollage::ClippingsCollection.new(user_id, collection_id, []))
+    Incollage::FindClippings.new(Incollage::ClippingsCollection.new(user_id, collection_id, []))
   end
 
 end

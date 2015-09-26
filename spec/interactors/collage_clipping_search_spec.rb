@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Incollage::CollageClippingSearcher do
+describe Incollage::SearchClippingsForCollage do
 
   before :each do
     data = [
@@ -12,20 +12,23 @@ describe Incollage::CollageClippingSearcher do
     end
 
     data.each do |att|
-      Incollage::ClippingAdder.new(att).add
+      Incollage::AddClipping.new(att).add
     end
   end
 
   it 'should search clippings by colors' do
     collection = Incollage::ClippingsCollection.new(1, 1, [])
-    searcher = Incollage::CollageClippingSearcher.new(collection)
 
-    expect(searcher.search( [ 'ff0000' ], 1 ).map(&:id)).to eq([ 3 ])
-    expect(searcher.search( [ '00ff00' ], 1 ).map(&:id)).to eq([ 1 ])
-    expect(searcher.search( [ '0000ff' ], 1 ).map(&:id)).to eq([ 2 ])
+    expect(searcher(collection, [ 'ff0000' ], 1 ).search.map(&:id)).to eq([ 3 ])
+    expect(searcher(collection, [ '00ff00' ], 1 ).search.map(&:id)).to eq([ 1 ])
+    expect(searcher(collection, [ '0000ff' ], 1 ).search.map(&:id)).to eq([ 2 ])
 
-    expect(searcher.search( [ 'ff0000', '00ff00' ], 2 ).map(&:id)).to eq([ 3, 1 ])
-    expect(searcher.search( [ '0000ff' ], 3 ).map(&:id)).to eq([ 2, 1, 3 ])
+    expect(searcher(collection, [ 'ff0000', '00ff00' ], 2 ).search.map(&:id)).to eq([ 3, 1 ])
+    expect(searcher(collection, [ '0000ff' ], 3 ).search.map(&:id)).to eq([ 2, 1, 3 ])
+  end
+
+  def searcher(collection, colors, count)
+    Incollage::SearchClippingsForCollage.new(collection, colors, count)
   end
 
 end

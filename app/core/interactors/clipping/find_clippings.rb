@@ -1,5 +1,5 @@
 module Incollage
-  class ClippingFinder
+  class FindClippings
 
     def initialize(clipping_collection)
       @clipping_collection = clipping_collection
