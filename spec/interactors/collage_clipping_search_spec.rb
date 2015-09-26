@@ -4,9 +4,9 @@ describe Incollage::CollageClippingSearcher do
 
   before :each do
     data = [
-        { id: 1, histogram_scores: { 0.5 => 'ff0000', 0.45 => '00ff00', 0.05 => '0000ff' } },
-        { id: 2, histogram_scores: { 0.7 => 'ff0000', 0.2 => '00ff00', 0.1 => '0000ff' } },
-        { id: 3, histogram_scores: { 0.9 => 'ff0000', 0.1 => '00ff00', 0.0 => '0000ff' } },
+        { id: 1, histogram: Incollage::Histogram.new({ 0.5 => 'ff0000', 0.45 => '00ff00', 0.05 => '0000ff' }) },
+        { id: 2, histogram: Incollage::Histogram.new({ 0.7 => 'ff0000', 0.2 => '00ff00', 0.1 => '0000ff' }) },
+        { id: 3, histogram: Incollage::Histogram.new({ 0.9 => 'ff0000', 0.1 => '00ff00', 0.0 => '0000ff' }) },
     ].map do |att|
       att.merge!( file_path: 'some_path', user_id: 1, collection_id: 1 )
     end

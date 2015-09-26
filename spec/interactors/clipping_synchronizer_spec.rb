@@ -10,7 +10,7 @@ describe Incollage::ClippingSynchronizer do
         { id: 3, user_id: 2, collection_id: 2 },
         { id: 4, user_id: 1, collection_id: 1 },
     ].map do |att|
-      att.merge!(file_path: 'some_path', histogram_scores: { 1 => '00ff00' })
+      att.merge!(file_path: 'some_path', histogram: Incollage::Histogram.new(1 => '00ff00'))
     end
 
     data.each do |att|
@@ -21,7 +21,7 @@ describe Incollage::ClippingSynchronizer do
         { id: 1, user_id: 1, collection_id: 2 },
         { id: 5, user_id: 1, collection_id: 2 },
     ].map do |att|
-      att.merge!(file_path: 'some_path', histogram_scores: { 1 => '00ff00' })
+      att.merge!(file_path: 'some_path', histogram: Incollage::Histogram.new(1 => '00ff00'))
     end
   end
 

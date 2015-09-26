@@ -17,7 +17,7 @@ describe Incollage::ClippingFinder do
         { id: 3, user_id: @user_b, collection_id: @collection_b },
         { id: 4, user_id: @user_a, collection_id: @collection_a },
     ].map do |att|
-      att.merge!(file_path: 'some_path', histogram_scores: { 1 => '00ff00' })
+      att.merge!(file_path: 'some_path', histogram: Incollage::Histogram.new(1 => '00ff00'))
     end
 
     data.each do |att|
@@ -59,7 +59,7 @@ describe Incollage::ClippingFinder do
                 user_id: @user_a,
                 collection_id: @collection_a,
                 file_path: 'some_path',
-                histogram_scores: { 1 => '00ff00' } }
+                histogram: Incollage::Histogram.new(1 => '00ff00') }
         Incollage::ClippingAdder.new(att).add
       end
     end
