@@ -11,7 +11,7 @@ module Incollage
     private
 
     def global_dirs(dir)
-      (%w{ base entities repositories interactors } + valid_directories(dir)).uniq
+      (%w{ base entities interactors adapters } + valid_directories(dir)).uniq
     end
 
     def load_modules_in(dir)
