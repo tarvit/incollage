@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'instagram'
 gem 'slim'
+gem 'kaminari'
 
 gem 'color'
 gem 'colorscore'
