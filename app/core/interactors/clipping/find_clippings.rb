@@ -5,6 +5,10 @@ module Incollage
       @clipping_collection = clipping_collection
     end
 
+    def execute(page_number, per_page)
+      find_page(page_number, per_page)
+    end
+
     def find
       Repository.for_clipping.find(search_attrs)
     end
