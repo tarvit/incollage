@@ -13,6 +13,10 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
 
+  def app_root
+    Rails.root
+  end
+
   def fixture_file(path)
     Rails.root.join('spec', 'fixtures', path)
   end
@@ -24,6 +28,7 @@ RSpec.configure do |config|
   def register_repos
     Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
     Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
+    #Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
 
     Incollage::Gateway.register(:clippings_source, Incollage::ClippingSource::InMemory::Base.new)
     Incollage::Gateway.register(:color_matcher, Incollage::PaletteColorMatcher.new)

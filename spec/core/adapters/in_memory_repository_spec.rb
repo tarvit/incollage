@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Incollage::Repository::InMemoryBase do
-  require_relative '../../../spec/core/support/in_memory_base_repository'
-  include InMemoryBaseRepositoryTest
+  require app_root.join 'spec/core/support/base_repository_test'
+  include BaseRepositoryTest
 
   before :each do
     @repo = Incollage::Repository::InMemoryBase.new

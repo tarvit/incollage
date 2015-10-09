@@ -18,6 +18,10 @@ class ClippingActiveRecord < ActiveRecord::Base
       to_entities query(options)
     end
 
+    def all
+      find_all({})
+    end
+
     def find_last(options)
       to_entity query(options).last
     end
@@ -28,6 +32,18 @@ class ClippingActiveRecord < ActiveRecord::Base
 
     def find_all_on_page(options, page_number, per_page)
       to_entities query(options).page(page_number+1).per(per_page)
+    end
+
+    def first
+      find({})
+    end
+
+    def last
+      find_last({})
+    end
+
+    def delete(clipping)
+      from_entity(clipping).destroy
     end
 
     protected

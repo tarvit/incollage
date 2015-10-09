@@ -1,4 +1,4 @@
-module InMemoryBaseRepositoryTest
+module BaseRepositoryTest
   extend ActiveSupport::Concern
 
   def new_entity(opts={})
