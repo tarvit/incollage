@@ -21,7 +21,7 @@ describe Incollage::FindClippings do
     end
 
     data.each do |att|
-      Incollage::AddClipping.new(att).add
+      Incollage::AddClipping.new(att).execute
     end
   end
 
@@ -60,7 +60,7 @@ describe Incollage::FindClippings do
                 collection_id: @collection_a,
                 file_path: 'some_path',
                 histogram: Incollage::Histogram.new(1 => '00ff00') }
-        Incollage::AddClipping.new(att).add
+        Incollage::AddClipping.new(att).execute
       end
     end
 

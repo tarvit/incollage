@@ -10,7 +10,7 @@ module Incollage
       next_clippings = @clippings_source.next_clippings(@clipping_collection, last_clipping_id)
       while !next_clippings.empty?
         next_clippings.each do |clipping|
-          AddClipping.new(clipping).add
+          AddClipping.new(clipping).execute
         end
         next_clippings = @clippings_source.next_clippings(@clipping_collection, last_clipping_id)
       end

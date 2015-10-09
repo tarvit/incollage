@@ -14,7 +14,7 @@ describe Incollage::SynchronizeClippings do
     end
 
     data.each do |att|
-      Incollage::AddClipping.new(att).add
+      Incollage::AddClipping.new(att).execute
     end
 
     @new_data = [

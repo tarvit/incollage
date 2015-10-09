@@ -6,7 +6,7 @@ describe Incollage::AddClipping do
     attrs = { user_id: 0, file_path: 'some_path', histogram: Incollage::Histogram.new(1 => '00ff00') }
 
     expect(->{
-      Incollage::AddClipping.new( attrs ).add
+      Incollage::AddClipping.new( attrs ).execute
     }).to change{
       Incollage::Repository.for_clipping.count
     }.by(1)

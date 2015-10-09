@@ -12,7 +12,7 @@ describe Incollage::SearchClippingsForCollage do
     end
 
     data.each do |att|
-      Incollage::AddClipping.new(att).add
+      Incollage::AddClipping.new(att).execute
     end
   end
 
