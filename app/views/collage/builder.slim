@@ -4,7 +4,10 @@ p
 p
   span.label
     | Hello
-    strong= @client.user.full_name
+    strong= current_user.full_name
+
+p
+  = link_to 'Synchronize', clippings_synchronize_path
 
 ul
   - @images.each do |im|

@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     get :builder
   end
 
+  namespace :clippings do
+    get :synchronize
+  end
+
   namespace :auth do
     get :login
     get :logout
