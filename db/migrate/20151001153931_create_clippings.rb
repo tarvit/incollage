@@ -1,4 +1,4 @@
-class CreateClippingActiveRecordRepositories < ActiveRecord::Migration
+class CreateClippings < ActiveRecord::Migration
   def change
     create_table :clippings do |t|
       t.integer :user_id

@@ -4,8 +4,12 @@ class ClippingActiveRecord < ActiveRecord::Base
   require 'base_repository'
   class Repository < ActiveRecordBaseRepository
 
-    def to_entity(record)
-      record ? Incollage::Clipping.new(entity_attributes(record)) : nil
+    def active_record
+      ClippingActiveRecord
+    end
+
+    def entity_class
+      Incollage::Clipping
     end
 
     def from_entity(entity)
@@ -21,10 +25,6 @@ class ClippingActiveRecord < ActiveRecord::Base
       scores = record.histogram.nil? ? {} : Hash[(JSON.parse(record.histogram)['scores']).map{|(k,v)| [k.to_f, v] }]
       entity_histogram = Incollage::Histogram.new(scores)
       { id: record.id, user_id: record.user_id, file_path: record.file_path, histogram: entity_histogram }
-    end
-
-    def active_record
-      ClippingActiveRecord
     end
 
   end

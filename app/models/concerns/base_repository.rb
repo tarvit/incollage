@@ -61,6 +61,11 @@ class ActiveRecordBaseRepository
   end
 
   def to_entity(record)
+    record ? entity_class.new(entity_attributes(record)) : nil
+  end
+
+
+  def entity_class
     raise NotImplementedError
   end
 
