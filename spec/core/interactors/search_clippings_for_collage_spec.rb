@@ -19,12 +19,12 @@ describe Incollage::SearchClippingsForCollage do
   it 'should search clippings by colors' do
     collection = Incollage::ClippingsCollection.new(1, 1, [])
 
-    expect(searcher(collection, [ 'ff0000' ], 1 ).search.map(&:id)).to eq([ 3 ])
-    expect(searcher(collection, [ '00ff00' ], 1 ).search.map(&:id)).to eq([ 1 ])
-    expect(searcher(collection, [ '0000ff' ], 1 ).search.map(&:id)).to eq([ 2 ])
+    expect(searcher(collection, [ 'ff0000' ], 1 ).execute.map(&:id)).to eq([ 3 ])
+    expect(searcher(collection, [ '00ff00' ], 1 ).execute.map(&:id)).to eq([ 1 ])
+    expect(searcher(collection, [ '0000ff' ], 1 ).execute.map(&:id)).to eq([ 2 ])
 
-    expect(searcher(collection, [ 'ff0000', '00ff00' ], 2 ).search.map(&:id)).to eq([ 3, 1 ])
-    expect(searcher(collection, [ '0000ff' ], 3 ).search.map(&:id)).to eq([ 2, 1, 3 ])
+    expect(searcher(collection, [ 'ff0000', '00ff00' ], 2 ).execute.map(&:id)).to eq([ 3, 1 ])
+    expect(searcher(collection, [ '0000ff' ], 3 ).execute.map(&:id)).to eq([ 2, 1, 3 ])
   end
 
   def searcher(collection, colors, count)
