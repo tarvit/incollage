@@ -4,6 +4,8 @@ class UserActiveRecord < ActiveRecord::Base
   require 'base_repository'
   class Repository < ActiveRecordBaseRepository
 
+    protected
+
     def active_record
       UserActiveRecord
     end
