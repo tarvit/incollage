@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Incollage::Repository::InMemoryBase do
-  require_relative '../../spec/support/in_memory_base_repository'
+  require_relative '../../../spec/core/support/in_memory_base_repository'
   include InMemoryBaseRepositoryTest
 
   before :each do
