@@ -12,6 +12,11 @@ class Incollage::Repository::InMemoryBase
     entity
   end
 
+  def delete(entity)
+    remove_from_memory_storage(entity)
+    entity
+  end
+
   def all
     records.values
   end
@@ -83,6 +88,10 @@ class Incollage::Repository::InMemoryBase
 
   def add_to_memory_storage(entity)
     @records[ entity.id ] = entity
+  end
+
+  def remove_from_memory_storage(entity)
+    @records.delete  entity.id
   end
 
 end
