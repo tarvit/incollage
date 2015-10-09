@@ -7,7 +7,7 @@ module BaseRepositoryTest
 
   module ClassMethods
 
-    def test_in_memory_base_repository
+    def test_base_repository
 
       it 'should CRUD records' do
         expect(@repo.count).to eq(0)

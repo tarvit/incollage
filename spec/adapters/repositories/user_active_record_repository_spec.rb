@@ -15,7 +15,7 @@ describe ClippingActiveRecord::Repository do
     Incollage::User.new(attrs.merge opts)
   end
 
-  test_in_memory_base_repository
+  test_base_repository
 
 
 end
