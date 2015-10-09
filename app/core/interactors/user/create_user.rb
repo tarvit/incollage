@@ -1,15 +1,11 @@
 module Incollage
-  class CreateUser
+  class FindOrCreateUser
 
     def initialize(user_data)
       @user_data = user_data
     end
 
-    def create
-      Repository.for_user.save(build_entity)
-    end
-
-    def find_or_create
+    def execute
       entity = build_entity
       Repository.for_user.find(@user_data) || Repository.for_user.save(entity)
     end

@@ -17,5 +17,4 @@ describe ClippingActiveRecord::Repository do
 
   test_in_memory_base_repository
 
-
 end
