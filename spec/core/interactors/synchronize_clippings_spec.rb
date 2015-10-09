@@ -27,7 +27,7 @@ describe Incollage::SynchronizeClippings do
 
   it 'should sync clippings' do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
-    collection = Incollage::ClippingsCollection.new(1, 2, [])
+    collection = Incollage::ClippingsCollection.new(1, 2)
 
     Incollage::SynchronizeClippings.new(collection).sync
     expect(Incollage::Repository.for_clipping.count).to eq(4)

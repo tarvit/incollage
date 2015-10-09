@@ -19,7 +19,7 @@ module Incollage
     private
 
     def last_clipping_id
-      last_synchronized_clipping = FindClippings.new(@clipping_collection).find_last
+      last_synchronized_clipping = ClippingsFinder.new(@clipping_collection).find_last
       last_synchronized_clipping.id || 0
     end
 

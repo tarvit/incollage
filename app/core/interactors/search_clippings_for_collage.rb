@@ -6,7 +6,7 @@ module Incollage
     end
 
     def execute
-      all = FindClippings.new(@clipping_collection).find_all
+      all = ClippingsFinder.new(@clipping_collection).find_all
       all.sort_by{|cl| -Gateway.for_color_matcher.score(cl.histogram.scores, @palette_colors) }[0..(@count-1)]
     end
 
