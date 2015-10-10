@@ -2,11 +2,12 @@ class CollageController < ApplicationController
   before_filter :check_authorized!
 
   DEFAULT_COLLECTION_ID = 1
-  PER_PAGE = 100
+  PER_PAGE = 1000
 
   def builder
     @page = params[:page].to_i
-    clippings = Incollage::FindClippingsPage.new(current_user.id, DEFAULT_COLLECTION_ID, @page, PER_PAGE).execute
+    #clippings = Incollage::FindClippingsPage.new(current_user.id, DEFAULT_COLLECTION_ID, @page, PER_PAGE).execute
+    clippings = Incollage::ClippingsFinder.new(Incollage::ClippingsCollection.new(current_user.id, DEFAULT_COLLECTION_ID)).find_all
     @images = clippings.reverse.map &:file_path
   end
 
