@@ -14,18 +14,24 @@ class ClippingActiveRecord < ActiveRecord::Base
       Incollage::Clipping
     end
 
+    SIMPLE_FIELDS = [ :user_id, :external_id, :collection_id, :file_path ]
     def from_entity(entity)
       record = base_record(entity.id)
-      record.user_id = entity.user_id
-      record.collection_id = entity.collection_id
-      record.file_path = entity.file_path
-      record.external_id = entity.external_id
+
+      SIMPLE_FIELDS.each do |f|
+        record.send("#{f}=", entity.send(f))
+      end
+
       record.histogram = entity.histogram.to_json
       record
     end
 
     def entity_attributes(record)
-      { id: record.id, external_id: record.external_id, user_id: record.user_id, file_path: record.file_path, histogram: entity_histogram(record) }
+      simple_fields = SIMPLE_FIELDS.each_with_object({}) do |f, res|
+        res[f] = record.send(f)
+      end
+
+      { id: record.id, histogram: entity_histogram(record) }.merge(simple_fields)
     end
 
     private
@@ -36,6 +42,4 @@ class ClippingActiveRecord < ActiveRecord::Base
     end
 
   end
-
-
 end
