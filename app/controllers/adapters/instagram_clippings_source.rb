@@ -5,12 +5,14 @@ class InstagramClippingsSource
   end
 
   def next_clippings(collection, last_clipping)
-    feed = @client.user_media_feed(max_id: last_clipping.try(:external_id))
-    puts ?-*100
-    puts feed.count
-    feed.map do |item|
+    external_id = last_clipping.try(:external_id)
+    feed = @client.user_media_feed({ min_id: external_id })
+
+    entities = feed.map do |item|
       InstagramMediaClipping.new(item, collection).to_entity
     end
+
+    entities.sort_by{|x| x[:external_created_time] }
   end
 
   class InstagramMediaClipping
