@@ -5,8 +5,7 @@ module ClippingRepositoryTest
   include BaseRepositoryTest
 
   def new_entity(opts={})
-    defaults = { user_id: 1, file_path: 'some_path', histogram: Incollage::Histogram.new(1 => '00ff00') }
-    Incollage::Clipping.new(defaults.merge opts)
+    ClippingFactory.get(opts)
   end
 
   def search_attrs(user_id, collection_id)
@@ -45,6 +44,7 @@ module ClippingRepositoryTest
 
         it 'should find last clipping of a user within a collection' do
           expect(@repo.count).to eq(4)
+          expect(@repo.all.all?(&:valid?)).to be_truthy
 
           expect(@repo.find_last(search_attrs(@user_a, @collection_a)).id).to eq(4)
           expect(@repo.find_last(search_attrs(@user_a, @collection_b)).id).to eq(1)

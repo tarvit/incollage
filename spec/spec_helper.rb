@@ -30,12 +30,13 @@ RSpec.configure do |config|
     Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
     #Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
 
-    Incollage::Gateway.register(:clippings_source, Incollage::ClippingSource::InMemory::Base.new)
     Incollage::Gateway.register(:color_matcher, Incollage::PaletteColorMatcher.new)
   end
 
   config.before :each do |example|
     register_repos
   end
+
+  require app_root.join('spec/core/support/factories/clipping_factory')
 
 end

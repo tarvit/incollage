@@ -19,12 +19,13 @@ class ClippingActiveRecord < ActiveRecord::Base
       record.user_id = entity.user_id
       record.collection_id = entity.collection_id
       record.file_path = entity.file_path
+      record.external_id = entity.external_id
       record.histogram = entity.histogram.to_json
       record
     end
 
     def entity_attributes(record)
-      { id: record.id, user_id: record.user_id, file_path: record.file_path, histogram: entity_histogram(record) }
+      { id: record.id, external_id: record.external_id, user_id: record.user_id, file_path: record.file_path, histogram: entity_histogram(record) }
     end
 
     private

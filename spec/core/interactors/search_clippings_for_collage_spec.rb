@@ -8,7 +8,7 @@ describe Incollage::SearchClippingsForCollage do
         { id: 2, histogram: Incollage::Histogram.new({ 0.7 => 'ff0000', 0.2 => '00ff00', 0.1 => '0000ff' }) },
         { id: 3, histogram: Incollage::Histogram.new({ 0.9 => 'ff0000', 0.1 => '00ff00', 0.0 => '0000ff' }) },
     ].map do |att|
-      att.merge!( file_path: 'some_path', user_id: 1, collection_id: 1 )
+      ClippingFactory.defaults.merge(att)
     end
 
     data.each do |att|
