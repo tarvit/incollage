@@ -23,18 +23,13 @@ class InstagramClippingsSource
     current_page = @client.user_media_feed
     items << current_page
     next_max_id = current_page.pagination.next_max_id
-    puts items.count
-    puts next_max_id
 
     while next_max_id
       current_page = @client.user_media_feed(max_id: next_max_id)
       items << current_page
       next_max_id = current_page.pagination.next_max_id
-      puts items.count
-      puts next_max_id
     end
 
-    puts ?-*100
     items.flatten(1)
   end
 
