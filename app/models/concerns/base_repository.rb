@@ -1,6 +1,7 @@
 class ActiveRecordBaseRepository
-  def save(clipping)
-    from_entity(clipping).save
+  def save(entity)
+    from_entity(entity).save
+    entity
   end
 
   def delete_all
@@ -39,8 +40,8 @@ class ActiveRecordBaseRepository
     find_last({})
   end
 
-  def delete(clipping)
-    from_entity(clipping).destroy
+  def delete(entity)
+    from_entity(entity).destroy
   end
 
   protected
