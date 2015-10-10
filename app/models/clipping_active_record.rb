@@ -14,7 +14,7 @@ class ClippingActiveRecord < ActiveRecord::Base
       Incollage::Clipping
     end
 
-    SIMPLE_FIELDS = [ :user_id, :external_id, :collection_id, :file_path ]
+    SIMPLE_FIELDS = [ :user_id, :external_id, :external_created_time, :collection_id, :file_path ]
     def from_entity(entity)
       record = base_record(entity.id)
 
