@@ -9,6 +9,11 @@ p
 p
   = link_to 'Synchronize', clippings_synchronize_path
 
+p
+  = form_tag(clippings_search_path, method: :get) do |form|
+    = text_field_tag 'colors'
+    = button_tag
+
 ul
   - @images.each do |im|
     = image_tag im

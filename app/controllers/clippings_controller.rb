@@ -7,4 +7,13 @@ class ClippingsController < ApplicationController
     redirect_to collage_builder_path
   end
 
+  def search
+    collection = Incollage::ClippingsCollection.new(current_user.id, 1)
+    colors = params[:colors].split(?,)
+    clippings = Incollage::SearchClippingsForCollage.new(collection, colors, 5).execute
+    @images = clippings.map &:file_path
+
+    render 'collage/builder'
+  end
+
 end

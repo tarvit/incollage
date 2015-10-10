@@ -7,7 +7,7 @@ class CollageController < ApplicationController
   def builder
     @page = params[:page].to_i
     clippings = Incollage::FindClippingsPage.new(current_user.id, DEFAULT_COLLECTION_ID, @page, PER_PAGE).execute
-    @images = clippings.map &:file_path
+    @images = clippings.reverse.map &:file_path
   end
 
 end

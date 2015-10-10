@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :clippings do
     get :synchronize
+    get :search
   end
 
   namespace :auth do

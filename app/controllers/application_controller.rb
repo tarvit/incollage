@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   def self.set_adapters
     Incollage::Repository.register(:user, UserActiveRecord::Repository.new)
     Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
+    Incollage::Gateway.register(:color_matcher, Incollage::PaletteColorMatcher.new)
   end
 
   reload_core
