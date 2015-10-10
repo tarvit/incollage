@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   def self.reload_core
     Incollage.load_modules(Rails.root.join('app/core'))
     set_adapters
+
+    load Rails.root.join 'app/controllers/adapters/instagram_clippings_source.rb'
   end
 
   def reload_core
