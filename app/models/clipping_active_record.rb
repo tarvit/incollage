@@ -37,7 +37,7 @@ class ClippingActiveRecord < ActiveRecord::Base
     private
 
     def entity_histogram(record)
-      scores = record.histogram.nil? ? {} : Hash[(JSON.parse(record.histogram)['scores']).map{|(k,v)| [k.to_f, v] }]
+      scores = record.histogram.nil? ? {} : Hash[(JSON.parse(record.histogram)).map{|(k,v)| [k.to_f, v] }]
       Incollage::Histogram.new(scores)
     end
 
