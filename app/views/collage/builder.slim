@@ -18,7 +18,5 @@ p
   - if @collage
   = image_tag @collage
 
-
-ul
-  - @images.each do |im|
-    = image_tag im
+- @images.each do |im|
+  = image_tag im.picture_url
