@@ -61,7 +61,7 @@ module Incollage
         alias_method :preceding_clippings, :next_clippings
 
         def select_condition(clipping_data, last_clipping)
-          clipping_data[:id] < last_clipping.try(:id).to_i
+          clipping_data[:external_id] < last_clipping.try(:external_id).to_i
         end
 
       end

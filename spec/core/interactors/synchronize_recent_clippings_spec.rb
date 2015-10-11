@@ -5,12 +5,11 @@ describe Incollage::SynchronizeRecentClippings do
   before :each do
 
     data = [
-        { id: 11, user_id: 1, collection_id: 2 },
-        { id: 12, user_id: 1, collection_id: 2 },
-        { id: 13, user_id: 1, collection_id: 2 },
-        { id: 14, user_id: 1, collection_id: 2 },
+        { external_id: 11, user_id: 1, collection_id: 2 },
+        { external_id: 12, user_id: 1, collection_id: 2 },
+        { external_id: 13, user_id: 1, collection_id: 2 },
+        { external_id: 14, user_id: 1, collection_id: 2 },
     ].map do |att|
-      att[:external_id] = att[:id]
       ClippingFactory.defaults.merge(att)
     end
 
@@ -19,12 +18,11 @@ describe Incollage::SynchronizeRecentClippings do
     end
 
     @new_data = [
-        { id: 9, user_id: 1, collection_id: 2 },
-        { id: 10, user_id: 1, collection_id: 2 },
-        { id: 11, user_id: 1, collection_id: 2 },
-        { id: 15, user_id: 1, collection_id: 2 },
+        { external_id: 9, user_id: 1, collection_id: 2 },
+        { external_id: 10, user_id: 1, collection_id: 2 },
+        { external_id: 11, user_id: 1, collection_id: 2 },
+        { external_id: 15, user_id: 1, collection_id: 2 },
     ].map do |att|
-      att[:external_id] = att[:id]
       ClippingFactory.defaults.merge(att)
     end
   end
@@ -40,13 +38,13 @@ describe Incollage::SynchronizeRecentClippings do
 
     Incollage::SynchronizeRecentClippings.new(collection, @source.new).execute
     expect(Incollage::Repository.for_clipping.count).to eq(4)
-    expect(Incollage::Repository.for_clipping.all.map(&:id)).to eq([11,12,13,14])
+    expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14])
 
     @source.add_for_user(collection.user_id, collection.id, @new_data)
 
     Incollage::SynchronizeRecentClippings.new(collection, @source.new).execute
     expect(Incollage::Repository.for_clipping.count).to eq(5)
-    expect(Incollage::Repository.for_clipping.all.map(&:id)).to eq([11,12,13,14,15])
+    expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,15])
 
     Incollage::SynchronizeRecentClippings.new(collection, @source.new).execute
     expect(Incollage::Repository.for_clipping.count).to eq(5)
