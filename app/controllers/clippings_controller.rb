@@ -16,7 +16,7 @@ class ClippingsController < ApplicationController
 
   def search
     colors = params[:colors].split(?,)
-    clippings = Incollage::SearchClippingsForCollage.new(collection, colors, 5).execute
+    clippings = Incollage::SearchClippingsForCollage.new(collection, colors, 10).execute
     @images = clippings.sort_by(&:external_id)
     @collage = @images.first
 
