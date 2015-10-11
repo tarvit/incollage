@@ -36,19 +36,15 @@ class Incollage::Repository::InMemoryBase
   end
 
   def find_all(options)
-    all.select do |record|
-      options.all? do |(attr, value)|
-        record.send(attr) == value
-      end
-    end
+    query(options)
   end
 
   def find(options)
-    find_all(options).first
+    query(options).first
   end
 
   def find_last(options)
-    find_all(options).last
+    query(options).last
   end
 
   def find_all_on_page(options, page_number, per_page)
@@ -59,10 +55,20 @@ class Incollage::Repository::InMemoryBase
   end
 
   def count
-    all.count
+    query.count
   end
 
   class EntityIsInvalidError < StandardError; end
+
+  protected
+
+  def query(options={})
+    all.select do |record|
+      options.all? do |(attr, value)|
+        record.send(attr) == value
+      end
+    end
+  end
 
   private
 

@@ -31,10 +31,10 @@ module ClippingRepositoryTest
           @collection_c = 3
 
           data = [
-              { id: 1, user_id: @user_a, collection_id: @collection_b },
-              { id: 2, user_id: @user_a, collection_id: @collection_a },
-              { id: 3, user_id: @user_b, collection_id: @collection_b },
-              { id: 4, user_id: @user_a, collection_id: @collection_a },
+              { id: 1, external_id: 1, user_id: @user_a, collection_id: @collection_b },
+              { id: 2, external_id: 2, user_id: @user_a, collection_id: @collection_a },
+              { id: 3, external_id: 3, user_id: @user_b, collection_id: @collection_b },
+              { id: 4, external_id: 4, user_id: @user_a, collection_id: @collection_a },
           ]
 
           data.each do |att|
@@ -65,6 +65,14 @@ module ClippingRepositoryTest
           expect(@repo.find(search_attrs(@user_c, @collection_a))).to be_nil
           expect(@repo.find(search_attrs(@user_b, @collection_a))).to be_nil
           expect(@repo.find(search_attrs(@user_a, @collection_c))).to be_nil
+        end
+
+        it 'should find the most recent item' do
+          expect(@repo.most_recent(search_attrs(@user_a, @collection_a)).id).to eq(4)
+        end
+
+        it 'should find the most preceding item' do
+          expect(@repo.most_preceding(search_attrs(@user_a, @collection_a)).id).to eq(2)
         end
 
         context 'More data' do

@@ -6,7 +6,7 @@ describe Incollage::Repository::ClippingInMemoryRepository do
   include ClippingRepositoryTest
 
   before :each do
-    @repo = Incollage::Repository::InMemoryBase.new
+    @repo = Incollage::Repository::ClippingInMemoryRepository.new
   end
 
   test_clipping_repository
