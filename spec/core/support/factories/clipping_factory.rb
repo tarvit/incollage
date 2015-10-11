@@ -12,7 +12,7 @@ class ClippingFactory
           external_id: 1,
           external_created_time: Time.now.to_i,
           collection_id: 1,
-          file_path: 'some_path',
+          picture_url: 'http://pic.com/pic.png',
           histogram: Incollage::Histogram.new(1 => '00ff00')
       }
     end

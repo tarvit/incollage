@@ -14,6 +14,11 @@ p
     = text_field_tag 'colors'
     = button_tag
 
+p
+  - if @collage
+  = image_tag @collage
+
+
 ul
   - @images.each do |im|
     = image_tag im

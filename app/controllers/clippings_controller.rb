@@ -11,7 +11,8 @@ class ClippingsController < ApplicationController
     collection = Incollage::ClippingsCollection.new(current_user.id, 1)
     colors = params[:colors].split(?,)
     clippings = Incollage::SearchClippingsForCollage.new(collection, colors, 5).execute
-    @images = clippings.map &:file_path
+    @images = clippings.map &:picture_url
+    @collage = @images.first
 
     render 'collage/builder'
   end

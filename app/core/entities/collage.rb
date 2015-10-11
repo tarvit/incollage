@@ -1,5 +1,5 @@
 class Incollage::Collage < Incollage::Entity::Base
 
-  attr_accessor :file_path
+  attr_accessor :picture_url
 
 end

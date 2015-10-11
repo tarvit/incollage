@@ -43,13 +43,13 @@ class InstagramClippingsSource
     end
 
     def to_entity
-      path = make_file_path
+      path = make_picture_url
       {
           user_id: collection.user_id,
           external_id: media_item.id,
           external_created_time: media_item.created_time,
           collection_id: collection.id,
-          file_path: path,
+          picture_url: path,
           histogram: make_histogram(path),
       }
     end
@@ -62,7 +62,7 @@ class InstagramClippingsSource
       Incollage::HistogramMaker.new(file.path).make
     end
 
-    def make_file_path
+    def make_picture_url
       media_item.images.low_resolution.url
     end
 
