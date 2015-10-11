@@ -1,5 +1,5 @@
 class AuthController < ApplicationController
-  require_relative './auth/instagram_connector'
+  require Rails.root.join 'app/controllers/auth/instagram_connector'
 
   def connect
     redirect_to InstagramConnector.new(auth_callback_url).authorize_url
