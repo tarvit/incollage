@@ -7,12 +7,14 @@ p
     strong= current_user.full_name
 
 p
-  = link_to 'Synchronize', clippings_synchronize_path
+  = link_to 'Synchronize Recent', clippings_synchronize_recent_path
+p
+  = link_to 'Synchronize Preceding', clippings_synchronize_preceding_path
 
 p
   = form_tag(clippings_search_path, method: :get) do |form|
     = text_field_tag 'colors'
-    = button_tag
+    = button_tag 'Search'
 
 p
   - if @collage

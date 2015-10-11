@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   end
 
   namespace :clippings do
-    get :synchronize
+    get :synchronize_recent
+    get :synchronize_preceding
     get :search
   end
 
