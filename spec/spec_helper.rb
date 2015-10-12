@@ -26,7 +26,7 @@ RSpec.configure do |config|
     #Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
 
     Incollage::Gateway.register(:color_matcher, Imagemagick::PaletteColorMatcher.new)
-    Incollage::Gateway.register(:collage_maker_factory, Imagemagick::CollageMaker)
+    Incollage::Gateway.register(:collage_maker_factory, FakeCollageMaker)
   end
 
   config.before :each do |example|

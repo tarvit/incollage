@@ -9,7 +9,7 @@ describe Incollage::MakeCollage do
 
   it 'should add a clipping' do
     collage_file = Incollage::MakeCollage.new(@files, @path).execute
-    expect(collage_file).to be_a(File)
+    expect(collage_file).to be
   end
 
 end
