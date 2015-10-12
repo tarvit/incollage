@@ -31,7 +31,7 @@ RSpec.configure do |config|
     #Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
 
     Incollage::Gateway.register(:color_matcher, Incollage::PaletteColorMatcher.new)
-    Incollage::Gateway.register(:collage_maker, Incollage::CollageMaker)
+    Incollage::Gateway.register(:collage_maker_factory, Incollage::CollageMaker)
   end
 
   config.before :each do |example|

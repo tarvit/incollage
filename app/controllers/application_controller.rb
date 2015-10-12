@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
     Incollage::Gateway.register(:color_matcher, Incollage::PaletteColorMatcher.new)
     Incollage::Gateway.register(:downloader, SimpleHttpDownloader.new)
     Incollage::Gateway.register(:histogram_maker_factory, Incollage::HistogramMaker)
+    Incollage::Gateway.register(:collage_maker_factory, Incollage::CollageMaker)
   end
 
   reload_core
