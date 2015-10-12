@@ -2,10 +2,11 @@
 
 # Top
 - Extract FS Gateway abstraction
+- Implement Direct FS Gateway
 
 # Middle
 - Implement Abstract Session
-- Implement Concrete Instagram Session
+- Implement Concrete Instagram Session(persistent)
 
 # Low
 - Extract recursive modules loading to gem
