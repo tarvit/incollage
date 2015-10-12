@@ -34,8 +34,8 @@ class ClippingsController < ApplicationController
   def files(images)
     images.map do |img|
       url = img.picture_url
-      fname = img.id
-      Incollage::Gateway.for_downloader.download(url, "image_#{fname}").path
+      fname = Rails.root.join("public/fs/#{Rails.env}/downloads/#{img.id}_#{rand(99999)}.png").to_s
+      Incollage::Gateway.for_downloader.download(url, fname).path
     end
   end
 
