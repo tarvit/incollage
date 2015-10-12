@@ -1,4 +1,4 @@
-## Priorities
+## Current Priorities
 
 # Top
 - Extract FS Gateway abstraction
@@ -7,11 +7,12 @@
 # Middle
 - Implement Abstract Session
 - Implement Concrete Instagram Session(persistent)
+- Replace hardcoded instagram keys with configuration vars
 
 # Low
 - Extract recursive modules loading to gem
 - Optimize histograms for search
 
-# Minor
+## Future
 - Implement better UI (AngularJS, etc)
-
+- Implement more options for Collage
