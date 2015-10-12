@@ -3,9 +3,10 @@ p
     = link_to 'Log out', auth_logout_path
 p
   span.label
-    | Hello
+    | Hello&nbsp;
     strong= current_user.full_name
-
+p
+  = link_to 'All', collage_builder_path
 p
   = link_to 'Synchronize Recent', clippings_synchronize_recent_path
 p
