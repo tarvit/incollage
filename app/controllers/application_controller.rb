@@ -9,15 +9,8 @@ class ApplicationController < ActionController::Base
   before_filter :reload_core, if: ->{ Rails.env.development? }
   include Incollage
 
-  def self.reload_core
+  def reload_core
     IncollageApp.load_all_modules
   end
 
-  def reload_core
-    self.class.reload_core
-  end
-
-
-
-  reload_core
 end
