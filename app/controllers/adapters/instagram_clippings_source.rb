@@ -40,26 +40,15 @@ class InstagramClippingsSource
       protected
 
       def make_histogram(url)
-        puts url
-        file = save_to_tempfile(url, "instagram_media_#{media_item.id}")
-        Incollage::HistogramMaker.new(file.path).make
+        file = Incollage::Gateway.for_downloader.download(url, "instagram_media_#{media_item.id}")
+        histogram_maker = Incollage::Gateway.for_histogram_maker_factory.new(file.path)
+        histogram_maker.make
       end
 
       def make_picture_url
         media_item.images.low_resolution.url
       end
 
-      def save_to_tempfile(url, filename)
-        uri = URI.parse(url.gsub('https://', 'http://'))
-        Net::HTTP.start(uri.host, uri.port) do |http|
-          resp = http.get(uri.path)
-          file = Tempfile.new(filename, Dir.tmpdir, 'wb+')
-          file.binmode
-          file.write(resp.body)
-          file.flush
-          file
-        end
-      end
     end
 
   end

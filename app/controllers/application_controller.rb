@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   require Rails.root.join 'app/controllers/application/session'
   require Rails.root.join 'app/controllers/application/current_user'
+  require Rails.root.join 'lib/simple_http_downloader'
   include ApplicationControllerSession
   include ApplicationControllerCurrentUser
 
@@ -23,6 +24,8 @@ class ApplicationController < ActionController::Base
     Incollage::Repository.register(:user, UserActiveRecord::Repository.new)
     Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
     Incollage::Gateway.register(:color_matcher, Incollage::PaletteColorMatcher.new)
+    Incollage::Gateway.register(:downloader, SimpleHttpDownloader.new)
+    Incollage::Gateway.register(:histogram_maker_factory, Incollage::HistogramMaker)
   end
 
   reload_core
