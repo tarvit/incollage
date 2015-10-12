@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   require Rails.root.join 'app/controllers/application/session'
   require Rails.root.join 'app/controllers/application/current_user'
-  require Rails.root.join 'lib/simple_http_downloader'
+
   include ApplicationControllerSession
   include ApplicationControllerCurrentUser
 
@@ -10,25 +10,14 @@ class ApplicationController < ActionController::Base
   include Incollage
 
   def self.reload_core
-    Incollage.load_modules(Rails.root.join('app/core'))
-    set_adapters
-
-    load Rails.root.join 'app/controllers/adapters/instagram_clippings_source.rb'
+    IncollageApp.load_all_modules
   end
 
   def reload_core
     self.class.reload_core
   end
 
-  def self.set_adapters
-    Incollage::Repository.register(:user, UserActiveRecord::Repository.new)
-    Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
-    Incollage::Gateway.register(:color_matcher, Incollage::PaletteColorMatcher.new)
-    Incollage::Gateway.register(:downloader, SimpleHttpDownloader.new)
-    Incollage::Gateway.register(:histogram_maker_factory, Incollage::HistogramMaker)
-    Incollage::Gateway.register(:collage_maker_factory, Incollage::CollageMaker)
-  end
+
 
   reload_core
-  set_adapters
 end

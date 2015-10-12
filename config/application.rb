@@ -10,8 +10,26 @@ module IncollageApp
     config.active_record.raise_in_transactional_callbacks = true
   end
 
+  def self.load_all_modules
+    # load Core modules
+    require Rails.root.join( %w{ app core core } * ?/ )
+    Incollage.load_modules(Rails.root.join('app/core'))
+
+    # load application adapters
+    Incollage.load_modules(Rails.root.join('app/adapters'), [])
+
+    set_adapters
+  end
+
+  def self.set_adapters
+    Incollage::Repository.register(:user, UserActiveRecord::Repository.new)
+    Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
+    Incollage::Gateway.register(:color_matcher, Incollage::PaletteColorMatcher.new)
+    Incollage::Gateway.register(:downloader, SimpleHttpDownloader.new)
+    Incollage::Gateway.register(:histogram_maker_factory, Incollage::HistogramMaker)
+    Incollage::Gateway.register(:collage_maker_factory, Incollage::CollageMaker)
+  end
+
 end
 
-# load Core services
-require Rails.root.join( %w{ app core core } * ?/ )
-Incollage.load_modules(Rails.root.join('app/core'))
+IncollageApp.load_all_modules

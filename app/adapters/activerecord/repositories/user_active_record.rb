@@ -1,7 +1,6 @@
 class UserActiveRecord < ActiveRecord::Base
   self.table_name = 'users'
 
-  require 'base_repository'
   class Repository < ActiveRecordBaseRepository
 
     protected

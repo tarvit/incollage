@@ -2,8 +2,8 @@ module Incollage
 
   class << self
 
-    def load_modules(core_path)
-      global_dirs(core_path).each do |dir|
+    def load_modules(core_path, priorities=%w{ base entities interactors adapters })
+      (priorities + global_dirs(core_path)).each do |dir|
         load_modules_in core_path.join(dir)
       end
     end
@@ -11,7 +11,7 @@ module Incollage
     private
 
     def global_dirs(dir)
-      (%w{ base entities interactors adapters } + valid_directories(dir)).uniq
+      (valid_directories(dir)).uniq
     end
 
     def load_modules_in(dir)

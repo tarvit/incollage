@@ -1,7 +1,6 @@
 class ClippingActiveRecord < ActiveRecord::Base
   self.table_name = 'clippings'
 
-  require 'base_repository'
   class Repository < ActiveRecordBaseRepository
 
     def most_recent(opts)
