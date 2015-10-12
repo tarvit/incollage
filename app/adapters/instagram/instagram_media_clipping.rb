@@ -8,14 +8,14 @@ class InstagramMediaClipping
   end
 
   def to_entity
-    path = make_picture_url
+    url = make_picture_url
     {
         user_id: collection.user_id,
         external_id: media_item.id,
         external_created_time: media_item.created_time,
         collection_id: collection.id,
-        picture_url: path,
-        histogram: make_histogram(path),
+        picture_url: url,
+        histogram: make_histogram(url),
     }
   end
 
