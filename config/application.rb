@@ -12,7 +12,7 @@ module IncollageApp
 
   def self.load_all_modules
     # load Core modules
-    require Rails.root.join( %w{ app core core } * ?/ )
+    require Rails.root.join('app/core/core')
     Incollage.load_modules(Rails.root.join('app/core'))
 
     # load application adapters

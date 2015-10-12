@@ -1,9 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ClippingActiveRecord::Repository do
 
-
-  require app_root.join 'spec/core/support/base_repository_test'
   include BaseRepositoryTest
 
   before :each do
