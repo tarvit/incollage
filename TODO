@@ -1,0 +1,16 @@
+## Priorities
+
+# Top
+- Extract FS Gateway abstraction
+
+# Middle
+- Implement Abstract Session
+- Implement Concrete Instagram Session
+
+# Low
+- Extract recursive modules loading to gem
+- Optimize histograms for search
+
+# Minor
+- Implement better UI (AngularJS, etc)
+
