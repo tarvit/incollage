@@ -1,4 +1,4 @@
-module Incollage
+module Imagemagick
 
   class CollageMaker
 

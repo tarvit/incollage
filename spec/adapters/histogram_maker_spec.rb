@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Incollage::HistogramMaker do
+describe Imagemagick::HistogramMaker do
 
   it 'should make histograms' do
-    data = Incollage::HistogramMaker.new(picture_file('flowers/1.jpg')).make
+    data = Imagemagick::HistogramMaker.new(picture_file('flowers/1.jpg')).make
     scores = {
         0.3718820224719101=>'ffffff',
         0.17784644194756555=>'000000',
