@@ -3,7 +3,7 @@ module ClippingRepositoryTest
   include BaseRepositoryTest
 
   def new_entity(opts={})
-    ClippingFactory.get(opts)
+    TestFactories::ClippingFactory.get(opts)
   end
 
   def search_attrs(user_id, collection_id)

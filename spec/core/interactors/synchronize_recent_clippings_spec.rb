@@ -10,7 +10,7 @@ describe Incollage::SynchronizeRecentClippings do
         { external_id: 13, user_id: 1, collection_id: 2 },
         { external_id: 14, user_id: 1, collection_id: 2 },
     ].map do |att|
-      ClippingFactory.defaults.merge(att)
+      TestFactories::ClippingFactory.defaults.merge(att)
     end
 
     data.each do |att|
@@ -23,7 +23,7 @@ describe Incollage::SynchronizeRecentClippings do
         { external_id: 11, user_id: 1, collection_id: 2 },
         { external_id: 15, user_id: 1, collection_id: 2 },
     ].map do |att|
-      ClippingFactory.defaults.merge(att)
+      TestFactories::ClippingFactory.defaults.merge(att)
     end
   end
 
