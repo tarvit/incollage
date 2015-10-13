@@ -9,7 +9,7 @@ module Incollage
 
       def for(type)
         repo = gateways[type.to_sym]
-        raise InvalidGatewayTypeError.new(type) if repo.nil?
+        raise InvalidGatewayTypeError.new(type, self) if repo.nil?
         repo
       end
 
@@ -20,8 +20,8 @@ module Incollage
       protected
 
       class InvalidGatewayTypeError < StandardError
-        def initialize(type)
-          super("Gateway for type `#{type}` is not registered.")
+        def initialize(repo_type, gateway_type)
+          super("#{gateway_type} for type `#{repo_type}` is not registered.")
         end
       end
 

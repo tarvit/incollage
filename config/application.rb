@@ -24,7 +24,10 @@ module IncollageApp
   def self.set_adapters
     Incollage::Repository.register(:user, UserActiveRecord::Repository.new)
     Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
+
     Incollage::Gateway.register(:downloader, SimpleHttpDownloader.new)
+    Incollage::Gateway.register(:collage_filestorage, LocalCollageFilestorage .new(Rails.root.join('public/fs')))
+
     Incollage::Gateway.register(:color_matcher, Imagemagick::PaletteColorMatcher.new)
     Incollage::Gateway.register(:histogram_maker_factory, Imagemagick::HistogramMaker)
     Incollage::Gateway.register(:collage_maker_factory, Imagemagick::CollageMaker)

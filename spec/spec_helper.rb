@@ -24,11 +24,11 @@ RSpec.configure do |config|
   def register_repos
     Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
     Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
-    #Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
 
     Incollage::Gateway.register(:downloader, TestSupport::FakeHttpDownloader.new)
-    Incollage::Gateway.register(:color_matcher, TestSupport::DirectColorMatcher.new)
+    Incollage::Gateway.register(:collage_filestorage, LocalCollageFilestorage .new(app_root.join('/tmp')))
 
+    Incollage::Gateway.register(:color_matcher, TestSupport::DirectColorMatcher.new)
     Incollage::Gateway.register(:collage_maker_factory, TestSupport::FakeCollageMaker)
     Incollage::Gateway.register(:histogram_maker_factory, TestSupport::FakeHistogramMaker)
   end
