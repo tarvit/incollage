@@ -1,7 +1,5 @@
 module ClippingRepositoryTest
   extend ActiveSupport::Concern
-
-  require app_root.join 'spec/core/support/base_repository_test'
   include BaseRepositoryTest
 
   def new_entity(opts={})

@@ -1,6 +1,7 @@
 RSpec.configure do |config|
   require 'active_support/all'
   require 'active_model'
+  require 'pry'
 
   def app_root
     require 'pathname'
@@ -10,7 +11,7 @@ RSpec.configure do |config|
   require app_root.join('app/core/core')
   Incollage.load_modules(app_root.join('app/core'))
   Incollage.load_modules(app_root.join('app/adapters/imagemagick'), [])
-  Incollage.load_modules(app_root.join('spec/core/support'), [])
+  Incollage.load_modules(app_root.join('spec/support'), [])
 
   def fixture_file(path)
     app_root.join('spec', 'fixtures', path)
