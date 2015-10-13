@@ -1,8 +1,6 @@
 ## Current Priorities
 
 # Top
-- Extract FS Gateway abstraction
-- Implement Direct FS Gateway
 - Implement InstagramUserCollection Factory
 
 # Middle
