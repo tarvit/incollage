@@ -30,7 +30,6 @@ describe Incollage::SynchronizePrecedingClippings do
 
   before :each do
     @source = Incollage::ClippingSource::InMemory::PrecedingSource
-    @source.clean
   end
 
   it 'should sync precending clippings' do

@@ -29,7 +29,6 @@ describe Incollage::SynchronizeRecentClippings do
 
   before :each do
     @source = Incollage::ClippingSource::InMemory::RecentSource
-    @source.clean
   end
 
   it 'should sync recent clippings' do

@@ -21,7 +21,6 @@ class ClippingActiveRecord < ActiveRecord::Base
       query(opts).order('external_id desc')
     end
 
-
     def active_record
       ClippingActiveRecord
     end

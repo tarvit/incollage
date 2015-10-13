@@ -20,9 +20,10 @@ module Incollage
         public
 
         class << self
+          attr_accessor :gc
 
           def global_collection
-            @global_collection ||= {}
+            self.gc ||= {}
           end
 
           def add_for_user(user_id, collection_id, clippings)
@@ -31,10 +32,6 @@ module Incollage
 
           def user_collection(user_id, collection_id)
             global_collection[key(user_id, collection_id)] || []
-          end
-
-          def clean
-            @global_collection = {}
           end
 
           private
