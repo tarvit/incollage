@@ -37,5 +37,4 @@ describe LocalCollageFilestorage do
     end
 
   end
-
 end

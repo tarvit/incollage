@@ -17,9 +17,9 @@ class ClippingsController < ApplicationController
   def search
     colors = params[:colors].split(?,)
     clippings = Incollage::SearchClippingsForCollage.new(collection, colors, 4).execute
-    @images = clippings.sort_by(&:external_id)
+    @clippings = clippings.sort_by(&:external_id)
 
-    collage_file = Incollage::MakeCollage.new(files(@images), collage_path).execute
+    collage_file = Incollage::MakeCollageFromClippings.new(@clippings, current_user.id).execute
     @collage = collage_url(collage_file)
 
     render 'collage/builder'
@@ -29,16 +29,6 @@ class ClippingsController < ApplicationController
 
   def collection
     Incollage::ClippingsCollection.new(current_user.id, 1)
-  end
-
-  def files(images)
-    images.map do |img|
-      Incollage::Gateway.for_collage_filestorage.save_clipping(img.picture_url, img.id).path
-    end
-  end
-
-  def collage_path
-    Incollage::Gateway.for_collage_filestorage.safe_collage_path(current_user.id)
   end
 
   def collage_url(file)

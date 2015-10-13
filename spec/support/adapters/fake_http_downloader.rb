@@ -2,7 +2,16 @@ module TestSupport
   class FakeHttpDownloader
 
     def download(url, fullpath)
-      File.new(fullpath, 'w')
+      fakes[url] || File.new(fullpath, 'w')
+    end
+
+    # used for testing
+    def set_fake_url(url, file)
+      fakes[url] = file
+    end
+
+    def fakes
+      @fakes ||= {}
     end
 
   end
