@@ -6,8 +6,7 @@ module Incollage
     end
 
     def execute
-      entity = build_entity
-      Repository.for_user.find(@user_data) || Repository.for_user.save(entity)
+      Repository.for_user.find(@user_data) || Repository.for_user.save(build_entity)
     end
 
     private
