@@ -2,7 +2,7 @@ module Incollage
 
   class << self
 
-    def load_modules(core_path, priorities=%w{ base entities interactors adapters })
+    def load_modules(core_path, priorities=%w{ base entities interactors adapters services })
       load_ruby_files(core_path)
       (priorities + global_dirs(core_path)).each do |dir|
         load_modules_in core_path.join(dir)
@@ -30,7 +30,7 @@ module Incollage
 
     def load_ruby_files(dir)
       ruby_files(dir).each do |rb|
-        load dir.join(rb)
+        require dir.join(rb)
       end
     end
 

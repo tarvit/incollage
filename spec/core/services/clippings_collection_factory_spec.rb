@@ -20,6 +20,9 @@ describe Incollage::ClippingsSourceFactory do
 
       source = @factory.get(@collection.id, @context)
       expect(source).to be_a(@source)
+
+      expect(@factory.registered_collections).to eq([ 2 ])
+      expect(@factory.first_collection).to eq(2)
     end
 
   end

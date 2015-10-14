@@ -16,6 +16,14 @@ module Incollage
       sources.values.count
     end
 
+    def registered_collections
+      sources.keys
+    end
+
+    def first_collection
+      registered_collections.first
+    end
+
     protected
 
     def sources

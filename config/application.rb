@@ -21,6 +21,13 @@ module IncollageApp
     set_adapters
   end
 
+  def self.source_factory
+    factory = Incollage::ClippingsSourceFactory.new
+    factory.add_source(1, InstagramClippingsSource::ReceivedMediaSource)
+    factory.add_source(2, InstagramClippingsSource::PostedMediaSource)
+    factory
+  end
+
   def self.set_adapters
     Incollage::Repository.register(:user, UserActiveRecord::Repository.new)
     Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
@@ -31,6 +38,8 @@ module IncollageApp
     Incollage::Gateway.register(:color_matcher, Imagemagick::PaletteColorMatcher.new)
     Incollage::Gateway.register(:histogram_maker_factory, Imagemagick::HistogramMaker)
     Incollage::Gateway.register(:collage_maker_factory, Imagemagick::CollageMaker)
+
+    Incollage::Service.register(:clippings_source_factory, source_factory)
   end
 
 end

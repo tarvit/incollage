@@ -1,9 +1,9 @@
 module Incollage
   class BaseSynchronizeClippings
 
-    def initialize(clippings_collection, preceding_clippings_source)
+    def initialize(clippings_collection, context=nil)
       @clippings_collection = clippings_collection
-      @clippings_source = preceding_clippings_source
+      @clippings_source = Service.for_clippings_source_factory.get(clippings_collection.id, context)
     end
 
     def execute

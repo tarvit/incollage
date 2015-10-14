@@ -21,6 +21,12 @@ RSpec.configure do |config|
     fixture_file([ 'pictures', picture ]*?/)
   end
 
+  def source_factory
+    factory = Incollage::ClippingsSourceFactory.new
+    factory.add_source(1, Incollage::ClippingSource::InMemory::Source)
+    factory
+  end
+
   def register_repos
     Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
     Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
@@ -31,6 +37,8 @@ RSpec.configure do |config|
     Incollage::Gateway.register(:color_matcher, TestSupport::DirectColorMatcher.new)
     Incollage::Gateway.register(:collage_maker_factory, TestSupport::FakeCollageMaker)
     Incollage::Gateway.register(:histogram_maker_factory, TestSupport::FakeHistogramMaker)
+
+    Incollage::Service.register(:clippings_source_factory, source_factory)
   end
 
   config.before :each do |example|

@@ -13,4 +13,14 @@ class ApplicationController < ActionController::Base
     IncollageApp.load_all_modules
   end
 
+  protected
+
+  def current_collection_id
+    (cookies[:current_collection_id] || Incollage::Service.for_clippings_source_factory.first_collection).to_i
+  end
+
+  def current_user_collection
+    Incollage::ClippingsCollection.new(current_user.id, current_collection_id)
+  end
+
 end
