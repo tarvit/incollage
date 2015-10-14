@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Incollage::SynchronizePrecedingClippings do
 
   before :each do
-    @collection = clippings_collection
-    @source = clippings_source(@collection)
+    @uc_collection = clippings_collection
+    @source = clippings_source(@uc_collection)
 
     data = [
-        { external_id: 11, user_id: @collection.user_id, collection_id: @collection.id },
-        { external_id: 12, user_id: @collection.user_id, collection_id: @collection.id },
-        { external_id: 13, user_id: @collection.user_id, collection_id: @collection.id },
-        { external_id: 14, user_id: @collection.user_id, collection_id: @collection.id },
+        { external_id: 11, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
+        { external_id: 12, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
+        { external_id: 13, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
+        { external_id: 14, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
     ].map do |att|
       TestFactories::ClippingFactory.defaults.merge(att)
     end
@@ -20,11 +20,11 @@ describe Incollage::SynchronizePrecedingClippings do
     end
 
     @new_data = [
-        { external_id: 9, user_id: @collection.user_id, collection_id: @collection.id },
-        { external_id: 10, user_id: @collection.user_id, collection_id: @collection.id },
-        { external_id: 11, user_id: @collection.user_id, collection_id: @collection.id },
-        { external_id: 15, user_id: @collection.user_id, collection_id: @collection.id },
-        { external_id: 16, user_id: @collection.user_id, collection_id: @collection.id },
+        { external_id: 9, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
+        { external_id: 10, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
+        { external_id: 11, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
+        { external_id: 15, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
+        { external_id: 16, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
     ].map do |att|
       TestFactories::ClippingFactory.defaults.merge(att)
     end
@@ -34,17 +34,17 @@ describe Incollage::SynchronizePrecedingClippings do
     @source.class.clean
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    Incollage::SynchronizePrecedingClippings.new(@collection, @source).execute
+    Incollage::SynchronizePrecedingClippings.new(@uc_collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(4)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14])
 
-    @source.class.add_for_user(@collection.user_id, @collection.id, @new_data)
+    @source.class.add_for_user(@uc_collection.user_id, @uc_collection.collection_id, @new_data)
 
-    Incollage::SynchronizePrecedingClippings.new(@collection, @source).execute
+    Incollage::SynchronizePrecedingClippings.new(@uc_collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,9,10])
 
-    Incollage::SynchronizePrecedingClippings.new(@collection, @source).execute
+    Incollage::SynchronizePrecedingClippings.new(@uc_collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,9,10])
   end
@@ -54,17 +54,17 @@ describe Incollage::SynchronizePrecedingClippings do
     @source.class.clean
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    Incollage::SynchronizeRecentClippings.new(@collection, @source).execute
+    Incollage::SynchronizeRecentClippings.new(@uc_collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(4)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14])
 
-    @source.class.add_for_user(@collection.user_id, @collection.id, @new_data)
+    @source.class.add_for_user(@uc_collection.user_id, @uc_collection.collection_id, @new_data)
 
-    Incollage::SynchronizeRecentClippings.new(@collection, @source).execute
+    Incollage::SynchronizeRecentClippings.new(@uc_collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,15,16])
 
-    Incollage::SynchronizeRecentClippings.new(@collection, @source).execute
+    Incollage::SynchronizeRecentClippings.new(@uc_collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
   end
 
@@ -74,7 +74,7 @@ describe Incollage::SynchronizePrecedingClippings do
   end
 
   def clippings_source(collection)
-    Incollage::Service.for_clippings_source_factory.get(collection.id, nil)
+    Incollage::Service.for_clippings_source_factory.get(collection.collection_id, nil)
   end
 
 end

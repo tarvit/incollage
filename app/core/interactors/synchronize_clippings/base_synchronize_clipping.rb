@@ -1,9 +1,10 @@
 module Incollage
   class BaseSynchronizeClippings
+    attr_reader :user_clippings_collection
 
-    def initialize(clippings_collection, context=nil)
-      @clippings_collection = clippings_collection
-      @clippings_source = Service.for_clippings_source_factory.get(clippings_collection.id, context)
+    def initialize(user_clippings_collection, context=nil)
+      @user_clippings_collection = user_clippings_collection
+      @clippings_source = Service.for_clippings_source_factory.get(user_clippings_collection.collection_id, context)
     end
 
     def execute
@@ -30,7 +31,7 @@ module Incollage
     end
 
     def search_attrs
-      { user_id: @clippings_collection.user_id, collection_id: @clippings_collection.id }
+      { user_id: user_clippings_collection.user_id, collection_id: user_clippings_collection.collection_id }
     end
 
   end

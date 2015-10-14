@@ -1,8 +1,9 @@
 module Incollage
   class ClippingsFinder
+    attr_reader :user_clippings_collection
 
-    def initialize(clipping_collection)
-      @clipping_collection = clipping_collection
+    def initialize(user_clippings_collection)
+      @user_clippings_collection = user_clippings_collection
     end
 
     def find
@@ -24,7 +25,7 @@ module Incollage
     protected
 
     def search_attrs
-      { user_id: @clipping_collection.user_id, collection_id: @clipping_collection.id }
+      { user_id: user_clippings_collection.user_id, collection_id: user_clippings_collection.collection_id }
     end
 
   end

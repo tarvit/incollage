@@ -8,22 +8,22 @@ module Incollage
 
         end
 
-        def recent_clippings(collection, last_clipping)
-          next_clippings(collection, last_clipping) do |clipping_data, last_id|
+        def recent_clippings(user_clippings_collection, last_clipping)
+          next_clippings(user_clippings_collection, last_clipping) do |clipping_data, last_id|
             clipping_data[:external_id] > last_id.try(:external_id).to_i
           end
         end
 
-        def preceding_clippings(collection, last_clipping)
-          next_clippings(collection, last_clipping) do |clipping_data, last_id|
+        def preceding_clippings(user_clippings_collection, last_clipping)
+          next_clippings(user_clippings_collection, last_clipping) do |clipping_data, last_id|
             clipping_data[:external_id] < last_id.try(:external_id).to_i
           end
         end
 
         protected
 
-        def next_clippings(collection, last_clipping, &select_condition)
-          clippings = self.class.user_collection(collection.user_id, collection.id)
+        def next_clippings(user_clippings_collection, last_clipping, &select_condition)
+          clippings = self.class.user_collection(user_clippings_collection.user_id, user_clippings_collection.collection_id)
           clippings.select do |clipping_data|
             select_condition.(clipping_data, last_clipping)
           end

@@ -6,7 +6,7 @@ describe Incollage::ClippingsSourceFactory do
     @source = TestSupport::EmptyClippingSource
     @factory = Incollage::ClippingsSourceFactory.new
     @context = OpenStruct.new
-    @collection = Incollage::UserClippingsCollection.new(1, 2)
+    @uc_collection = Incollage::UserClippingsCollection.new(1, 2)
   end
 
   context 'Valid Source' do
@@ -14,11 +14,11 @@ describe Incollage::ClippingsSourceFactory do
     it 'should add/get clippings sources' do
       expect(@factory.sources_count).to eq(0)
 
-      @factory.add_source(@collection.id, @source)
+      @factory.add_source(@uc_collection.collection_id, @source)
 
       expect(@factory.sources_count).to eq(1)
 
-      source = @factory.get(@collection.id, @context)
+      source = @factory.get(@uc_collection.collection_id, @context)
       expect(source).to be_a(@source)
 
       expect(@factory.registered_collections).to eq([ 2 ])
@@ -32,7 +32,7 @@ describe Incollage::ClippingsSourceFactory do
       expect(@factory.sources_count).to eq(0)
 
       expect(->{
-        @factory.add_source(@collection.id, OpenStruct.new)
+        @factory.add_source(@uc_collection.collection_id, OpenStruct.new)
       }).to raise_error(NoMethodError)
 
       expect(@factory.sources_count).to eq(0)

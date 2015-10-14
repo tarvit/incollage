@@ -1,19 +1,19 @@
 class InstagramMediaClipping
   require 'open-uri'
-  attr_reader :media_item, :collection
+  attr_reader :media_item, :user_clippings_collection
 
-  def initialize(media_item, collection)
+  def initialize(media_item, user_clippings_collection)
     @media_item = media_item
-    @collection = collection
+    @user_clippings_collection = user_clippings_collection
   end
 
   def to_entity_attrs
     url = make_picture_url
     {
-        user_id: collection.user_id,
+        user_id: user_clippings_collection.user_id,
         external_id: media_item.id,
         external_created_time: media_item.created_time,
-        collection_id: collection.id,
+        collection_id: user_clippings_collection.collection_id,
         picture_url: url,
         histogram: make_histogram(url),
     }
