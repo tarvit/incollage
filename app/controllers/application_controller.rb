@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_collection_id
-    (cookies[:current_collection_id] || Incollage::Service.for_clippings_source_factory.first_collection).to_i
+    (cookies[:current_collection_id] || Incollage::Service.for_clippings_collection_holder.first_collection).to_i
   end
 
   def current_user_collection

@@ -22,7 +22,7 @@ RSpec.configure do |config|
   end
 
   def source_factory
-    factory = Incollage::ClippingsSourceFactory.new
+    factory = Incollage::ClippingsCollectionHolder.new
     factory.add_source(1, Incollage::ClippingSource::InMemory::Source)
     factory
   end
@@ -38,7 +38,7 @@ RSpec.configure do |config|
     Incollage::Gateway.register(:collage_maker_factory, TestSupport::FakeCollageMaker)
     Incollage::Gateway.register(:histogram_maker_factory, TestSupport::FakeHistogramMaker)
 
-    Incollage::Service.register(:clippings_source_factory, source_factory)
+    Incollage::Service.register(:clippings_collection_holder, source_factory)
   end
 
   config.before :each do |example|

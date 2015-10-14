@@ -1,5 +1,5 @@
 module Incollage
-  class ClippingsSourceFactory
+  class ClippingsCollectionHolder
 
     def add_source(collection_id, source)
       validate_source!(source)

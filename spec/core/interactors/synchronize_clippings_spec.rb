@@ -69,12 +69,12 @@ describe Incollage::SynchronizePrecedingClippings do
   end
 
   def clippings_collection
-    registered_collection_id = Incollage::Service.for_clippings_source_factory.first_collection
+    registered_collection_id = Incollage::Service.for_clippings_collection_holder.first_collection
     Incollage::UserClippingsCollection.new(1, registered_collection_id)
   end
 
   def clippings_source(collection)
-    Incollage::Service.for_clippings_source_factory.get(collection.collection_id, nil)
+    Incollage::Service.for_clippings_collection_holder.get(collection.collection_id, nil)
   end
 
 end
