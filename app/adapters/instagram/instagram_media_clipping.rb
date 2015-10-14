@@ -7,7 +7,7 @@ class InstagramMediaClipping
     @collection = collection
   end
 
-  def to_entity
+  def to_entity_attrs
     url = make_picture_url
     {
         user_id: collection.user_id,

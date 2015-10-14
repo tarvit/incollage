@@ -9,7 +9,7 @@ describe InstagramMediaClipping do
 
   it 'should transform response to clipping entity' do
     @media_clipping = InstagramMediaClipping.new(@media_item, @collection)
-    entity_attrs = @media_clipping.to_entity
+    entity_attrs = @media_clipping.to_entity_attrs
     expect(entity_attrs).to eq({
       user_id: 1,
       external_id: 4,
