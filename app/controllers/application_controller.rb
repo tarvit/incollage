@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_collection
-    Incollage::ClippingsCollection.new(current_user.id, current_collection_id)
+    Incollage::UserClippingsCollection.new(current_user.id, current_collection_id)
   end
 
 end

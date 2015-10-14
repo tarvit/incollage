@@ -70,7 +70,7 @@ describe Incollage::SynchronizePrecedingClippings do
 
   def clippings_collection
     registered_collection_id = Incollage::Service.for_clippings_source_factory.first_collection
-    Incollage::ClippingsCollection.new(1, registered_collection_id)
+    Incollage::UserClippingsCollection.new(1, registered_collection_id)
   end
 
   def clippings_source(collection)

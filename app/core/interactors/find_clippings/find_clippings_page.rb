@@ -5,7 +5,7 @@ module Incollage
     def initialize(user_id, collection_id, page_number, per_page)
       @page_number, @per_page = page_number, per_page
 
-      collection = ClippingsCollection.new(user_id, collection_id)
+      collection = UserClippingsCollection.new(user_id, collection_id)
       @finder = ClippingsFinder.new(collection)
     end
 

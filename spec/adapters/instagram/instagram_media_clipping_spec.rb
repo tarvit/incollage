@@ -3,7 +3,7 @@ require 'rails_helper'
 describe InstagramMediaClipping do
 
   before :each do
-    @collection = Incollage::ClippingsCollection.new(1, 2)
+    @collection = Incollage::UserClippingsCollection.new(1, 2)
     @media_item = fake_media_item
   end
 

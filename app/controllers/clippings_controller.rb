@@ -23,10 +23,6 @@ class ClippingsController < ApplicationController
 
   protected
 
-  def collection
-    Incollage::ClippingsCollection.new(current_user.id, 1)
-  end
-
   def collage_url(file)
     file.path.gsub(Rails.root.join('public').to_s,'')
   end

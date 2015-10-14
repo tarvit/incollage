@@ -1,4 +1,4 @@
-class Incollage::ClippingsCollection < Incollage::Entity::Base
+class Incollage::UserClippingsCollection < Incollage::Entity::Base
 
   attr_accessor :user_id, :id
 

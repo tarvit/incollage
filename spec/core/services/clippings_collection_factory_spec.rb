@@ -6,7 +6,7 @@ describe Incollage::ClippingsSourceFactory do
     @source = TestSupport::EmptyClippingSource
     @factory = Incollage::ClippingsSourceFactory.new
     @context = OpenStruct.new
-    @collection = Incollage::ClippingsCollection.new(1, 2)
+    @collection = Incollage::UserClippingsCollection.new(1, 2)
   end
 
   context 'Valid Source' do
