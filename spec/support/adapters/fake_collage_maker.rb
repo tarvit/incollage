@@ -12,5 +12,9 @@ module TestSupport
       files.first
     end
 
+    def self.get(*args)
+      new *args
+    end
+
   end
 end

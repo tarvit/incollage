@@ -9,6 +9,10 @@ module TestSupport
       TestFactories::HistogramFactory.defaults
     end
 
+    def self.get(*args)
+      new *args
+    end
+
   end
 end
 

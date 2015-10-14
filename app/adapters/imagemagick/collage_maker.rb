@@ -14,6 +14,10 @@ module Imagemagick
       File.open(output_path)
     end
 
+    def self.get(*args)
+      new *args
+    end
+
     protected
 
     def command

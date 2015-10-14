@@ -8,7 +8,7 @@ module Incollage
     end
 
     def execute
-      Gateway.for_collage_maker_factory.new(files, result_path).make
+      Gateway.for_collage_maker_factory.get(files, result_path).make
     end
 
     protected

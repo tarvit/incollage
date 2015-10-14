@@ -16,5 +16,9 @@ module Imagemagick
       Hash[scores]
     end
 
+    def self.get(*args)
+      new *args
+    end
+
   end
 end

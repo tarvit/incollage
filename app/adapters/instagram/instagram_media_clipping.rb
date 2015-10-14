@@ -23,7 +23,7 @@ class InstagramMediaClipping
 
   def make_histogram(url)
     file = Incollage::Gateway.for_collage_filestorage.save_clipping(url, media_item.id)
-    histogram_maker = Incollage::Gateway.for_histogram_maker_factory.new(file.path)
+    histogram_maker = Incollage::Gateway.for_histogram_maker_factory.get(file.path)
     histogram_maker.make
   end
 
