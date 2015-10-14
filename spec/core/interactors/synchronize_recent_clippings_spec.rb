@@ -28,24 +28,24 @@ describe Incollage::SynchronizeRecentClippings do
   end
 
   before :each do
-    @source = Incollage::ClippingSource::InMemory::RecentSource
+    @source = Incollage::ClippingSource::InMemory::Source.new
   end
 
   it 'should sync recent clippings' do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
     collection = Incollage::ClippingsCollection.new(1, 2)
 
-    Incollage::SynchronizeRecentClippings.new(collection, @source.new).execute
+    Incollage::SynchronizeRecentClippings.new(collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(4)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14])
 
     @source.add_for_user(collection.user_id, collection.id, @new_data)
 
-    Incollage::SynchronizeRecentClippings.new(collection, @source.new).execute
+    Incollage::SynchronizeRecentClippings.new(collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(5)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,15])
 
-    Incollage::SynchronizeRecentClippings.new(collection, @source.new).execute
+    Incollage::SynchronizeRecentClippings.new(collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(5)
   end
 

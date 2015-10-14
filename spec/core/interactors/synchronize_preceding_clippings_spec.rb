@@ -29,24 +29,24 @@ describe Incollage::SynchronizePrecedingClippings do
   end
 
   before :each do
-    @source = Incollage::ClippingSource::InMemory::PrecedingSource
+    @source = Incollage::ClippingSource::InMemory::Source.new
   end
 
   it 'should sync precending clippings' do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
     collection = Incollage::ClippingsCollection.new(1, 2)
 
-    Incollage::SynchronizePrecedingClippings.new(collection, @source.new).execute
+    Incollage::SynchronizePrecedingClippings.new(collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(4)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14])
 
     @source.add_for_user(collection.user_id, collection.id, @new_data)
 
-    Incollage::SynchronizePrecedingClippings.new(collection, @source.new).execute
+    Incollage::SynchronizePrecedingClippings.new(collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,9,10])
 
-    Incollage::SynchronizePrecedingClippings.new(collection, @source.new).execute
+    Incollage::SynchronizePrecedingClippings.new(collection, @source).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,9,10])
   end

@@ -2,66 +2,50 @@ module Incollage
   module ClippingSource
     module InMemory
 
-      class Base
+      class Source
 
-        def next_clippings(collection, last_clipping)
-          clippings = self.class.user_collection(collection.user_id, collection.id)
-          clippings.select do |clipping_data|
-            select_condition(clipping_data, last_clipping)
+        def recent_clippings(collection, last_clipping)
+          next_clippings(collection, last_clipping) do |clipping_data, last_id|
+            clipping_data[:external_id] > last_id.try(:external_id).to_i
+          end
+        end
+
+        def preceding_clippings(collection, last_clipping)
+          next_clippings(collection, last_clipping) do |clipping_data, last_id|
+            clipping_data[:external_id] < last_id.try(:external_id).to_i
           end
         end
 
         protected
 
-        def select_condition(clipping_data, last_clipping)
-          raise NotImplementedError
+        def next_clippings(collection, last_clipping, &select_condition)
+          clippings = self.user_collection(collection.user_id, collection.id)
+          clippings.select do |clipping_data|
+            select_condition.(clipping_data, last_clipping)
+          end
         end
 
         public
 
-        class << self
-          attr_accessor :gc
-
-          def global_collection
-            self.gc ||= {}
-          end
-
-          def add_for_user(user_id, collection_id, clippings)
-            global_collection[key(user_id, collection_id)] = clippings
-          end
-
-          def user_collection(user_id, collection_id)
-            global_collection[key(user_id, collection_id)] || []
-          end
-
-          private
-
-          def key(user_id, collection_id)
-            [ user_id, collection_id ]*?_
-          end
+        def global_collection
+          @gc ||= {}
         end
 
-      end
-
-      class RecentSource < Base
-
-        alias_method :recent_clippings, :next_clippings
-
-        def select_condition(clipping_data, last_clipping)
-          clipping_data[:external_id] > last_clipping.try(:external_id).to_i
+        def add_for_user(user_id, collection_id, clippings)
+          global_collection[key(user_id, collection_id)] = clippings
         end
 
-      end
-
-      class PrecedingSource < Base
-
-        alias_method :preceding_clippings, :next_clippings
-
-        def select_condition(clipping_data, last_clipping)
-          clipping_data[:external_id] < last_clipping.try(:external_id).to_i
+        def user_collection(user_id, collection_id)
+          global_collection[key(user_id, collection_id)] || []
         end
 
+        private
+
+        def key(user_id, collection_id)
+          [ user_id, collection_id ]*?_
+        end
       end
+
     end
   end
 end
