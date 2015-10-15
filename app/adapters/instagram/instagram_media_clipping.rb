@@ -1,5 +1,4 @@
 class InstagramMediaClipping
-  require 'open-uri'
   attr_reader :media_item, :user_clippings_collection
 
   def initialize(media_item, user_clippings_collection)

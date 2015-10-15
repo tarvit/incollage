@@ -1,4 +1,5 @@
 class SimpleHttpDownloader
+  require 'open-uri'
 
   def download(url, fullpath)
     uri = URI.parse(url.gsub('https://', 'http://'))
