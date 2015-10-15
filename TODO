@@ -3,7 +3,6 @@
 # Middle
 - Implement Abstract Session
 - Implement Concrete Instagram Session(persistent)
-- Replace hardcoded instagram keys with configuration vars
 
 # Low
 - Extract recursive modules loading to gem
