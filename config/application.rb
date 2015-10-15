@@ -37,12 +37,12 @@ module IncollageApp
     Incollage::Repository.register(:user, UserActiveRecord::Repository.new)
     Incollage::Repository.register(:clipping, ClippingActiveRecord::Repository.new)
 
-    Incollage::Gateway.register(:downloader, SimpleHttpDownloader.new)
-    Incollage::Gateway.register(:collage_filestorage, LocalCollageFilestorage .new(Rails.root.join('public/fs')))
+    Incollage::Service.register(:downloader, SimpleHttpDownloader.new)
+    Incollage::Service.register(:collage_filestorage, LocalCollageFilestorage .new(Rails.root.join('public/fs')))
 
-    Incollage::Gateway.register(:color_matcher, Imagemagick::PaletteColorMatcher.new)
-    Incollage::Gateway.register(:histogram_maker_factory, Imagemagick::HistogramMaker)
-    Incollage::Gateway.register(:collage_maker_factory, Imagemagick::CollageMaker)
+    Incollage::Service.register(:color_matcher, Imagemagick::PaletteColorMatcher.new)
+    Incollage::Service.register(:histogram_maker_factory, Imagemagick::HistogramMaker)
+    Incollage::Service.register(:collage_maker_factory, Imagemagick::CollageMaker)
 
     Incollage::Service.register(:clippings_collection_holder, collection_holder)
   end

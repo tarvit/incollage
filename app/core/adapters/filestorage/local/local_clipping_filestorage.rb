@@ -7,7 +7,7 @@ class LocalCollageFilestorage
   end
 
   def save_clipping(url, external_id)
-    Incollage::Gateway.for_downloader.download(url, safe_clipping_path(external_id))
+    Incollage::Service.for_downloader.download(url, safe_clipping_path(external_id))
   end
 
   def safe_collage_path(user_id)
