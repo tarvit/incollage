@@ -8,17 +8,14 @@ describe Incollage::SynchronizePrecedingClippings do
     @source.class.clean
     @context = {}
 
-    data = [
+    [
         { external_id: 11, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
         { external_id: 12, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
         { external_id: 13, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
         { external_id: 14, user_id: @uc_collection.user_id, collection_id: @uc_collection.collection_id },
-    ].map do |att|
-      TestFactories::ClippingFactory.defaults.merge(att)
-    end
-
-    data.each do |att|
-      Incollage::AddClipping.new(att).execute
+    ].each do |att|
+      attrs = TestFactories::ClippingFactory.defaults.merge(att)
+      TestFactories::ClippingFactory.create(attrs)
     end
 
     @new_data = [

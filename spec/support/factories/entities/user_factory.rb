@@ -1,10 +1,10 @@
 module TestFactories
-  class UserFactory
+  class UserFactory < BaseFactory
 
     class << self
 
-      def get(opts={})
-        Incollage::User.new(defaults.merge opts)
+      def entity
+        Incollage::User
       end
 
       def defaults

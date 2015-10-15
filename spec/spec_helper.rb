@@ -23,8 +23,7 @@ RSpec.configure do |config|
 
   def collection_holder
     holder = Incollage::ClippingsCollectionHolder.new
-    collection = Incollage::ClippingsCollection.new(1, :instagram_received, Incollage::ClippingsSource::InMemory::Source.new)
-    holder.add(collection)
+    holder.add(1, :instagram_received, Incollage::ClippingsSource::InMemory::Source.new)
     holder
   end
 

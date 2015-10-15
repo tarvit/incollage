@@ -3,16 +3,13 @@ require 'spec_helper'
 describe Incollage::SearchClippingsForCollage do
 
   before :each do
-    data = [
+    [
         { id: 1, histogram: Incollage::Histogram.new({ 0.5 => 'ff0000', 0.45 => '00ff00', 0.05 => '0000ff' }) },
         { id: 2, histogram: Incollage::Histogram.new({ 0.7 => 'ff0000', 0.2 => '00ff00', 0.1 => '0000ff' }) },
         { id: 3, histogram: Incollage::Histogram.new({ 0.9 => 'ff0000', 0.1 => '00ff00', 0.0 => '0000ff' }) },
-    ].map do |att|
-      TestFactories::ClippingFactory.defaults.merge(att)
-    end
-
-    data.each do |att|
-      Incollage::AddClipping.new(att).execute
+    ].each do |att|
+      attrs = TestFactories::ClippingFactory.defaults.merge(att)
+      TestFactories::ClippingFactory.create(attrs)
     end
   end
 

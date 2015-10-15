@@ -1,10 +1,10 @@
 module TestFactories
-  class HistogramFactory
+  class HistogramFactory < BaseFactory
 
     class << self
 
-      def get(opts={})
-        Incollage::Histogram.new(defaults.merge(opts))
+      def entity
+        Incollage::Histogram
       end
 
       def defaults

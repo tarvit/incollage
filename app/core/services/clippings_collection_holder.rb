@@ -1,15 +1,15 @@
 module Incollage
   class ClippingsCollectionHolder
 
-    def add_collection(collection)
-      collections[collection.id] = collection
+    def add(id, name, source)
+      collection = ClippingsCollection.new(id, name, source)
+      add_collection(collection)
     end
 
     def get_collection(collection_id)
       collections[collection_id]
     end
 
-    alias_method :add, :add_collection
     alias_method :get, :get_collection
 
     def added_collections
@@ -21,6 +21,10 @@ module Incollage
     end
 
     protected
+
+    def add_collection(collection)
+      collections[collection.id] = collection
+    end
 
     def collections
       @collections ||= {}

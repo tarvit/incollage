@@ -1,10 +1,14 @@
 module TestFactories
-  class ClippingFactory
+  class ClippingFactory < RepositoryFactory
 
     class << self
 
-      def get(opts={})
-        Incollage::Clipping.new(defaults.merge opts)
+      def entity
+        Incollage::Clipping
+      end
+
+      def repository
+        Incollage::Repository.for_clipping
       end
 
       def defaults
