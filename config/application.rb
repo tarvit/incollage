@@ -24,8 +24,8 @@ module IncollageApp
   def self.collection_holder
     holder = Incollage::ClippingsCollectionHolder.new
     collections = [
-        [ 1, :instagram_received, InstagramClippingsSource::ReceivedMediaSource.new ],
-        [ 2, :instagram_posted, InstagramClippingsSource::PostedMediaSource.new ],
+        [ 1, 'My Instagram Feed', InstagramClippingsSource::ReceivedMediaSource.new ],
+        [ 2, 'My Instagram Posts', InstagramClippingsSource::PostedMediaSource.new ],
     ]
     collections.each do |collection|
       holder.add(*collection)
