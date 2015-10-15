@@ -1,8 +1,5 @@
 ## Current Priorities
 
-# Top
-- Implement InstagramUserCollection Factory
-
 # Middle
 - Implement Abstract Session
 - Implement Concrete Instagram Session(persistent)
