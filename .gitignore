@@ -19,3 +19,4 @@
 .rvmrc
 *~
 public/fs
+config/*.yml
