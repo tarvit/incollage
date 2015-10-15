@@ -1,10 +1,12 @@
 ## Current Priorities
 
-# Middle
-- Implement Abstract Session
-- Implement Concrete Instagram Session(persistent)
+# Top
+- Independent Session & Connected Accounts
+ -- Add possibility to register an account
+ -- Implement Independent Session
+ -- Implement possibility to link & sync Instagram Account
 
-# Low
+# Middle
 - Extract recursive modules loading to gem
 - Optimize histograms for search
 
