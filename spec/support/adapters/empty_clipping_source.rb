@@ -1,5 +1,5 @@
 module TestSupport
-  class EmptyClippingSource
+  class EmptyClippingsSource
 
     def initialize(context)
 

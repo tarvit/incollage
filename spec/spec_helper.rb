@@ -21,10 +21,11 @@ RSpec.configure do |config|
     fixture_file([ 'pictures', picture ]*?/)
   end
 
-  def source_factory
-    factory = Incollage::ClippingsCollectionHolder.new
-    factory.add_source(1, Incollage::ClippingSource::InMemory::Source)
-    factory
+  def collection_holder
+    holder = Incollage::ClippingsCollectionHolder.new
+    collection = Incollage::ClippingsCollection.new(1, :instagram_received, Incollage::ClippingsSource::InMemory::Source.new)
+    holder.add(collection)
+    holder
   end
 
   def register_repos
@@ -38,7 +39,7 @@ RSpec.configure do |config|
     Incollage::Gateway.register(:collage_maker_factory, TestSupport::FakeCollageMaker)
     Incollage::Gateway.register(:histogram_maker_factory, TestSupport::FakeHistogramMaker)
 
-    Incollage::Service.register(:clippings_collection_holder, source_factory)
+    Incollage::Service.register(:clippings_collection_holder, collection_holder)
   end
 
   config.before :each do |example|

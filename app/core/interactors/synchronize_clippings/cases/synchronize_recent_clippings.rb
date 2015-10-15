@@ -2,7 +2,7 @@ module Incollage
   class SynchronizeRecentClippings < BaseSynchronizeClippings
 
     def next_clippings
-      @clippings_source.recent_clippings(user_clippings_collection, recent_clipping)
+      @clippings_source.recent_clippings(user_clippings_collection, recent_clipping, context)
     end
 
     def recent_clipping

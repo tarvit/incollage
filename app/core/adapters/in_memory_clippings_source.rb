@@ -1,20 +1,16 @@
 module Incollage
-  module ClippingSource
+  module ClippingsSource
     module InMemory
 
       class Source
 
-        def initialize(context=nil)
-
-        end
-
-        def recent_clippings(user_clippings_collection, last_clipping)
+        def recent_clippings(user_clippings_collection, last_clipping, context)
           next_clippings(user_clippings_collection, last_clipping) do |clipping_data, last_id|
             clipping_data[:external_id] > last_id.try(:external_id).to_i
           end
         end
 
-        def preceding_clippings(user_clippings_collection, last_clipping)
+        def preceding_clippings(user_clippings_collection, last_clipping, context)
           next_clippings(user_clippings_collection, last_clipping) do |clipping_data, last_id|
             clipping_data[:external_id] < last_id.try(:external_id).to_i
           end

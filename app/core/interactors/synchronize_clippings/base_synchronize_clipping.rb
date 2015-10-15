@@ -1,10 +1,11 @@
 module Incollage
   class BaseSynchronizeClippings
-    attr_reader :user_clippings_collection
+    attr_reader :user_clippings_collection, :context
 
-    def initialize(user_clippings_collection, context=nil)
+    def initialize(user_clippings_collection, context)
       @user_clippings_collection = user_clippings_collection
-      @clippings_source = Service.for_clippings_collection_holder.get(user_clippings_collection.collection_id, context)
+      @clippings_source = Service.for_clippings_collection_holder.get(user_clippings_collection.collection_id).source
+      @context = context
     end
 
     def execute

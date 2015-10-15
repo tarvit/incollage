@@ -2,18 +2,18 @@ module InstagramClippingsSource
 
   class ReceivedMediaSource < Base
 
-    def recent_clippings(collection, external_id)
-      feed_response(collection, min_id: external_id)
+    def recent_clippings(collection, recent_clipping, context)
+      feed_response(collection, context, min_id: recent_clipping.try(:external_id))
     end
 
-    def preceding_clippings(collection, external_id)
-      feed_response(collection, max_id: external_id)
+    def preceding_clippings(collection, preceding_clipping, context)
+      feed_response(collection, context, max_id: preceding_clipping.try(:external_id))
     end
 
     protected
 
-    def feed(options={})
-      @client.user_media_feed(options)
+    def feed(client, options={})
+      client.user_media_feed(options)
     end
 
   end

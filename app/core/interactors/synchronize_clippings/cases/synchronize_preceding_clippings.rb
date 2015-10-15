@@ -2,7 +2,7 @@ module Incollage
   class SynchronizePrecedingClippings < BaseSynchronizeClippings
 
     def next_clippings
-      @clippings_source.preceding_clippings(user_clippings_collection, preceding_clipping)
+      @clippings_source.preceding_clippings(user_clippings_collection, preceding_clipping, context)
     end
 
     def preceding_clipping

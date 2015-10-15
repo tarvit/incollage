@@ -21,11 +21,16 @@ module IncollageApp
     set_adapters
   end
 
-  def self.source_factory
-    factory = Incollage::ClippingsCollectionHolder.new
-    factory.add_source(1, InstagramClippingsSource::ReceivedMediaSource)
-    factory.add_source(2, InstagramClippingsSource::PostedMediaSource)
-    factory
+  def self.collection_holder
+    holder = Incollage::ClippingsCollectionHolder.new
+    collections = [
+        Incollage::ClippingsCollection.new(1, :instagram_received, InstagramClippingsSource::ReceivedMediaSource.new),
+        Incollage::ClippingsCollection.new(2, :instagram_posted, InstagramClippingsSource::PostedMediaSource.new),
+    ]
+    collections.each do |collection|
+      holder.add(collection)
+    end
+    holder
   end
 
   def self.set_adapters
@@ -39,7 +44,7 @@ module IncollageApp
     Incollage::Gateway.register(:histogram_maker_factory, Imagemagick::HistogramMaker)
     Incollage::Gateway.register(:collage_maker_factory, Imagemagick::CollageMaker)
 
-    Incollage::Service.register(:clippings_collection_holder, source_factory)
+    Incollage::Service.register(:clippings_collection_holder, collection_holder)
   end
 
 end

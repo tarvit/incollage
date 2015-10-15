@@ -1,12 +1,12 @@
 class ClippingsController < ApplicationController
 
   def synchronize_recent
-    Incollage::SynchronizeRecentClippings.new(current_user_collection, instagram_client).execute
+    Incollage::SynchronizeRecentClippings.new(current_user_collection, context).execute
     redirect_to collage_builder_path
   end
 
   def synchronize_preceding
-    Incollage::SynchronizePrecedingClippings.new(current_user_collection, instagram_client).execute
+    Incollage::SynchronizePrecedingClippings.new(current_user_collection, context).execute
     redirect_to collage_builder_path
   end
 
@@ -25,6 +25,10 @@ class ClippingsController < ApplicationController
 
   def collage_url(file)
     file.path.gsub(Rails.root.join('public').to_s,'')
+  end
+
+  def context
+    { instagram_client: instagram_client }
   end
 
 end
