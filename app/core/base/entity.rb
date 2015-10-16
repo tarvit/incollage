@@ -4,7 +4,6 @@ module Incollage
       include ActiveModel::Model
 
       attr_accessor :id
-      validates_presence_of :id
 
       def initialize(attrs = {})
         attrs.each do |attr_name, attr_value|
@@ -16,6 +15,12 @@ module Incollage
         errors.messages
       end
 
+      def check_validity!
+        raise EntityIsInvalidError.new(error_messages) unless valid?
+      end
+
     end
+
+    class EntityIsInvalidError < StandardError; end
   end
 end

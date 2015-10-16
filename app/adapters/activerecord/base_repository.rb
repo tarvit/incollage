@@ -1,7 +1,10 @@
 class ActiveRecordBaseRepository
   def save(entity)
-    from_entity(entity).save
+    entity.check_validity!
+    from_entity(entity).save!
     entity
+  rescue ActiveRecord::RecordInvalid
+    raise Incollage::Entity::EntityIsInvalidError
   end
 
   def delete_all

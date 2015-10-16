@@ -1,5 +1,5 @@
 module TestFactories
-  class UserFactory < BaseFactory
+  class UserFactory < RepositoryFactory
 
     class << self
 
@@ -7,11 +7,15 @@ module TestFactories
         Incollage::User
       end
 
+      def repository
+        Incollage::Repository.for_user
+      end
+
       def defaults
         {
-            id: 1,
             full_name: 'J.D',
-            username: 'johndoe',
+            username: 'johndoe'+SecureRandom.hex,
+            password: 'q1w2e3r',
         }
       end
 

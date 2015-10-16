@@ -6,7 +6,7 @@ class Incollage::Repository::InMemoryBase
 
   def save(entity)
     populate_id_if_need(entity)
-    validate_entity(entity)
+    validate_entity!(entity)
     add_to_memory_storage(entity)
 
     entity
@@ -62,8 +62,6 @@ class Incollage::Repository::InMemoryBase
     !query(opts).empty?
   end
 
-  class EntityIsInvalidError < StandardError; end
-
   protected
 
   def query(options={})
@@ -72,6 +70,10 @@ class Incollage::Repository::InMemoryBase
         record.send(attr) == value
       end
     end
+  end
+
+  def validate_entity!(entity)
+    entity.check_validity!
   end
 
   private
@@ -87,12 +89,6 @@ class Incollage::Repository::InMemoryBase
     unless entity.id
       entity.id = @next_id
       @next_id += 1
-    end
-  end
-
-  def validate_entity(entity)
-    unless entity.valid?
-      raise EntityIsInvalidError.new(entity.error_messages)
     end
   end
 

@@ -1,6 +1,8 @@
 class UserActiveRecord < ActiveRecord::Base
   self.table_name = 'users'
 
+  validates_uniqueness_of :username
+
   class Repository < ActiveRecordBaseRepository
 
     def username_occupied?(username)

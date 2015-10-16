@@ -15,14 +15,32 @@ module UserRepositoryTest
       end
 
       context 'Methods' do
-
         it 'Username' do
           expect(@repo.username_occupied?('johndoe')).to be_falsey
+        end
+      end
 
+      context 'Validation' do
+        it 'should not save an entity without username' do
+
+          expect(->{
+            @repo.save(new_entity(username: nil))
+          }).to raise_error(Incollage::Entity::EntityIsInvalidError)
+        end
+
+        it 'should save an entities with uniq usernames only' do
+          # create user with an unique username
+          expect(->{
+            @repo.save(new_entity(username: 'some'))
+          }).to change{ @repo.count }.by(1)
+
+          # the existing username causes error on saving
+          expect(->{
+            @repo.save(new_entity(username: 'some'))
+          }).to raise_error(Incollage::Entity::EntityIsInvalidError)
         end
 
       end
-
     end
   end
 end
