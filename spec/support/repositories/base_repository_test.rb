@@ -40,6 +40,11 @@ module BaseRepositoryTest
         expect(@repo.find(id: last_entity.id).id).to eq(last_entity.id)
         expect(@repo.find_all(id: last_entity.id).map &:id).to eq([last_entity.id])
 
+        # existing
+        expect(@repo.exists?(id: first_entity.id)).to be_truthy
+        expect(@repo.exists?(id: last_entity.id)).to be_truthy
+        expect(@repo.exists?(id: -1)).to be_falsey
+
         # delete one item
         @repo.delete(first_entity)
 
@@ -51,7 +56,7 @@ module BaseRepositoryTest
 
         # the list is empty
         expect(@repo.count).to eq(0)
-        expect(@repo.all.map &:id).to eq([])
+        expect(@repo.all).to eq([])
       end
 
     end

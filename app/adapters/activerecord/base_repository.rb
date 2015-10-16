@@ -44,6 +44,10 @@ class ActiveRecordBaseRepository
     from_entity(entity).destroy
   end
 
+  def exists?(opts)
+    query(opts).count > 0
+  end
+
   protected
 
   def query(options)

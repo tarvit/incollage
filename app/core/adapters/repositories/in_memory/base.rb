@@ -58,6 +58,10 @@ class Incollage::Repository::InMemoryBase
     query.count
   end
 
+  def exists?(opts)
+    !query(opts).empty?
+  end
+
   class EntityIsInvalidError < StandardError; end
 
   protected
