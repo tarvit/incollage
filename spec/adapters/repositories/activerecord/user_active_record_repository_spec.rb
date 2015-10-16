@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ClippingActiveRecord::Repository do
 
-  include BaseRepositoryTest
+  include UserRepositoryTest
 
   before :each do
     @repo = UserActiveRecord::Repository.new
@@ -13,7 +13,7 @@ describe ClippingActiveRecord::Repository do
     Incollage::User.new(attrs.merge opts)
   end
 
-  test_base_repository
+  test_user_repository
 
 
 end

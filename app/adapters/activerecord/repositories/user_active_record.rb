@@ -3,6 +3,10 @@ class UserActiveRecord < ActiveRecord::Base
 
   class Repository < ActiveRecordBaseRepository
 
+    def username_occupied?(username)
+      exists?(username: username)
+    end
+
     protected
 
     def active_record
@@ -23,8 +27,6 @@ class UserActiveRecord < ActiveRecord::Base
     def entity_attributes(record)
       { id: record.id, username: record.username, full_name: record.full_name }
     end
-
   end
-
 
 end
