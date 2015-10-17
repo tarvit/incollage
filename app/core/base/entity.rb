@@ -5,12 +5,6 @@ module Incollage
 
       attr_accessor :id
 
-      def initialize(attrs = {})
-        attrs.each do |attr_name, attr_value|
-          public_send("#{attr_name}=", attr_value)
-        end
-      end
-
       def errors_messages
         errors.messages
       end
