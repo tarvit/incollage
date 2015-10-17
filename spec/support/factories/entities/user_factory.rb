@@ -15,7 +15,7 @@ module TestFactories
         {
             full_name: 'J.D',
             username: 'johndoe'+SecureRandom.hex,
-            password: 'q1w2e3r',
+            #password: 'q1w2e3r',
         }
       end
 
