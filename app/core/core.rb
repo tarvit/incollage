@@ -30,7 +30,7 @@ module Incollage
 
     def load_ruby_files(dir)
       ruby_files(dir).each do |rb|
-        load dir.join(rb)
+        require dir.join(rb)
       end
     end
 
