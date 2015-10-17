@@ -1,10 +1,11 @@
 class ActiveRecordBaseRepository
+
   def save(entity)
     entity.check_validity!
     from_entity(entity).save!
     entity
-  rescue ActiveRecord::RecordInvalid
-    raise Incollage::Entity::EntityIsInvalidError
+  rescue ActiveRecord::RecordInvalid => ex
+    raise Incollage::Entity::EntityIsInvalidError.new(ex.message)
   end
 
   def delete_all

@@ -11,12 +11,12 @@ module Incollage
         end
       end
 
-      def error_messages
+      def errors_messages
         errors.messages
       end
 
       def check_validity!
-        raise EntityIsInvalidError.new(error_messages) unless valid?
+        raise EntityIsInvalidError.new(errors_messages) unless valid?
       end
 
     end
