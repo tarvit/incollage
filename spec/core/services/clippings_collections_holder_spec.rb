@@ -5,7 +5,7 @@ describe Incollage::ClippingsCollectionsHolder do
   before :each do
     @source = TestSupport::EmptyClippingsSource
     @holder = Incollage::ClippingsCollectionsHolder.new
-    @context = OpenStruct.new
+    @context = TestSupport::FakeAbstractService
     @collection_args = [ 15, 'test', @source ]
     @clippings_collection = Incollage::ClippingsCollection.new(*@collection_args)
   end
