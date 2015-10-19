@@ -21,7 +21,7 @@ module IncollageApp
     set_adapters
   end
 
-  def self.collection_holder
+  def self.collections_holder
     holder = Incollage::ClippingsCollectionsHolder.new
     collections = [
         [ 1, 'My Instagram Feed', InstagramClippingsSource::ReceivedMediaSource.new ],
@@ -30,6 +30,12 @@ module IncollageApp
     collections.each do |collection|
       holder.add(*collection)
     end
+    holder
+  end
+
+  def external_accounts_holder
+    holder = Incollage::ExternalAccountsHolder.new
+    holder.add(1, 'Instagram Account', [ 1, 2 ].map{|id| Incollage::Holder.for_clippings_collections.get(id) })
     holder
   end
 
@@ -44,7 +50,8 @@ module IncollageApp
     Incollage::Service.register(:histogram_maker_factory, Imagemagick::HistogramMaker)
     Incollage::Service.register(:collage_maker_factory, Imagemagick::CollageMaker)
 
-    Incollage::Holder.register(:clippings_collection_holder, collection_holder)
+    Incollage::Holder.register(:clippings_collections, collections_holder)
+    Incollage::Holder.register(:external_accounts, external_accounts_holder)
   end
 
 end

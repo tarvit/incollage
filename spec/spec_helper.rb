@@ -21,7 +21,7 @@ RSpec.configure do |config|
     fixture_file([ 'pictures', picture ]*?/)
   end
 
-  def collection_holder
+  def collections_holder
     holder = Incollage::ClippingsCollectionsHolder.new
     holder.add(1, 'test_collection', Incollage::ClippingsSource::InMemory::Source.new)
     holder
@@ -44,7 +44,7 @@ RSpec.configure do |config|
     Incollage::Service.register(:collage_maker_factory, TestSupport::FakeCollageMaker)
     Incollage::Service.register(:histogram_maker_factory, TestSupport::FakeHistogramMaker)
 
-    Incollage::Holder.register(:clippings_collections, collection_holder)
+    Incollage::Holder.register(:clippings_collections, collections_holder)
     Incollage::Holder.register(:external_accounts, external_accounts_holder)
   end
 
