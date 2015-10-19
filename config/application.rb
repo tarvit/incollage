@@ -22,7 +22,7 @@ module IncollageApp
   end
 
   def self.collection_holder
-    holder = Incollage::ClippingsCollectionHolder.new
+    holder = Incollage::ClippingsCollectionsHolder.new
     collections = [
         [ 1, 'My Instagram Feed', InstagramClippingsSource::ReceivedMediaSource.new ],
         [ 2, 'My Instagram Posts', InstagramClippingsSource::PostedMediaSource.new ],

@@ -1,5 +1,5 @@
 module Incollage
-  class ClippingsCollectionHolder
+  class ClippingsCollectionsHolder
 
     def add(id, name, source)
       collection = ClippingsCollection.new(id, name, source)

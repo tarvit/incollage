@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Incollage::ClippingsCollectionHolder do
+describe Incollage::ClippingsCollectionsHolder do
 
   before :each do
     @source = TestSupport::EmptyClippingsSource
-    @holder = Incollage::ClippingsCollectionHolder.new
+    @holder = Incollage::ClippingsCollectionsHolder.new
     @context = OpenStruct.new
     @collection_args = [ 15, 'test', @source ]
     @clippings_collection = Incollage::ClippingsCollection.new(*@collection_args)
