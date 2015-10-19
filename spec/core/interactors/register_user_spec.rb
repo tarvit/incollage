@@ -28,7 +28,7 @@ describe Incollage::RegisterUser do
       Incollage::RegisterUser.new(
           @user_data.merge(password: 'q1w2e3r4')
       ).execute
-    }).to raise_error(Incollage::Entity::EntityIsInvalidError)
+    }).to raise_error(Incollage::RegisterUser::UsernameTakenError)
   end
 
 end

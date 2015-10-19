@@ -1,5 +1,5 @@
 module Incollage
-  class AuthorizeUser
+  class AuthenticateUser
 
     def initialize(session, user_data)
       @session = session
