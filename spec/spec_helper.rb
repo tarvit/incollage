@@ -27,6 +27,12 @@ RSpec.configure do |config|
     holder
   end
 
+  def external_accounts_holder
+    holder = Incollage::ExternalAccountsHolder.new
+    holder.add(1, 'test_account', [ Incollage::Holder.for_clippings_collections.get(1) ])
+    holder
+  end
+
   def register_repos
     Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
     Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
@@ -38,7 +44,8 @@ RSpec.configure do |config|
     Incollage::Service.register(:collage_maker_factory, TestSupport::FakeCollageMaker)
     Incollage::Service.register(:histogram_maker_factory, TestSupport::FakeHistogramMaker)
 
-    Incollage::Service.register(:clippings_collection_holder, collection_holder)
+    Incollage::Holder.register(:clippings_collections, collection_holder)
+    Incollage::Holder.register(:external_accounts, external_accounts_holder)
   end
 
   config.before :each do |example|

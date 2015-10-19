@@ -7,11 +7,11 @@ module ApplicationControllerCurrentCollection
   end
 
   def current_collection_id
-    (cookies[:current_collection_id] || Incollage::Service.for_clippings_collection_holder.first_collection.id).to_i
+    (cookies[:current_collection_id] || Incollage::Holder.for_clippings_collections.first_collection.id).to_i
   end
 
   def current_clippings_collection
-    Incollage::Service.for_clippings_collection_holder.get(current_collection_id)
+    Incollage::Holder.for_clippings_collections.get(current_collection_id)
   end
 
   def current_user_collection

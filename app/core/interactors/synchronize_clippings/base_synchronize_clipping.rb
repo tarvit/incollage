@@ -4,7 +4,7 @@ module Incollage
 
     def initialize(user_clippings_collection, context)
       @user_clippings_collection = user_clippings_collection
-      @clippings_source = Service.for_clippings_collection_holder.get(user_clippings_collection.collection_id).source
+      @clippings_source = Holder.for_clippings_collections.get(user_clippings_collection.collection_id).source
       @context = context
     end
 

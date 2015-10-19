@@ -41,4 +41,9 @@ module Incollage
     end
 
   end
+
+  class Repository < Gateway; end
+  class Service < Gateway; end
+  class Holder < Gateway; end
+
 end

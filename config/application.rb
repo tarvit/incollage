@@ -44,7 +44,7 @@ module IncollageApp
     Incollage::Service.register(:histogram_maker_factory, Imagemagick::HistogramMaker)
     Incollage::Service.register(:collage_maker_factory, Imagemagick::CollageMaker)
 
-    Incollage::Service.register(:clippings_collection_holder, collection_holder)
+    Incollage::Holder.register(:clippings_collection_holder, collection_holder)
   end
 
 end
