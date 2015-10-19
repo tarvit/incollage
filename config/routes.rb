@@ -14,9 +14,11 @@ Rails.application.routes.draw do
 
   namespace :auth do
     get :login
+    get :sign_up
     get :logout
-    get :connect
-    get :callback
+
+    post :authenticate
+    post :register
   end
 end
 

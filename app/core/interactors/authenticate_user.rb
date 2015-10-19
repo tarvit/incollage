@@ -13,7 +13,7 @@ module Incollage
       result = user.authenticate(@password)
       raise AuthenticationFailedError unless result
 
-      @session.authenticate(user.id)
+      @session.certify_user(user.id)
     end
 
     class AuthenticationFailedError < StandardError; end

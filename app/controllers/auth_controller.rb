@@ -1,17 +1,27 @@
 class AuthController < ApplicationController
 
-  def connect
-    redirect_to InstagramConnector.new(auth_callback_url).authorize_url
+  def authenticate
+    attrs = params.require(:user).permit(:username, :password)
+    Incollage::AuthenticateUser.new(user_session, attrs).execute
+    if user_session.authorized?
+      redirect_to root_path
+    else
+      @error = 'Credentials are invalid'
+      render :login
+    end
   end
 
-  def callback
-    access_token = InstagramConnector.new(auth_callback_url).get_access_token(params[:code])
-    authorize_access access_token
-    redirect_to root_path
+  def register
+    attrs = params.require(:user).permit(:username, :full_name, :password)
+    Incollage::RegisterUser.new(attrs).execute
+    redirect_to auth_login_path
+  rescue Exception => ex
+    @error = ex.message
+    render :sign_up
   end
 
   def logout
-    restrict_access
+    user_session.disallow_current_user
     redirect_to root_path
   end
 

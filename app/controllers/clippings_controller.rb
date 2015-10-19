@@ -1,4 +1,5 @@
 class ClippingsController < ApplicationController
+  before_filter :check_authorized!
 
   def synchronize_recent
     Incollage::SynchronizeRecentClippings.new(current_user_collection, context).execute

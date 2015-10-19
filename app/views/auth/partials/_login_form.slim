@@ -1,0 +1,11 @@
+h1 Log in!
+
+= form_for :user, url: auth_authenticate_path, method: :post do |f|
+  p
+    label Username:
+    = f.text_field :username
+  p
+    label Password:
+    = f.password_field :password
+  p
+    = f.submit 'log in'

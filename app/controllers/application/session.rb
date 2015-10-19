@@ -1,29 +1,21 @@
 module ApplicationControllerSession
 
-  def authorized?
-    !!session[:access_token]
+  extend ActiveSupport::Concern
+
+  included do
+    helper_method :current_user
   end
 
-  def authorize_access(access_token)
-    session[:access_token] = access_token
+  def user_session
+    Incollage::UserSession.new(session)
   end
 
-  def restrict_access
-    session[:access_token] = nil
-  end
-
-  def access_token
-    session[:access_token]
+  def current_user
+    user_session.current_user
   end
 
   def check_authorized!
-    redirect_to auth_login_path unless authorized?
-  end
-
-  protected
-
-  def instagram_client
-    @client ||= ::Instagram.client(:access_token => access_token)
+    redirect_to auth_login_path unless user_session.authorized?
   end
 
 end

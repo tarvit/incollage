@@ -1,0 +1,15 @@
+h1 Signup!
+
+= form_for :user, url: auth_register_path do |f|
+  p
+    label Full Name:
+    = f.text_field :full_name
+  p
+    label Username:
+    = f.text_field :username
+  p
+    label Password:
+    = f.password_field :password
+
+  p
+    = f.submit 'Submit'
