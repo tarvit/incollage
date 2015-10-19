@@ -16,6 +16,7 @@ gem 'kaminari'
 
 gem 'color'
 gem 'colorscore'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug'

@@ -22,9 +22,18 @@ module UserRepositoryTest
 
       context 'Validation' do
         it 'should not save an entity without username' do
-
           expect(->{
             @repo.save(new_entity(username: nil))
+          }).to raise_error(Incollage::Entity::EntityIsInvalidError)
+        end
+
+        it 'should not save user without password' do
+          expect(->{
+            @repo.save(new_entity(password: 'q1w2e3r4t5'))
+          }).to change{ @repo.count }.by(1)
+
+          expect(->{
+            @repo.save(new_entity(password: nil))
           }).to raise_error(Incollage::Entity::EntityIsInvalidError)
         end
 

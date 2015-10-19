@@ -23,11 +23,17 @@ class UserActiveRecord < ActiveRecord::Base
       record = base_record(entity.id)
       record.username = entity.username
       record.full_name = entity.full_name
+      record.password_digest = entity.password_digest
       record
     end
 
     def entity_attributes(record)
-      { id: record.id, username: record.username, full_name: record.full_name }
+      {
+          id: record.id,
+          username: record.username,
+          full_name: record.full_name,
+          password_digest: record.password_digest,
+      }
     end
   end
 
