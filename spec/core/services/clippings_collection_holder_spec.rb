@@ -6,7 +6,7 @@ describe Incollage::ClippingsCollectionHolder do
     @source = TestSupport::EmptyClippingsSource
     @holder = Incollage::ClippingsCollectionHolder.new
     @context = OpenStruct.new
-    @collection_args = [ 15, :test, @source ]
+    @collection_args = [ 15, 'test', @source ]
     @clippings_collection = Incollage::ClippingsCollection.new(*@collection_args)
   end
 
@@ -20,7 +20,9 @@ describe Incollage::ClippingsCollectionHolder do
     @holder.add(*@collection_args)
     expect(@holder.added_collections.count).to eq(1)
 
+    # querying works
     expect(@holder.get(@clippings_collection.id).id).to eq(@clippings_collection.id)
+    expect(@holder.get_collection_by_name('test').id).to eq(@clippings_collection.id)
 
     expect(@holder.added_collections.map &:id).to eq([ @clippings_collection.id ])
     expect(@holder.first_collection.id).to eq(@clippings_collection.id)

@@ -12,6 +12,12 @@ module Incollage
 
     alias_method :get, :get_collection
 
+    def get_collection_by_name(name)
+      collections.values.find do |c|
+        c.name == name
+      end
+    end
+
     def added_collections
       collections.values
     end
