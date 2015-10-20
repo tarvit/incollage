@@ -33,7 +33,7 @@ module IncollageApp
     holder
   end
 
-  def external_accounts_holder
+  def self.external_accounts_holder
     holder = Incollage::ExternalAccountsHolder.new
     holder.add(1, 'Instagram Account', [ 1, 2 ].map{|id| Incollage::Holder.for_clippings_collections.get(id) })
     holder
