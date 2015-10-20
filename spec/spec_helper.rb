@@ -13,26 +13,6 @@ RSpec.configure do |config|
   Incollage.load_modules(app_root.join('app/adapters/imagemagick'), [])
   Incollage.load_modules(app_root.join('spec/support'), [])
 
-  def fixture_file(path)
-    app_root.join('spec', 'fixtures', path)
-  end
-
-  def picture_file(picture)
-    fixture_file([ 'pictures', picture ]*?/)
-  end
-
-  def collections_holder
-    holder = Incollage::ClippingsCollectionsHolder.new
-    holder.add(1, 'test_collection', Incollage::ClippingsSource::InMemory::Source.new)
-    holder
-  end
-
-  def external_accounts_holder
-    holder = Incollage::ExternalAccountsHolder.new
-    holder.add(1, 'test_account', [ Incollage::Holder.for_clippings_collections.get(1) ])
-    holder
-  end
-
   def register_repos
     Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
     Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
@@ -50,6 +30,38 @@ RSpec.configure do |config|
 
   config.before :each do |example|
     register_repos
+  end
+
+  # Methods
+
+  def fixture_file(path)
+    app_root.join('spec', 'fixtures', path)
+  end
+
+  def picture_file(picture)
+    fixture_file([ 'pictures', picture ]*?/)
+  end
+
+  def collections_holder
+    holder = Incollage::ClippingsCollectionsHolder.new
+    holder.add(
+        id: 1,
+        name: :test_collection,
+        label: 'Test Collection',
+        source: Incollage::ClippingsSource::InMemory::Source.new
+    )
+    holder
+  end
+
+  def external_accounts_holder
+    holder = Incollage::ExternalAccountsHolder.new
+    holder.add(
+        id: 1,
+        name: :test_account,
+        label: 'External Account',
+        collections: [ Incollage::Holder.for_clippings_collections.get(:test_collection) ]
+    )
+    holder
   end
 
 end

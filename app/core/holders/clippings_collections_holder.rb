@@ -1,16 +1,20 @@
 module Incollage
   class ClippingsCollectionsHolder
 
-    def add(id, name, source)
-      collection = ClippingsCollection.new(id, name, source)
+    def add(attrs)
+      collection = ClippingsCollection.new(attrs)
       add_collection(collection)
     end
 
-    def get_collection(collection_id)
-      collections[collection_id]
+    def get(identifier)
+      return get_collection_by_id(identifier) if identifier.is_a?(Numeric)
+      return get_collection_by_name(identifier) if identifier.is_a?(Symbol)
+      nil
     end
 
-    alias_method :get, :get_collection
+    def get_collection_by_id(collection_id)
+      collections[collection_id]
+    end
 
     def get_collection_by_name(name)
       collections.values.find do |c|

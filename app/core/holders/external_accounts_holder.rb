@@ -1,18 +1,22 @@
 module Incollage
   class ExternalAccountsHolder
 
-    def add(id, name, collections)
-      collection = ExternalAccount.new(id, name, collections)
+    def add(attrs)
+      collection = ExternalAccount.new(attrs)
       add_account(collection)
     end
 
-    def get_account(id)
+    def get(identifier)
+      return get_account_by_id(identifier) if identifier.is_a?(Numeric)
+      return get_account_by_name(identifier) if identifier.is_a?(Symbol)
+      nil
+    end
+
+    def get_account_by_id(id)
       accounts[id]
     end
 
-    alias_method :get, :get_account
-
-    def get_by_name(name)
+    def get_account_by_name(name)
       added_accounts.find do |acc|
         acc.name == name
       end
