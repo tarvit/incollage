@@ -43,7 +43,7 @@ RSpec.configure do |config|
   end
 
   def collections_holder
-    holder = Incollage::ClippingsCollectionsHolder.new
+    holder = Incollage::ExternalClippingsCollectionsHolder.new
     holder.add(
         id: 1,
         name: :test_collection,

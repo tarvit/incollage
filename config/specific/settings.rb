@@ -7,7 +7,7 @@ class SpecificSettings
   end
 
   def init_collections_holder
-    @collections_holder = Incollage::ClippingsCollectionsHolder.new
+    @collections_holder = Incollage::ExternalClippingsCollectionsHolder.new
     collections = [
         { id: 1, name: :instagram_feed, label: 'My Instagram Feed', source: InstagramClippingsSource::ReceivedMediaSource.new },
         { id: 2, name: :instagram_posts, label: 'My Instagram Posts', source: InstagramClippingsSource::PostedMediaSource.new },

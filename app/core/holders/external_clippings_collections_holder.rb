@@ -1,8 +1,8 @@
 module Incollage
-  class ClippingsCollectionsHolder
+  class ExternalClippingsCollectionsHolder
 
     def add(attrs)
-      collection = ClippingsCollection.new(attrs)
+      collection = ExternalClippingsCollection.new(attrs)
       add_collection(collection)
     end
 

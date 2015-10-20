@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Incollage::ClippingsCollectionsHolder do
+describe Incollage::ExternalClippingsCollectionsHolder do
 
   before :each do
     @source = TestSupport::EmptyClippingsSource
-    @holder = Incollage::ClippingsCollectionsHolder.new
+    @holder = Incollage::ExternalClippingsCollectionsHolder.new
     @context = TestSupport::FakeAbstractService
     @collection_args = { id: 15, name: 'test', source: @source }
-    @clippings_collection = Incollage::ClippingsCollection.new(@collection_args)
+    @clippings_collection = Incollage::ExternalClippingsCollection.new(@collection_args)
   end
 
   it 'should add/get clippings collections' do
