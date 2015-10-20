@@ -12,6 +12,11 @@ module Incollage
 
     alias_method :get, :get_account
 
+    def get_by_name(name)
+      added_accounts.find do |acc|
+        acc.name == name
+      end
+    end
 
     def added_accounts
       accounts.values

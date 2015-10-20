@@ -21,6 +21,8 @@ describe Incollage::ExternalAccountsHolder do
 
     # querying works
     expect(@holder.get(@account.id).id).to eq(@account.id)
+    expect(@holder.get_by_name('third-party service').id).to eq(@account.id)
+
     expect(@holder.added_accounts.map &:id).to eq([ @account.id ])
   end
 
