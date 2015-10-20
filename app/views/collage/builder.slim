@@ -15,7 +15,7 @@ p
 p
   = form_tag(clippings_search_path, method: :get) do |form|
     = text_field_tag 'colors'
-    = button_tag "Create collage in #{current_clippings_collection.name}", name: :create
+    = button_tag "Create collage in #{current_clippings_collection.label}", name: :create
 
 p
   - if @collage
