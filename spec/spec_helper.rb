@@ -16,6 +16,7 @@ RSpec.configure do |config|
   def register_repos
     Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
     Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
+    Incollage::Repository.register(:linked_account, Incollage::Repository::LinkedAccountInMemoryRepository.new)
 
     Incollage::Service.register(:downloader, TestSupport::FakeHttpDownloader.new)
     Incollage::Service.register(:collage_filestorage, LocalCollageFilestorage .new(app_root.join('/tmp')))

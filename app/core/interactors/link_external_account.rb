@@ -1,22 +1,18 @@
 module Incollage
   class LinkExternalAccount
 
-    def initialize(user_id, external_account_id)
-      @user_id, @external_account_id = user_id, external_account_id
+    def initialize(attrs)
+      @attributes = attrs
     end
 
     def execute
-      raise NotImplementedError
+      Repository.for_linked_account.save(build_entity)
     end
 
     protected
 
-    def user
-      Repository.for_user.find(id: @user_id)
-    end
-
-    def external_account
-      Holder.for_external_accounts.get(@external_account_id)
+    def build_entity
+      LinkedAccount.new(@attributes)
     end
 
   end

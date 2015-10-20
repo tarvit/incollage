@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe Incollage::Repository::LinkedAccountInMemoryRepository do
 
-  include BaseRepositoryTest
+  include LinkedAccountRepositoryTest
 
   before :each do
     @repo = Incollage::Repository::LinkedAccountInMemoryRepository.new
   end
 
-  test_base_repository
+  test_linked_account_repository
 
 end
