@@ -1,13 +1,14 @@
 require 'spec_helper'
 
-describe Incollage::AddClipping do
+describe Incollage::GetUserInfo do
+
+  before :each do
+    @user = TestFactories::UserFactory.create(id: 100, username: 'jdoe', full_name: 'johny deep')
+  end
 
   it 'should add a clipping' do
-    expect(->{
-      Incollage::AddClipping.new( TestFactories::ClippingFactory.defaults ).execute
-    }).to change{
-      Incollage::Repository.for_clipping.count
-    }.by(1)
+    response = Incollage::GetUserInfo.new(@user.id).execute
+    expect(response).to eq(id: 100, username: 'jdoe', full_name: 'johny deep')
   end
 
 end
