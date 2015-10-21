@@ -54,8 +54,8 @@ class Incollage::Repository::InMemoryBase
     result[start_index..end_index]
   end
 
-  def count
-    query.count
+  def count(opts={})
+    query(opts).count
   end
 
   def exists?(opts)

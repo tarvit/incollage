@@ -39,6 +39,7 @@ module BaseRepositoryTest
         expect(@repo.find(id: first_entity.id).id).to eq(first_entity.id)
         expect(@repo.find(id: last_entity.id).id).to eq(last_entity.id)
         expect(@repo.find_all(id: last_entity.id).map &:id).to eq([last_entity.id])
+        expect(@repo.count(id: last_entity.id)).to eq(1)
 
         # existing
         expect(@repo.exists?(id: first_entity.id)).to be_truthy

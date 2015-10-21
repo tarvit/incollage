@@ -12,8 +12,8 @@ class ActiveRecordBaseRepository
     active_record.delete_all
   end
 
-  def count
-    active_record.count
+  def count(opts={})
+    query(opts).count
   end
 
   def find_all(options)
