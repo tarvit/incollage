@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Incollage::CalculateUserAccountsStatistics do
+describe Incollage::GetUserAccountsStatistics do
 
   before :each do
     @user = TestFactories::UserFactory.create(id: 88)
@@ -9,7 +9,7 @@ describe Incollage::CalculateUserAccountsStatistics do
   context 'No Linked Accounts' do
 
     it 'should calculate user account statistics' do
-      response = Incollage::CalculateUserAccountsStatistics.new(@user.id).execute
+      response = Incollage::GetUserAccountsStatistics.new(@user.id).execute
       expect(response).to eq({
         accounts: [
             {
@@ -45,7 +45,7 @@ describe Incollage::CalculateUserAccountsStatistics do
     end
 
     it 'should calculate user account statistics with a linked account' do
-      response = Incollage::CalculateUserAccountsStatistics.new(@user.id).execute
+      response = Incollage::GetUserAccountsStatistics.new(@user.id).execute
       expect(response).to eq({
         accounts: [
            {
@@ -81,7 +81,7 @@ describe Incollage::CalculateUserAccountsStatistics do
       end
 
       it 'should calculate user account statistics with Clippings synchronized' do
-        response = Incollage::CalculateUserAccountsStatistics.new(@user.id).execute
+        response = Incollage::GetUserAccountsStatistics.new(@user.id).execute
         expect(response).to eq({
            accounts: [
                {

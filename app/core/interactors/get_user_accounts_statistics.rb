@@ -1,5 +1,5 @@
 module Incollage
-  class CalculateUserAccountsStatistics
+  class GetUserAccountsStatistics
 
     def initialize(user_id)
       @user_id = user_id
