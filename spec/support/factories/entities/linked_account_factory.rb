@@ -1,5 +1,5 @@
 module TestFactories
-  class LInkedAccountFactory < RepositoryFactory
+  class LinkedAccountFactory < RepositoryFactory
 
     class << self
 

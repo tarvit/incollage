@@ -3,7 +3,7 @@ module LinkedAccountRepositoryTest
   include BaseRepositoryTest
 
   def new_entity(opts={})
-    TestFactories::LInkedAccountFactory.get(opts)
+    TestFactories::LinkedAccountFactory.get(opts)
   end
 
   module ClassMethods
