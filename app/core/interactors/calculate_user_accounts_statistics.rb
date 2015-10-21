@@ -6,33 +6,50 @@ module Incollage
     end
 
     def execute
-      populate_external_accounts
+      accounts_data
     end
 
     protected
 
-    def populate_external_accounts
-      accounts_data = Holder.for_external_accounts.added_accounts.map do |ext_acc|
-        linked_acc = linked_account(ext_acc)
+    def accounts_data
+      accounts_data = Holder.for_external_accounts.added_accounts.map do |external_account|
+        linked_account_id = linked_account(external_account).try(:id)
         {
-            external_account_id: ext_acc.id,
-            external_account_name: ext_acc.name,
-            external_account_label: ext_acc.label,
-            linked: (!!linked_acc),
-            linked_account_id: linked_acc.try(:id),
+            external_account_id: external_account.id,
+            external_account_name: external_account.name,
+            external_account_label: external_account.label,
+            linked: (!!linked_account_id),
+            linked_account_id: linked_account_id,
+            collections: collections_data(external_account, linked_account_id)
         }
 
       end
-      { external_accounts: accounts_data }
+      { accounts: accounts_data }
     end
 
-    def linked_account(exernal_account)
-      Repository.for_linked_account.find(user_id: @user_id, external_account_id: exernal_account.id)
+    def linked_account(external_account)
+      Repository.for_linked_account.find(user_id: @user_id, external_account_id: external_account.id)
     end
 
-    def user
-      @user ||= Repository.for_user.find(id: @user_id)
+    def collections_data(external_account, linked_account_id)
+      external_account.collections.map do |collection|
+        {
+            external_collection_id: collection.id,
+            external_collection_name: collection.name,
+            external_collection_label: collection.label,
+            clippings_count: clippings_count(collection, linked_account_id)
+        }
+      end
     end
+
+   def clippings_count(external_collection, linked_account_id)
+     return 0 unless linked_account_id
+     Repository.for_clipping.find(
+         user_id: @user_id,
+         collection_id: external_collection.id,
+         linked_account_id: linked_account_id
+     )
+   end
 
   end
 end
