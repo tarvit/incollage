@@ -11,6 +11,7 @@ class InstagramMediaClipping
     {
         user_id: user_clippings_collection.user_id,
         external_id: media_item.id,
+        linked_account_id: user_clippings_collection.linked_account_id,
         external_created_time: media_item.created_time,
         collection_id: user_clippings_collection.collection_id,
         picture_url: url,

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020174206) do
+ActiveRecord::Schema.define(version: 20151021082505) do
 
   create_table "clippings", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20151020174206) do
     t.datetime "updated_at",            null: false
     t.string   "external_id"
     t.integer  "external_created_time"
+    t.integer  "linked_account_id"
   end
 
   create_table "linked_accounts", force: :cascade do |t|

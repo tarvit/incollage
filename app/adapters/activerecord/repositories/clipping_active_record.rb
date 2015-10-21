@@ -29,7 +29,7 @@ class ClippingActiveRecord < ActiveRecord::Base
       Incollage::Clipping
     end
 
-    SIMPLE_FIELDS = [ :user_id, :external_id, :external_created_time, :collection_id, :picture_url ]
+    SIMPLE_FIELDS = [ :user_id, :external_id, :external_created_time, :collection_id, :linked_account_id, :picture_url ]
     def from_entity(entity)
       record = base_record(entity.id)
 

@@ -17,6 +17,7 @@ module TestFactories
             external_id: 1,
             external_created_time: Time.now.to_i,
             collection_id: 1,
+            linked_account_id: 1,
             picture_url: 'http://pic.com/pic.png',
             histogram: HistogramFactory.get,
         }

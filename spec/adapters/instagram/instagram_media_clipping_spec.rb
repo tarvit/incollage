@@ -3,7 +3,7 @@ require 'rails_helper'
 describe InstagramMediaClipping do
 
   before :each do
-    @collection = Incollage::UserClippingsCollection.new(1, 2)
+    @collection = Incollage::UserClippingsCollection.new(user_id: 1, collection_id: 2, linked_account_id: 1)
     @media_item = fake_media_item
   end
 
@@ -15,6 +15,7 @@ describe InstagramMediaClipping do
       external_id: 4,
       external_created_time: 5,
       collection_id: 2,
+      linked_account_id: 1,
       picture_url: 'media_url',
       histogram: { 1 => '00ff00' }
     })
