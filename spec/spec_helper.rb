@@ -60,7 +60,7 @@ RSpec.configure do |config|
         id: 1,
         name: :test_account,
         label: 'External Account',
-        connector: TestSupport::FakeAccountConnector,
+        connector: TestSupport::FakeAccountConnector.new,
         collections: [ Incollage::Holder.for_clippings_collections.get(:test_collection) ]
     )
     holder

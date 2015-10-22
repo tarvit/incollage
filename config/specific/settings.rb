@@ -23,7 +23,7 @@ class SpecificSettings
         id: 1,
         name: :instagram_account,
         label: 'Instagram Account',
-        connector: TestSupport::FakeAccountConnector,
+        connector: TestSupport::FakeAccountConnector.new,
         collections: [ :instagram_feed, :instagram_posts ].map{|id| @collections_holder.get(id)}
     )
     @accounts_holder

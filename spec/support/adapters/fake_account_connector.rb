@@ -1,5 +1,5 @@
 module TestSupport
-  class FakeAccountConnector
+  class FakeAccountConnector < Incollage::ExternalAccountConnector::Base
 
   end
 end

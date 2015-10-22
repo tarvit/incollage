@@ -9,7 +9,7 @@ describe Incollage::ExternalAccountsHolder do
         id: 4,
         name: :third_party_service,
         label: 'label',
-        connector: TestSupport::FakeAccountConnector,
+        connector: TestSupport::FakeAccountConnector.new,
         collections: [ TestSupport::FakeAbstractService ]
     }
     @account = Incollage::ExternalAccount.new(@account_args)
@@ -30,6 +30,12 @@ describe Incollage::ExternalAccountsHolder do
     expect(@holder.get(:third_party_service).id).to eq(@account.id)
 
     expect(@holder.added_accounts.map &:id).to eq([ @account.id ])
+  end
+
+  it 'should be valid' do
+    expect(@account.valid?).to be_truthy
+    @account.label = nil
+    expect(@account.valid?).to be_falsey
   end
 
 end
