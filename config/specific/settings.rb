@@ -23,10 +23,9 @@ class SpecificSettings
         id: 1,
         name: :instagram_account,
         label: 'Instagram Account',
-        connector: TestSupport::FakeAccountConnector.new(1),
+        connector: InstagramExternalConnector.new(1),
         collections: [ :instagram_feed, :instagram_posts ].map{|id| @collections_holder.get(id)}
     )
-    @accounts_holder
   end
 
 end
