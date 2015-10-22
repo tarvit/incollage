@@ -3,6 +3,7 @@ module Incollage
 
     def add(attrs)
       collection = ExternalClippingsCollection.new(attrs)
+      collection.check_validity!
       add_collection(collection)
     end
 

@@ -2,8 +2,9 @@ module Incollage
   class ExternalAccountsHolder
 
     def add(attrs)
-      collection = ExternalAccount.new(attrs)
-      add_account(collection)
+      account = ExternalAccount.new(attrs)
+      account.check_validity!
+      add_account(account)
     end
 
     def get(identifier)

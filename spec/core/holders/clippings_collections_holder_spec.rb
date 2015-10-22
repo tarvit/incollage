@@ -6,7 +6,7 @@ describe Incollage::ExternalClippingsCollectionsHolder do
     @source = TestSupport::EmptyClippingsSource
     @holder = Incollage::ExternalClippingsCollectionsHolder.new
     @context = TestSupport::FakeAbstractService
-    @collection_args = { id: 15, name: 'test', source: @source }
+    @collection_args = { id: 15, name: 'test', label: 'label', source: @source }
     @clippings_collection = Incollage::ExternalClippingsCollection.new(@collection_args)
   end
 
