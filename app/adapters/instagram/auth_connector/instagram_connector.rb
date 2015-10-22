@@ -1,7 +1,7 @@
 class InstagramConnector
   attr_reader :redirect_uri
 
-  def initialize redirect_uri
+  def initialize(redirect_uri)
     @redirect_uri = redirect_uri
   end
 
@@ -9,7 +9,7 @@ class InstagramConnector
     Instagram.authorize_url(:redirect_uri => redirect_uri)
   end
 
-  def get_access_token(code)
-    Instagram.get_access_token(code, :redirect_uri => redirect_uri).access_token
+  def get_response(code)
+    Instagram.get_access_token(code, :redirect_uri => redirect_uri)
   end
 end
