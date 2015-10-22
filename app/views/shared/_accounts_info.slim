@@ -1,0 +1,9 @@
+#accounts-info
+  /= accounts_info.hash
+  - accounts_info.accounts.each do |acc|
+    .account-info
+      span.name= acc.external_account_label
+      - acc.collections.each do |c|
+        .collection-info
+          span.name= c.external_collection_label
+

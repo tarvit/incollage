@@ -4,52 +4,60 @@
 body {
   margin: 0;
 }
-$padding: 20px;
-$green: #5e804e;
 
-#container {
-  a {
-    color: $green;
-  }
+#incollage {
 
-  #header {
-    background: #000000;
-    color: white;
-    padding: $padding;
-  }
+  $padding: 20px;
+  $green: #5e804e;
 
-  #content {
-    $sidebar-width: 300px;
-    $min-height: 500px;
-    //min-height: 500px;
-
-    #sidebar {
-      width: $sidebar-width;
-      height: $min-height;
-      background: grey;
-      display: inline-block;
-      float: left;
-      .content {
-        padding: $padding;
-      }
+  #container {
+    a {
+      color: $green;
     }
 
-    #main {
+    #header {
+      background: #000000;
+      color: white;
+      padding: $padding;
+      display: inline-block;
       width: 100%;
-      height: $min-height;
-      display: inline-block;
-      margin-right: -$sidebar-width;
-      background: #9CC59C;
-      .content {
-        padding: $padding;
+      .user-block {
+        width: 100px;
       }
     }
 
+    #content {
+      $sidebar-width: 300px;
+      $min-height: 500px;
+
+      #sidebar {
+        width: $sidebar-width;
+        height: $min-height;
+        background: grey;
+        display: inline-block;
+        float: left;
+        .content {
+          padding: $padding;
+        }
+      }
+
+      #main {
+        width: 100%;
+        height: $min-height;
+        display: inline-block;
+        margin-right: -$sidebar-width;
+        background: #9CC59C;
+        .content {
+          padding: $padding;
+        }
+      }
+
+    }
+
+    #footer {
+      text-align: center;
+    }
+
   }
-
-  #footer {
-
-  }
-
 }
 

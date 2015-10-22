@@ -1,10 +1,11 @@
 .header-container
-  span.logo
+  span.logo.fl
     | In Collage
   .header-content
     - if authorized?
-      .username
-        strong= current_user.username
-      span
-        = link_to 'Log out', auth_logout_path
+      .user-block.fr
+        .username
+          strong= current_user.username
+        span
+          = link_to 'Log out', auth_logout_path
     = yield(:header)

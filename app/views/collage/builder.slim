@@ -1,5 +1,5 @@
 = content_for(:sidebar)
-  | sidebar
+  = render partial: 'shared/accounts_info', locals: { accounts_info: @accounts_info }
 
 | Content
 /.c
