@@ -2,8 +2,9 @@ class ActiveRecordBaseRepository
 
   def save(entity)
     entity.check_validity!
-    from_entity(entity).save!
-    entity
+    record = from_entity(entity)
+    record.save!
+    entity.id = record.id
   rescue ActiveRecord::RecordInvalid => ex
     raise Incollage::Entity::EntityIsInvalidError.new(ex.message)
   end
