@@ -2,7 +2,7 @@ class AuthController < ApplicationController
 
   def authenticate
     attrs = params.require(:user).permit(:username, :password)
-    Incollage::AuthenticateUser.new(user_session, attrs).execute
+    Incollage::AuthenticateUser.new(user_session, attrs).execute rescue nil
     if user_session.authorized?
       redirect_to root_path
     else
