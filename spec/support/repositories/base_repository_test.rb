@@ -63,8 +63,8 @@ module BaseRepositoryTest
       it 'should add ID after save' do
         entity = new_entity
         entity.id = nil
-        @repo.save(entity)
-        expect(entity.id).to be
+        result_entity = @repo.save(entity)
+        expect(result_entity.id).to be
       end
 
     end

@@ -5,6 +5,7 @@ class ActiveRecordBaseRepository
     record = from_entity(entity)
     record.save!
     entity.id = record.id
+    entity
   rescue ActiveRecord::RecordInvalid => ex
     raise Incollage::Entity::EntityIsInvalidError.new(ex.message)
   end
