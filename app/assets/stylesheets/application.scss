@@ -5,8 +5,12 @@ body {
   margin: 0;
 }
 $padding: 20px;
+$green: #5e804e;
 
 #container {
+  a {
+    color: $green;
+  }
 
   #header {
     background: #000000;
@@ -24,6 +28,7 @@ $padding: 20px;
       height: $min-height;
       background: grey;
       display: inline-block;
+      float: left;
       .content {
         padding: $padding;
       }
@@ -34,7 +39,7 @@ $padding: 20px;
       height: $min-height;
       display: inline-block;
       margin-right: -$sidebar-width;
-      background: green;
+      background: #9CC59C;
       .content {
         padding: $padding;
       }
