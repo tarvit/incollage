@@ -32,17 +32,17 @@ describe Incollage::SynchronizePrecedingClippings do
   it 'should sync preceding clippings' do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    Incollage::SynchronizePrecedingClippings.new(@uc_collection, @context).execute
+    Incollage::SynchronizePrecedingClippings.new(clippings_collection_attrs).execute
     expect(Incollage::Repository.for_clipping.count).to eq(4)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14])
 
     @source.class.add_for_user(@uc_collection.user_id, @uc_collection.collection_id, @new_data)
 
-    Incollage::SynchronizePrecedingClippings.new(@uc_collection, @context).execute
+    Incollage::SynchronizePrecedingClippings.new(clippings_collection_attrs).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,9,10])
 
-    Incollage::SynchronizePrecedingClippings.new(@uc_collection, @context).execute
+    Incollage::SynchronizePrecedingClippings.new(clippings_collection_attrs).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,9,10])
   end
@@ -51,23 +51,27 @@ describe Incollage::SynchronizePrecedingClippings do
   it 'should sync recent clippings' do
     expect(Incollage::Repository.for_clipping.count).to eq(4)
 
-    Incollage::SynchronizeRecentClippings.new(@uc_collection, @context).execute
+    Incollage::SynchronizeRecentClippings.new(clippings_collection_attrs).execute
     expect(Incollage::Repository.for_clipping.count).to eq(4)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14])
 
     @source.class.add_for_user(@uc_collection.user_id, @uc_collection.collection_id, @new_data)
 
-    Incollage::SynchronizeRecentClippings.new(@uc_collection, @context).execute
+    Incollage::SynchronizeRecentClippings.new(clippings_collection_attrs).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
     expect(Incollage::Repository.for_clipping.all.map(&:external_id)).to eq([11,12,13,14,15,16])
 
-    Incollage::SynchronizeRecentClippings.new(@uc_collection, @context).execute
+    Incollage::SynchronizeRecentClippings.new(clippings_collection_attrs).execute
     expect(Incollage::Repository.for_clipping.count).to eq(6)
   end
 
-  def clippings_collection
+  def clippings_collection_attrs
     registered_collection_id = Incollage::Holder.for_clippings_collections.first_collection.id
-    Incollage::UserClippingsCollection.new(user_id: 1, collection_id: registered_collection_id, linked_account_id: 1)
+    { user_id: 1, collection_id: registered_collection_id, linked_account_id: 1 }
+  end
+
+  def clippings_collection
+    Incollage::UserClippingsCollection.new(clippings_collection_attrs)
   end
 
   def clippings_source(collection)
