@@ -17,8 +17,12 @@ module Accounts
           external_meta_info: { access_token: response.access_token }
       }
 
-      Incollage::LinkExternalAccount.new(attrs).execute
-      Incollage::SynchronizePrecedingClippings.new
+      account = Incollage::LinkExternalAccount.new(attrs).execute
+      Incollage::SynchronizePrecedingClippings.new(
+          user_id: user_id,
+          collection_id: 1,
+          linked_account_id: account.id,
+      ).execute
       redirect_to collage_builder_path
     end
 
