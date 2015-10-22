@@ -18,8 +18,8 @@ module Incollage
       @storage.delete(current_user_key)
     end
 
-    def current_user
-      Repository.for_user.find(id: @storage[current_user_key])
+    def current_user_id
+      @storage[current_user_key]
     end
 
     protected
