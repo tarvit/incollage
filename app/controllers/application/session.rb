@@ -11,7 +11,8 @@ module ApplicationControllerSession
   end
 
   def current_user
-    user_session.current_user
+    user_info = Incollage::GetUserInfo.new(user_session.current_user_id).execute
+    TarvitHelpers::HashPresenter.present(user_info)
   end
 
   def check_authorized!

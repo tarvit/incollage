@@ -18,6 +18,8 @@ gem 'color'
 gem 'colorscore'
 gem 'bcrypt'
 
+gem 'tarvit-helpers'
+
 group :development, :test do
   gem 'byebug'
   gem 'pry'
