@@ -21,7 +21,7 @@ module ConnectAccountRouter
     end
 
     def redirect_url
-      controller.accounts_instagram_callback_url(
+      controller.external_accounts_callback_url(
           trailing_slash: true,
           external_account_id: external_account_id,
           user_id: user_id

@@ -3,7 +3,7 @@
     .account-info
       span.name(class=(acc.linked ? 'linked' : 'not_linked'))
         = acc.external_account_label
-        - path = accounts_connect_path(external_account_id: acc.external_account_id, user_id: current_user.id)
+        - path = external_accounts_connect_path(external_account_id: acc.external_account_id, user_id: current_user.id)
         = link_to 'Connect', path
         - acc.collections.each do |c|
           .collection-info

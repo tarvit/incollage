@@ -21,13 +21,9 @@ Rails.application.routes.draw do
     post :register
   end
 
-  namespace :accounts do
+  namespace :external_accounts do
     get ':external_account_id/connect/:user_id', action: :connect, as: :connect
-
-    namespace :instagram do
-      get 'callback/', action: :callback, as: :callback
-    end
-
+    get :callback, action: :callback, as: :callback
   end
 
 end
