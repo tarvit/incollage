@@ -9,16 +9,33 @@ module ConnectAccountRouter
       @external_account_id = external_account_id
     end
 
-    def execute
+    def connect
       raise NotImplemented
     end
   end
 
   class InstagramConnectAccountRouter < Base
 
-    def execute
+    def connect
       controller.redirect_to InstagramConnector.new(redirect_url).authorize_url
     end
+
+    def callback
+      response = InstagramConnector.new(redirect_url).get_response(controller.params[:code])
+      external_user_id = response.user.id
+
+      attrs = {
+          user_id: @user_id,
+          external_account_id: @external_account_id,
+          external_user_id: external_user_id,
+          external_meta_info: { access_token: response.access_token }
+      }
+
+      Incollage::LinkExternalAccount.new(attrs).execute
+      controller.redirect_to controller.collage_builder_path
+    end
+
+    protected
 
     def redirect_url
       controller.external_accounts_callback_url(
