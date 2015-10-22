@@ -5,7 +5,13 @@ describe Incollage::ExternalAccountsHolder do
   before :each do
     @source = TestSupport::EmptyClippingsSource
     @holder = Incollage::ExternalAccountsHolder.new
-    @account_args = { id: 4, name: :third_party_service, collections: [ TestSupport::FakeAbstractService ] }
+    @account_args = {
+        id: 4,
+        name: :third_party_service,
+        label: 'label',
+        connector: TestSupport::FakeAccountConnector,
+        collections: [ TestSupport::FakeAbstractService ]
+    }
     @account = Incollage::ExternalAccount.new(@account_args)
   end
 
