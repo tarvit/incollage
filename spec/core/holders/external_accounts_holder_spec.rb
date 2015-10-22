@@ -9,7 +9,7 @@ describe Incollage::ExternalAccountsHolder do
         id: 4,
         name: :third_party_service,
         label: 'label',
-        connector: TestSupport::FakeAccountConnector.new,
+        connector: TestSupport::FakeAccountConnector.new(4),
         collections: [ TestSupport::FakeAbstractService ]
     }
     @account = Incollage::ExternalAccount.new(@account_args)
