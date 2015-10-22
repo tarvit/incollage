@@ -1,0 +1,50 @@
+//= require_tree .
+//= require_self
+
+body {
+  margin: 0;
+}
+$padding: 20px;
+
+#container {
+
+  #header {
+    background: #000000;
+    color: white;
+    padding: $padding;
+  }
+
+  #content {
+    $sidebar-width: 300px;
+    $min-height: 500px;
+    //min-height: 500px;
+
+    #sidebar {
+      width: $sidebar-width;
+      height: $min-height;
+      background: grey;
+      display: inline-block;
+      .content {
+        padding: $padding;
+      }
+    }
+
+    #main {
+      width: 100%;
+      height: $min-height;
+      display: inline-block;
+      margin-right: -$sidebar-width;
+      background: green;
+      .content {
+        padding: $padding;
+      }
+    }
+
+  }
+
+  #footer {
+
+  }
+
+}
+

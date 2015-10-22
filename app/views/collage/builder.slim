@@ -1,25 +1,30 @@
-p
-  span
-    = link_to 'Log out', auth_logout_path
-p
-  span.label
-    | Hello&nbsp;
-    strong= current_user.full_name
-p
-  = link_to 'All', collage_builder_path
-p
-  = link_to 'Synchronize Recent', clippings_synchronize_recent_path
-p
-  = link_to 'Synchronize Preceding', clippings_synchronize_preceding_path
+= content_for(:sidebar)
+  | sidebar
 
-p
-  = form_tag(clippings_search_path, method: :get) do |form|
-    = text_field_tag 'colors'
-    = button_tag "Create collage in #{current_clippings_collection.label}", name: :create
+| Content
+/.c
+  p
+    span
+      = link_to 'Log out', auth_logout_path
+  p
+    span.label
+      | Hello&nbsp;
+      strong= current_user.full_name
+  p
+    = link_to 'All', collage_builder_path
+  p
+    = link_to 'Synchronize Recent', clippings_synchronize_recent_path
+  p
+    = link_to 'Synchronize Preceding', clippings_synchronize_preceding_path
 
-p
-  - if @collage
-  = image_tag @collage
+  p
+    = form_tag(clippings_search_path, method: :get) do |form|
+      = text_field_tag 'colors'
+      = button_tag "Create collage in #{current_clippings_collection.label}", name: :create
 
-- @clippings.each do |im|
-  = image_tag im.picture_url
+  p
+    - if @collage
+    = image_tag @collage
+
+  - @clippings.each do |im|
+    = image_tag im.picture_url

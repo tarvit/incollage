@@ -6,4 +6,17 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    = yield
+    #container
+      header#header
+        = render partial: 'shared/header'
+
+      #content
+        #sidebar
+          .content
+            = yield(:sidebar)
+        #main
+          .content
+            = yield
+
+      footer#footer
+        = render partial: 'shared/footer'
