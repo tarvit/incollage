@@ -10,16 +10,19 @@ module IncollageApp
     config.active_record.raise_in_transactional_callbacks = true
   end
 
+  extend TarvitHelpers::RecursiveLoader::Context
+
   def self.load_all_modules
+    load_method = Rails.env.development? ? :load : :require
+
     # load Core modules
-    require Rails.root.join('app/core/core')
-    Incollage.load_modules(Rails.root.join('app/core'))
+    load_modules(Rails.root.join('app/core'), %w{ base entities interactors adapters components holders }, load_method)
 
     # load application adapters
-    Incollage.load_modules(Rails.root.join('app/adapters'), [])
+    load_modules(Rails.root.join('app/adapters'), [], load_method)
 
     # load application specific settings
-    Incollage.load_modules(Rails.root.join('config/specific'), [])
+    load_modules(Rails.root.join('config/specific'), [], load_method)
 
     set_adapters
   end

@@ -2,16 +2,18 @@ RSpec.configure do |config|
   require 'active_support/all'
   require 'active_model'
   require 'pry'
+  require 'tarvit-helpers'
+
+  extend TarvitHelpers::RecursiveLoader::Context
 
   def app_root
     require 'pathname'
     Pathname.new(ENV['INCOLLAGE_ROOT'])
   end
 
-  require app_root.join('app/core/core')
-  Incollage.load_modules(app_root.join('app/core'))
-  Incollage.load_modules(app_root.join('app/adapters/imagemagick'), [])
-  Incollage.load_modules(app_root.join('spec/support'), [])
+  load_modules(app_root.join('app/core'), %w{ base entities interactors adapters components holders })
+  load_modules(app_root.join('app/adapters/imagemagick'), [])
+  load_modules(app_root.join('spec/support'), [])
 
   def register_repos
     Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
