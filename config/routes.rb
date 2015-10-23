@@ -22,8 +22,12 @@ Rails.application.routes.draw do
   end
 
   namespace :external_accounts do
-    get ':external_account_id/connect/:user_id', action: :connect, as: :connect
+    get ':external_account_id/connect', action: :connect, as: :connect
     get :callback, action: :callback, as: :callback
+  end
+
+  namespace :external_collections do
+    get ':external_account_id/:linked_account_id/sync/:external_collection_id', action: :sync, as: :sync
   end
 
 end

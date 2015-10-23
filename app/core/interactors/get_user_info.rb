@@ -7,7 +7,7 @@ module Incollage
 
     def execute
       user = Repository.for_user.find(id: @user_id)
-      present(user)
+      present(user) if user
     end
 
     protected

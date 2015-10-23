@@ -1,19 +1,19 @@
 class ExternalAccountsController < ApplicationController
-  before_filter :init_ids, only: [ :connect, :callback ]
+  before_filter :init_account_id, only: [ :connect, :callback ]
   before_filter :init_connector, only: [ :connect, :callback ]
 
   def connect
-   @connector.connect(self, @user_id)
+   @connector.connect(self, current_user.id)
   end
 
   def callback
-    @connector.callback(self, @user_id)
+    @connector.callback(self, current_user.id)
   end
 
   protected
 
-  def init_ids
-    @external_account_id, @user_id = params[:external_account_id].to_i, params[:user_id].to_i
+  def init_account_id
+    @external_account_id = params[:external_account_id].to_i
   end
 
   def init_connector

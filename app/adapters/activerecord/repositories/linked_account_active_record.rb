@@ -35,7 +35,7 @@ class LinkedAccountActiveRecord < ActiveRecord::Base
     private
 
     def parse_meta_info(content)
-      content.nil? ? {} : Hash[JSON.parse(content)]
+      content.nil? ? {} : HashWithIndifferentAccess[JSON.parse(content)]
     end
 
   end

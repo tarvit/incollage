@@ -82,9 +82,7 @@ module BaseRepositoryTest
           result_entity = @repo.save(entity)
           expect(result_entity.id).to be
         end
-
       end
-
     end
   end
 end

@@ -29,7 +29,7 @@ module InstagramAdapter
 
       def init_instagram_client(user_clippings_collection)
         linked_account = Incollage::Repository.for_linked_account.find(id: user_clippings_collection.linked_account_id)
-        ::Instagram.client(:access_token => linked_account.external_meta_info['access_token'])
+        ::Instagram.client(:access_token => linked_account.external_meta_info[:access_token])
       end
 
     end
