@@ -5,10 +5,11 @@
   = text_field_tag 'colors'
   = button_tag 'Create collage', name: :create_collage
 
-p.collage
-  = image_tag @collage
-p.download
-  = link_to 'Download', @collage, download: 'collage.png'
+- if @collage
+  p.collage
+    = image_tag @collage
+  p.download
+    = link_to 'Download', @collage, download: 'collage.png'
 
 p.clippings
   - @clippings.each do |im|
