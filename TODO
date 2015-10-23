@@ -1,7 +1,6 @@
 ## Current Priorities
 
 # Middle
-- Extract recursive modules loading to gem
 - Optimize histograms for search
 - implement TestCase dependencies
 
@@ -9,3 +8,4 @@
 - Implement better UI (AngularJS, etc)
 - Implement more options for Collage
 - Add clippings filters
+- Add ordering mechanism for repositories
