@@ -1,11 +1,12 @@
 ## Current Priorities
 
+# Top
+- Implement better UI (AngularJS, etc)
+- Add clippings filters
+
 # Middle
-- Optimize histograms for search
+- Implement more options for Collage
 - implement TestCase dependencies
 
 ## Future
-- Implement better UI (AngularJS, etc)
-- Implement more options for Collage
-- Add clippings filters
 - Add ordering mechanism for repositories
