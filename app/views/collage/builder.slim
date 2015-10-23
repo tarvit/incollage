@@ -7,6 +7,8 @@
 
 p.collage
   = image_tag @collage
+p.download
+  = link_to 'Download', @collage, download: 'collage.png'
 
 p.clippings
   - @clippings.each do |im|
