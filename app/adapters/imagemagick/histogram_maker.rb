@@ -3,7 +3,7 @@ module Imagemagick
   class HistogramMaker
     require 'colorscore'
 
-    def initialize(picture_url, colors_count = 10, depth = 1)
+    def initialize(picture_url, colors_count = 16, depth = 1)
       @picture_url = picture_url
       @colors_count, @depth = colors_count, depth
     end
