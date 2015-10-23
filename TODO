@@ -1,8 +1,5 @@
 ## Current Priorities
 
-# Top
-- Implement collage maker in new UI version
-
 # Middle
 - Extract recursive modules loading to gem
 - Optimize histograms for search
@@ -11,3 +8,4 @@
 ## Future
 - Implement better UI (AngularJS, etc)
 - Implement more options for Collage
+- Add clippings filters
