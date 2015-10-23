@@ -1,30 +1,5 @@
 = content_for(:sidebar)
-  = render partial: 'shared/accounts_info', locals: { accounts_info: @accounts_info }
+  = render partial: 'shared/accounts_info', locals: { accounts_info: @current_stats }
 
-| Content
-/.c
-  p
-    span
-      = link_to 'Log out', auth_logout_path
-  p
-    span.label
-      | Hello&nbsp;
-      strong= current_user.full_name
-  p
-    = link_to 'All', collage_builder_path
-  p
-    = link_to 'Synchronize Recent', clippings_synchronize_recent_path
-  p
-    = link_to 'Synchronize Preceding', clippings_synchronize_preceding_path
-
-  p
-    = form_tag(clippings_search_path, method: :get) do |form|
-      = text_field_tag 'colors'
-      = button_tag "Create collage in #{current_clippings_collection.label}", name: :create
-
-  p
-    - if @collage
-    = image_tag @collage
-
-  - @clippings.each do |im|
-    = image_tag im.picture_url
+- @clippings.each do |im|
+  = image_tag im.picture_url

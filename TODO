@@ -1,8 +1,7 @@
 ## Current Priorities
 
 # Top
-- Independent Session & Connected Accounts
- -- Implement synchronization Instagram Account
+- Implement collage maker in new UI version
 
 # Middle
 - Extract recursive modules loading to gem

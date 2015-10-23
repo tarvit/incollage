@@ -5,7 +5,7 @@ module Incollage
     def initialize(attrs)
       @attrs = attrs
       @page_number, @per_page = attrs[:page_number], attrs[:per_page]
-      @finder = ClippingsFinder.new(collection)
+      @finder = ClippingsFinder.new(search_attrs)
     end
 
     def execute
@@ -14,12 +14,11 @@ module Incollage
 
     protected
 
-    def collection
-      UserClippingsCollection.new(
-          user_id: @attrs[:user_id],
-          collection_id: @attrs[:collection_id],
-          linked_account_id: @attrs[:linked_account_id]
-      )
+    def search_attrs
+      res = @attrs.clone
+      res.delete :page_number
+      res.delete :per_page
+      res
     end
 
   end
