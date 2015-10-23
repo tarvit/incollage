@@ -4,7 +4,7 @@ describe Incollage::ClippingsFinder do
 
   before :each do
     @search_data = { user_id: 1, collection_id: 1 }
-    @finder = Incollage::ClippingsFinder.new(Incollage::UserClippingsCollection.new(user_id: 1, collection_id: 1, linked_account_id: 1))
+    @finder = Incollage::ClippingsFinder.new(@search_data)
     @repo = Incollage::Repository.for_clipping
   end
 

@@ -14,14 +14,14 @@ describe Incollage::SearchClippingsForCollage do
   end
 
   it 'should search clippings by colors' do
-    collection = Incollage::UserClippingsCollection.new(user_id: 1, collection_id: 1, linked_account_id: 1)
+    scope = { user_id: 1, collection_id: 1 }
 
-    expect(searcher(collection, [ 'ff0000' ], 1 ).execute.map(&:id)).to eq([ 3 ])
-    expect(searcher(collection, [ '00ff00' ], 1 ).execute.map(&:id)).to eq([ 1 ])
-    expect(searcher(collection, [ '0000ff' ], 1 ).execute.map(&:id)).to eq([ 2 ])
+    expect(searcher(scope, [ 'ff0000' ], 1 ).execute.map(&:id)).to eq([ 3 ])
+    expect(searcher(scope, [ '00ff00' ], 1 ).execute.map(&:id)).to eq([ 1 ])
+    expect(searcher(scope, [ '0000ff' ], 1 ).execute.map(&:id)).to eq([ 2 ])
 
-    expect(searcher(collection, [ 'ff0000', '00ff00' ], 2 ).execute.map(&:id)).to eq([ 3, 1 ])
-    expect(searcher(collection, [ '0000ff' ], 3 ).execute.map(&:id)).to eq([ 2, 1, 3 ])
+    expect(searcher(scope, [ 'ff0000', '00ff00' ], 2 ).execute.map(&:id)).to eq([ 3, 1 ])
+    expect(searcher(scope, [ '0000ff' ], 3 ).execute.map(&:id)).to eq([ 2, 1, 3 ])
   end
 
   def searcher(collection, colors, count)
