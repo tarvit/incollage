@@ -32,7 +32,7 @@ body {
 
       #sidebar {
         width: $sidebar-width;
-        height: $min-height;
+        min-height: $min-height;
         background: #BDBCBC;
         display: inline-block;
         float: left;
@@ -42,10 +42,9 @@ body {
       }
 
       #main {
-        width: 100%;
-        height: $min-height;
+        width: calc(100% - 300px);
+        min-height: $min-height;
         display: inline-block;
-        margin-right: -$sidebar-width;
         background: #9CC59C;
         .content {
           padding: $padding;

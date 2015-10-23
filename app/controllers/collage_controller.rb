@@ -3,14 +3,21 @@ class CollageController < ApplicationController
   before_filter :init_current_stats
 
   def builder
-    options = {
-        user_id: current_user.id,
-        per_page: 10000,
-        page_number: 0,
-    }
-    @clippings = Incollage::FindClippingsPage.new(options).execute.sort_by(&:external_created_time).uniq(&:external_id).reverse
+    @clippings = all_clippings
   end
 
+  protected
 
+  def all_clippings
+    options = {
+        user_id: current_user.id,
+        per_page: 10,
+        page_number: 0,
+    }
+
+    Incollage::FindClippingsPage.new(options).execute
+        .sort_by(&:external_created_time)
+        .uniq(&:external_id).reverse
+  end
 
 end
