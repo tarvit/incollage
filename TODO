@@ -2,11 +2,12 @@
 
 # Top
 - Independent Session & Connected Accounts
- -- Implement possibility to link & sync Instagram Account
+ -- Implement synchronization Instagram Account
 
 # Middle
 - Extract recursive modules loading to gem
 - Optimize histograms for search
+- implement TestCase dependencies
 
 ## Future
 - Implement better UI (AngularJS, etc)
