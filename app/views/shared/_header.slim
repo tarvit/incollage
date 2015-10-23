@@ -1,6 +1,7 @@
 .header-container
   span.logo.fl
-    | In Collage
+    = link_to root_path
+      | In Collage
   .header-content
     - if authorized?
       .user-block.fr
