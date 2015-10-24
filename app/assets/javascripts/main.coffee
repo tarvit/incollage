@@ -18,10 +18,5 @@
 #= require angular-cookies
 
 #= require_tree ../templates
-#= require_tree ./app
-
-window.Incollage =
-  debug: true
-  log: (message)->
-    return unless window.Incollage.debug
-    console.log(message)
+#= require_tree ./shared
+#= require_tree ./main

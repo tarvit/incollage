@@ -24,6 +24,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resource :stats do
+
+    end
+  end
+
   #-------------
 
   # namespace :collage do
