@@ -1,4 +1,5 @@
 class AuthController < ApplicationController
+  layout 'auth'
 
   def authenticate
     attrs = params.require(:user).permit(:username, :password)

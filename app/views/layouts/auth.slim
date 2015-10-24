@@ -1,14 +1,14 @@
 doctype html
-html lang="en" ng-app="Incollage"
+html lang="en"
   head
     meta charset="utf-8"
     title Incollage
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'main', 'data-turbolinks-track' => true
+    = javascript_include_tag 'mini', 'data-turbolinks-track' => true
     = csrf_meta_tags
     meta name="viewport" content="width=device-width, initial-scale=1"
   body
-    #incollage.main ng-controller='RootCtrl'
+    #incollage.auth
       #container
         header#header
           = render partial: 'shared/header'
@@ -19,7 +19,6 @@ html lang="en" ng-app="Incollage"
               = yield(:sidebar)
           #main
             .content
-              #ui-view ui-view="content"
               = yield
 
         footer#footer

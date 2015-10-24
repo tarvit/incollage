@@ -18,11 +18,9 @@ Rails.application.routes.draw do
   end
 
   # Angular States
-  namespace :incapp do
-    namespace :states do
-      level_paths.each do |path|
-        get path, to: 'root#index'
-      end
+  namespace :states do
+    level_paths.each do |path|
+      get path, to: 'root#index'
     end
   end
 

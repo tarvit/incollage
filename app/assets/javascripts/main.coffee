@@ -18,7 +18,7 @@
 #= require angular-cookies
 
 #= require_tree ../templates
-#= require_tree .
+#= require_tree ./app
 
 window.Incollage =
   debug: true

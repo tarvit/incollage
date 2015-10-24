@@ -5,5 +5,3 @@ angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state) 
     $rootScope.state = $state
 
   $scope.init()
-
-
