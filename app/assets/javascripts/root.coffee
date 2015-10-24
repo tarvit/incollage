@@ -14,6 +14,12 @@
 #= require angular-bootstrap
 
 #= require ngtimeago
-#  require angular-cookies
+#= require angular-cookies
 
 #= require_tree .
+
+window.Incollage =
+  debug: true
+  log: (message)->
+    return unless window.Incollage.debug
+    console.log(message)

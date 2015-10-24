@@ -1,12 +1,14 @@
 doctype html
-html
+html lang="en" ng-app="Incollage"
   head
+    meta charset="utf-8"
     title Incollage
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'root', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    meta name="viewport" content="width=device-width, initial-scale=1"
   body
-    #incollage
+    #incollage ng-controller='RootCtrl'
       #container
         header#header
           = render partial: 'shared/header'
