@@ -22,5 +22,5 @@ App.config ($urlRouterProvider, $stateProvider) ->
     views:
       content:
         templateUrl: "collage/builder.html"
-        #controller: 'CollageBuilderCtrl'
+        controller: 'CollageBuilderCtrl'
   )
