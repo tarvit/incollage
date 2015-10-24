@@ -1,5 +1,4 @@
 #= require_self
-#
 #= require_tree ./services
 #= require_tree ./factories
 #= require_tree ./controllers
@@ -12,6 +11,16 @@ App = angular.module 'Incollage', [
   'ui.bootstrap'
   'ngtimeago'
   'ngCookies'
+  'templates'
   'Incollage.components'
 ]
 
+App.config ($urlRouterProvider, $stateProvider) ->
+  $urlRouterProvider.otherwise("/incapp/state/collage/builder")
+  $stateProvider.state("collage_builder",
+    url: "/incapp/state/collage/builder"
+    views:
+      content:
+        templateUrl: "collage/builder.html"
+        #controller: 'CollageBuilderCtrl'
+  )

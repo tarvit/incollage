@@ -19,6 +19,7 @@ html lang="en" ng-app="Incollage"
               = yield(:sidebar)
           #main
             .content
+              #ui-view ui-view="content"
               = yield
 
         footer#footer

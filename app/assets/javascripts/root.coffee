@@ -12,10 +12,12 @@
 #= require angular-material
 #= require lodash
 #= require angular-bootstrap
+#= require angular-rails-templates
 
 #= require ngtimeago
 #= require angular-cookies
 
+#= require_tree ../templates
 #= require_tree .
 
 window.Incollage =

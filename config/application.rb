@@ -8,6 +8,8 @@ module IncollageApp
 
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
+    config.angular_templates.module_name    = 'templates'
+    config.angular_templates.ignore_prefix  = %w(templates/)
   end
 
   extend TarvitHelpers::RecursiveLoader::Context

@@ -2,16 +2,6 @@ Rails.application.routes.draw do
 
   root to: 'root#index'
 
-  namespace :collage do
-    get :builder
-  end
-
-  namespace :clippings do
-    get :synchronize_recent
-    get :synchronize_preceding
-    get :search
-  end
-
   namespace :auth do
     get :login
     get :sign_up
@@ -21,14 +11,42 @@ Rails.application.routes.draw do
     post :register
   end
 
-  namespace :external_accounts do
-    get ':external_account_id/connect', action: :connect, as: :connect
-    get :callback, action: :callback, as: :callback
+  def level_paths
+    (1..10).map do |index|
+      (1..index).map{|k| ":level#{k}" }.join(?/)
+    end
   end
 
-  namespace :external_collections do
-    get ':external_account_id/:linked_account_id/sync/:external_collection_id', action: :sync, as: :sync
+  # Angular States
+  namespace :incapp do
+    namespace :states do
+      level_paths.each do |path|
+        get path, to: 'root#index'
+      end
+    end
   end
+
+  #-------------
+
+  # namespace :collage do
+  #   get :builder
+  # end
+  #
+  # namespace :clippings do
+  #   get :synchronize_recent
+  #   get :synchronize_preceding
+  #   get :search
+  # end
+  #
+  # namespace :external_accounts do
+  #   get ':external_account_id/connect', action: :connect, as: :connect
+  #   get :callback, action: :callback, as: :callback
+  # end
+  #
+  # namespace :external_collections do
+  #   get ':external_account_id/:linked_account_id/sync/:external_collection_id', action: :sync, as: :sync
+  # end
+
 
 end
 
