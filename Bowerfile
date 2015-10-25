@@ -2,6 +2,7 @@ asset 'underscore'
 
 asset 'jquery'
 asset 'bootstrap'
+asset 'lodash'
 
 asset 'angular'
 asset 'angular-route'
@@ -10,7 +11,6 @@ asset 'angular-resource'
 asset 'angular-animate'
 asset 'angular-aria'
 asset 'angular-material'
-asset 'lodash'
 asset 'angular-bootstrap'
 
 asset 'ngtimeago'

@@ -2,3 +2,16 @@
   md-toolbar
     .md-toolbar-tools
       h3 Collage Builder
+
+  md-fab-toolbar count="demo.count" md-direction="{{demo.selectedDirection}}" md-open="true"
+    md-fab-trigger.align-with-text
+      md-button.md-fab.md-primary aria-label="menu"
+        md-icon md-font-library="material-icons" android
+    md-toolbar
+      md-fab-actions.md-toolbar-tools
+        md-button.md-icon-button aria-label="comment"
+          md-icon md-font-library="material-icons" face
+        md-button.md-icon-button aria-label="label"
+          md-icon md-font-library="material-icons" face
+        md-button.md-icon-button aria-label="photo"
+          md-icon md-font-library="material-icons" face
