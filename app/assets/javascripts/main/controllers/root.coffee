@@ -1,4 +1,4 @@
-angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state
+angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state, $mdSidenav, $mdMedia
   StatsService) ->
 
   $scope.init = ->

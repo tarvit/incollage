@@ -12,15 +12,19 @@ html lang="en" ng-app="Incollage"
       #container
         header#header
           = render partial: 'shared/header'
-
-        #content
-          #sidebar
+        section#content.md-whiteframe-z2 flex="" layout="row"
+          md-sidenav#sidebar.md-sidenav-left.md-whiteframe-z1[
+            md-is-locked-open="$mdMedia('gt-md')"
+            md-component-id="sidebar"
+          ]
             .content
+              md-toolbar
+                .md-toolbar-tools
+                  h3 Account
               = yield(:sidebar)
-          #main
-            .content
-              #ui-view ui-view="content"
-              = yield
+          md-content#main flex=""
+            #ui-view ui-view="content"
+            = yield
 
         footer#footer
           = render partial: 'shared/footer'

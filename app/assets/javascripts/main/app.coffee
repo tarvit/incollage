@@ -11,6 +11,7 @@ App = angular.module 'Incollage', [
   'ui.bootstrap'
   'ngtimeago'
   'ngCookies'
+  'ngMaterial'
   'templates'
   'Incollage.components'
 ]
@@ -24,3 +25,5 @@ App.config ($urlRouterProvider, $stateProvider) ->
         templateUrl: "collage/builder.html"
         controller: 'CollageBuilderCtrl'
   )
+
+
