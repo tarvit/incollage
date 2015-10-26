@@ -15,7 +15,7 @@ html lang="en" ng-app="Incollage"
         header#header
           = render partial: 'shared/header'
         section#content.md-whiteframe-z2 flex="" layout="row"
-          #sidebar-content ui-view="sidebar" layout="row"
+          md-content#sidebar-content ui-view="sidebar" layout="row"
           md-content#main-content ui-view="content" flex=""
 
         footer#footer

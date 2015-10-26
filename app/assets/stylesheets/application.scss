@@ -30,17 +30,12 @@ body, html {
       margin: 20px;
       min-height: 500px;
 
-      #sidebar {
-
-        .content {
-
-        }
+      #sidebar-content {
+        border-right: 1px solid #D6D0D0;
       }
 
-      #main {
-        .content {
+      #main-content {
 
-        }
       }
     }
 
