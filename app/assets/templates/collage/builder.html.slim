@@ -6,10 +6,10 @@ md-content#collage-builder
     md-tabs md-border-bottom="" md-dynamic-height=""
       md-tab label="Pictures"
         md-content.md-padding
-          h1.md-display-2 Pictures Search Options
+          div ng-include='"collage/options/pictures.html"'
       md-tab label="Colors"
         md-content.md-padding
-          h1.md-display-2 Color Options
-      md-tab label="Collage Options"
+          div ng-include='"collage/options/colors.html"'
+      md-tab label="Collage"
         md-content.md-padding
-          h1.md-display-2 Collage Options
+          div ng-include='"collage/options/collage_options.html"'

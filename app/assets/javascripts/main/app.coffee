@@ -17,9 +17,9 @@ App = angular.module 'Incollage', [
 ]
 
 App.config ($urlRouterProvider, $stateProvider) ->
-  $urlRouterProvider.otherwise("/state/collage/builder")
+  $urlRouterProvider.otherwise("/state/collage/options")
   $stateProvider.state("collage_builder",
-    url: "/state/collage/builder"
+    url: "/state/collage/options"
     views:
       content:
         templateUrl: "collage/builder.html"
