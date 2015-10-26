@@ -15,9 +15,9 @@ module Incollage
       accounts_data = Holder.for_external_accounts.added_accounts.map do |external_account|
         linked_account_id = linked_account(external_account).try(:id)
         {
-            external_account_id: external_account.id,
-            external_account_name: external_account.name,
-            external_account_label: external_account.label,
+            id: external_account.id,
+            name: external_account.name,
+            label: external_account.label,
             linked: (!!linked_account_id),
             linked_account_id: linked_account_id,
             collections: collections_data(external_account, linked_account_id)
@@ -34,9 +34,9 @@ module Incollage
     def collections_data(external_account, linked_account_id)
       external_account.collections.map do |collection|
         {
-            external_collection_id: collection.id,
-            external_collection_name: collection.name,
-            external_collection_label: collection.label,
+            id: collection.id,
+            name: collection.name,
+            label: collection.label,
             clippings_count: clippings_count(collection, linked_account_id)
         }
       end

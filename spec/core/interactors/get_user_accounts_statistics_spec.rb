@@ -13,16 +13,16 @@ describe Incollage::GetUserAccountsStatistics do
       expect(response).to eq({
         accounts: [
             {
-                :external_account_id => 1,
-                :external_account_name => :test_account,
-                :external_account_label => 'External Account',
+                :id => 1,
+                :name => :test_account,
+                :label => 'External Account',
                 :linked_account_id => nil,
                 :linked => false,
                 collections: [
                     {
-                        :external_collection_id => 1,
-                        :external_collection_name => :test_collection,
-                        :external_collection_label => 'Test Collection',
+                        :id => 1,
+                        :name => :test_collection,
+                        :label => 'Test Collection',
                         :clippings_count => 0,
                     }
                 ]
@@ -49,16 +49,16 @@ describe Incollage::GetUserAccountsStatistics do
       expect(response).to eq({
         accounts: [
            {
-               :external_account_id => 1,
-               :external_account_name => :test_account,
-               :external_account_label => 'External Account',
+               :id => 1,
+               :name => :test_account,
+               :label => 'External Account',
                :linked_account_id => 99,
                :linked => true,
                collections: [
                    {
-                       :external_collection_id => @external_collection.id,
-                       :external_collection_name => :test_collection,
-                       :external_collection_label => 'Test Collection',
+                       :id => @external_collection.id,
+                       :name => :test_collection,
+                       :label => 'Test Collection',
                        :clippings_count => 0,
                    }
                ]
@@ -85,16 +85,16 @@ describe Incollage::GetUserAccountsStatistics do
         expect(response).to eq({
            accounts: [
                {
-                   :external_account_id => 1,
-                   :external_account_name => :test_account,
-                   :external_account_label => 'External Account',
+                   :id => 1,
+                   :name => :test_account,
+                   :label => 'External Account',
                    :linked_account_id => 99,
                    :linked => true,
                    collections: [
                        {
-                           :external_collection_id => @external_collection.id,
-                           :external_collection_name => :test_collection,
-                           :external_collection_label => 'Test Collection',
+                           :id => @external_collection.id,
+                           :name => :test_collection,
+                           :label => 'Test Collection',
                            :clippings_count => 3,
                        }
                    ]
