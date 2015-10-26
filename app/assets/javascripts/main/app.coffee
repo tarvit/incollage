@@ -24,6 +24,8 @@ App.config ($urlRouterProvider, $stateProvider) ->
       content:
         templateUrl: "collage/builder.html"
         controller: 'CollageBuilderCtrl'
+      sidebar:
+        templateUrl: "collage/sidenav.html"
   )
 
 

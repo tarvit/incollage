@@ -15,15 +15,8 @@ html lang="en" ng-app="Incollage"
         header#header
           = render partial: 'shared/header'
         section#content.md-whiteframe-z2 flex="" layout="row"
-          md-sidenav#sidebar.md-sidenav-left.md-whiteframe-z1[
-            md-is-locked-open="showSidenav()"
-            md-component-id="sidebar"
-          ]
-            .content
-              #ui-view ui-view="sidebar"
-          md-content#main flex=""
-            #ui-view ui-view="content"
-            = yield
+          #sidebar-content ui-view="sidebar" layout="row"
+          md-content#main-content ui-view="content" flex=""
 
         footer#footer
           = render partial: 'shared/footer'

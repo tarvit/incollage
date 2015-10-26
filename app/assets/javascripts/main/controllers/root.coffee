@@ -6,12 +6,6 @@ angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state, 
     $rootScope.state = $state
     $scope.reloadStats()
 
-  $scope.showSidenav = ->
-    sidenavStates()[$rootScope.state.current.name]
-
-  sidenavStates = ->
-    { "collage_builder": true }
-
   $scope.reloadStats = ->
     $scope.stats = StatsService.query()
 
