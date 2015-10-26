@@ -8,7 +8,7 @@ module Incollage
     def execute
       all = ClippingsFinder.new(@options).find_all
       results = all.sort_by{|cl| -Service.for_color_matcher.score(cl.histogram.scores, @palette_colors) }
-      results[0..20].sort_by{ rand }[0..(@count-1)]
+      results[0..(@count-1)]
     end
 
   end
