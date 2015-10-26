@@ -1,4 +1,15 @@
-md-sidenav#collage_builder_sidenav.md-whiteframe-z1 md-is-locked-open="true"
+md-sidenav#collage_builder_sidenav.md-sidenav-left.md-whiteframe-z2  md-is-locked-open="true"
   md-toolbar
     .md-toolbar-tools
       h2 Accounts & Collections
+
+  md-list ng-repeat=('account in stats.data.accounts') ng-if="stats.loaded"
+    md-subheader.md-no-sticky ng-class=("{ 'linked': account.linked }")
+      | {{ account.label }}
+    md-list-item ng-repeat=('collection in account.collections')
+      .md-list-item-text layout="column"
+        span.name
+          | {{ collection.label }}
+        span.count
+          | ({{ collection.clippings_count }})
+    md-divider

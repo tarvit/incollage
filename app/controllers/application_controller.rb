@@ -10,11 +10,4 @@ class ApplicationController < ActionController::Base
     IncollageApp.load_all_modules
   end
 
-  protected
-
-  def init_current_stats
-    stats = Incollage::GetUserAccountsStatistics.new(current_user.id).execute
-    @current_stats = TarvitHelpers::HashPresenter.present(stats)
-  end
-
 end

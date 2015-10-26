@@ -7,6 +7,11 @@ html lang="en" ng-app="Incollage"
     link href="/fonts/icons_font.css" rel="stylesheet"
 
     = javascript_include_tag 'main', 'data-turbolinks-track' => true
+    javascript:
+      window.Session = {
+        env: "#{ Rails.env }",
+        currentUser: #{ current_user._hash.to_json.html_safe }
+      };
     = csrf_meta_tags
     meta name="viewport" content="width=device-width, initial-scale=1"
   body

@@ -1,5 +1,5 @@
-angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state, $mdSidenav, $mdMedia
-  StatsService) ->
+angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state, $mdSidenav, $mdMedia,
+  StatsService, Reloader) ->
 
   $scope.init = ->
     window.Incollage.log 'Incollage Root initialized.'
@@ -7,6 +7,7 @@ angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state, 
     $scope.reloadStats()
 
   $scope.reloadStats = ->
-    $scope.stats = StatsService.query()
+    $scope.stats = new Reloader(->StatsService.query())
+    $scope.stats.reload()
 
   $scope.init()
