@@ -1,0 +1,14 @@
+#incollage {
+
+  #collage-builder {
+
+    md-fab-trigger[aria-expanded="false"] {
+      .md-fab-toolbar-background {
+        width: 36px !important;
+        height: 36px !important;
+        top: 14px !important;
+        //background-color: rgba(0, 0, 0, 0) !important;
+      }
+    }
+  }
+}

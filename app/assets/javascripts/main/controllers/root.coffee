@@ -6,6 +6,8 @@ angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state, 
     $rootScope.state = $state
     $scope.reloadStats()
 
+  $scope.showSidenav = ->
+    $mdMedia('gt-md')
   $scope.reloadStats = ->
     $scope.stats = StatsService.query()
 

@@ -16,7 +16,7 @@ html lang="en" ng-app="Incollage"
           = render partial: 'shared/header'
         section#content.md-whiteframe-z2 flex="" layout="row"
           md-sidenav#sidebar.md-sidenav-left.md-whiteframe-z1[
-            md-is-locked-open="$mdMedia('gt-md')"
+            md-is-locked-open="showSidenav()"
             md-component-id="sidebar"
           ]
             .content
