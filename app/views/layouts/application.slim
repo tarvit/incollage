@@ -20,10 +20,7 @@ html lang="en" ng-app="Incollage"
             md-component-id="sidebar"
           ]
             .content
-              md-toolbar
-                .md-toolbar-tools
-                  h3 Account
-              = yield(:sidebar)
+              #ui-view ui-view="sidebar"
           md-content#main flex=""
             #ui-view ui-view="content"
             = yield

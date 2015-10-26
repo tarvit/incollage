@@ -7,7 +7,11 @@ angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state, 
     $scope.reloadStats()
 
   $scope.showSidenav = ->
-    $mdMedia('gt-md')
+    sidenavStates()[$rootScope.state.current.name]
+
+  sidenavStates = ->
+    { "collage_builder": true }
+
   $scope.reloadStats = ->
     $scope.stats = StatsService.query()
 
