@@ -15,7 +15,6 @@ body, html {
   $pink: #AB2688;
 
   #container {
-    //
     a {
       color: $green;
     }
@@ -28,7 +27,7 @@ body, html {
 
     #content {
       margin: 20px;
-      min-height: 500px;
+      min-height: 800px;
 
       #sidebar-content {
         border-right: 1px solid #D6D0D0;
