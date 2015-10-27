@@ -1,5 +1,4 @@
-class ExternalCollectionsController < ApplicationController
-  before_filter :check_authorized!
+class Api::V1::ExternalCollectionsController < ApplicationController
   before_filter :init_ids, only: [ :sync ]
 
   def sync
@@ -10,7 +9,7 @@ class ExternalCollectionsController < ApplicationController
     }
     Incollage::SynchronizeRecentClippings.new(attrs).execute
     Incollage::SynchronizePrecedingClippings.new(attrs).execute
-    redirect_to :back
+    success(sync: :done)
   end
 
   protected

@@ -33,29 +33,11 @@ Rails.application.routes.draw do
         get :callback, action: :callback, as: :callback
       end
 
+      namespace :external_collections do
+        get ':external_account_id/:linked_account_id/sync/:external_collection_id', action: :sync, as: :sync
+      end
     end
   end
-
-
-
-  #-------------
-
-  # namespace :collage do
-  #   get :builder
-  # end
-  #
-  # namespace :clippings do
-  #   get :synchronize_recent
-  #   get :synchronize_preceding
-  #   get :search
-  # end
-  #
-
-  #
-  # namespace :external_collections do
-  #   get ':external_account_id/:linked_account_id/sync/:external_collection_id', action: :sync, as: :sync
-  # end
-
 
 end
 
