@@ -17,13 +17,17 @@ class Api::V1::StatsController < ApiController
       end
 
       _rules.when([ :accounts, :collections, :sync ]) do |value, object|
-        {
-            url:  _route.api_v1_external_collections_sync_path(
-                external_account_id: object._parent.id,
-                linked_account_id: object._parent.linked_account_id,
-                external_collection_id: object.id
-            )
-        }
+        if object._parent.linked
+          {
+              url:  _route.api_v1_external_collections_sync_path(
+                  external_account_id: object._parent.id,
+                  linked_account_id: object._parent.linked_account_id,
+                  external_collection_id: object.id
+              )
+          }
+        else
+          {  }
+        end
       end
     end
 

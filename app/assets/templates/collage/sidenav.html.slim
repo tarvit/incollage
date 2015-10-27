@@ -3,7 +3,7 @@ md-sidenav#collage_builder_sidenav.md-sidenav-left.md-whiteframe-z2  md-is-locke
     .md-toolbar-tools
       h2 Accounts & Collections
 
-  md-list ng-repeat=('account in stats.data.accounts') ng-if="stats.loaded"
+  md-list.account ng-repeat=('account in stats.data.accounts') ng-if="stats.loaded"
     md-subheader.md-no-sticky ng-class=("{ 'linked': account.linked }")
       .label
         | {{ account.label }}
@@ -12,10 +12,14 @@ md-sidenav#collage_builder_sidenav.md-sidenav-left.md-whiteframe-z2  md-is-locke
           | {{ account.connect.label }}
           md-tooltip md-direction="right"
             | {{ account.connect.tooltip }}
-    md-list-item ng-repeat=('collection in account.collections')
+    md-list-item.collection ng-repeat=('collection in account.collections')
       .md-list-item-text layout="column"
         span.name
           | {{ collection.label }}
-        span.count
-          | ({{ collection.clippings_count }})
+          span
+            | &nbsp; ({{ collection.clippings_count }})
+            md-tooltip md-direction="right"
+              | already synchronized pictures
+        .connect ng-if="collection.sync.url"
+          a href="{{ collection.sync.url }}" Sync
     md-divider

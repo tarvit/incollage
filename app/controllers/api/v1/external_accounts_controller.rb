@@ -1,4 +1,4 @@
-class Api::V1::ExternalAccountsController < ApplicationController
+class Api::V1::ExternalAccountsController < ApiController
   before_filter :init_connector, only: [ :connect, :callback ]
 
   def connect

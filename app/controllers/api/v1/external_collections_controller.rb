@@ -1,4 +1,4 @@
-class Api::V1::ExternalCollectionsController < ApplicationController
+class Api::V1::ExternalCollectionsController < ApiController
   before_filter :init_ids, only: [ :sync ]
 
   def sync
