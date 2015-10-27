@@ -1,6 +1,6 @@
 angular.module("Incollage").factory "StatsService", ($resource) ->
 
-  $resource "/api/stats", { },
+  $resource "/api/v1/stats", { },
     query:
       method: 'GET'
 

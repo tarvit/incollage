@@ -17,7 +17,7 @@ module InstagramAdapter
     protected
 
     def redirect_url(controller, user_id)
-      controller.external_accounts_callback_url(
+      controller.api_v1_external_accounts_callback_url(
           trailing_slash: true,
           external_account_id: self.external_account_id,
           user_id: user_id

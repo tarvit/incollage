@@ -25,15 +25,18 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resource :stats do
+    namespace :v1 do
+      resource :stats
+
+      namespace :external_accounts do
+        get ':external_account_id/connect', action: :connect, as: :connect
+        get :callback, action: :callback, as: :callback
+      end
 
     end
   end
 
-  namespace :external_accounts do
-    get ':external_account_id/connect', action: :connect, as: :connect
-    get :callback, action: :callback, as: :callback
-  end
+
 
   #-------------
 
