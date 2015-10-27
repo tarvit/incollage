@@ -8,9 +8,13 @@ class Api::StatsController < ApiController
   class StatsPresenter < TarvitHelpers::HashPresenter::Custom
 
     def _init_rules
-      _rules.when([ :accounts, :connect_url ]) do |value, object|
-        Rails.application.routes.url_helpers.external_accounts_connect_path(external_account_id: object.id)
+      _rules.when([ :accounts, :connect ]) do |value, object|
+        {
+            url: Rails.application.routes.url_helpers.external_accounts_connect_path(external_account_id: object.id),
+            label: (object.linked ? 'Reconnect' : 'Connect'),
+        }
       end
     end
+
   end
 end

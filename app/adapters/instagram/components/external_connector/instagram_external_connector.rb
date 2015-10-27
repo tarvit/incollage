@@ -11,7 +11,7 @@ module InstagramAdapter
       url = redirect_url(controller, user_id)
       response = Authentication.new(url).get_response(controller.params[:code])
       on_connected(user_id, response.user.id, access_token: response.access_token )
-      controller.redirect_to controller.collage_builder_path
+      controller.redirect_to controller.root_path
     end
 
     protected

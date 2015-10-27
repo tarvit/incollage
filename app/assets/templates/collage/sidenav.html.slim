@@ -5,7 +5,11 @@ md-sidenav#collage_builder_sidenav.md-sidenav-left.md-whiteframe-z2  md-is-locke
 
   md-list ng-repeat=('account in stats.data.accounts') ng-if="stats.loaded"
     md-subheader.md-no-sticky ng-class=("{ 'linked': account.linked }")
-      | {{ account.label }}
+      .label
+        | {{ account.label }}
+      .connect
+        a href="{{ account.connect.url }}"
+          | {{ account.connect.label }}
     md-list-item ng-repeat=('collection in account.collections')
       .md-list-item-text layout="column"
         span.name

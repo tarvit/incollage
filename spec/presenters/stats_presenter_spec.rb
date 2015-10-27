@@ -28,7 +28,8 @@ describe Api::StatsController::StatsPresenter do
   it 'should present statistics' do
     expect(@presenter.accounts.count).to eq(1)
     expect(@presenter.accounts[0].label).to eq('External Account')
-    expect(@presenter.accounts[0].connect_url).to eq('/external_accounts/1/connect')
+    expect(@presenter.accounts[0].connect.url).to eq('/external_accounts/1/connect')
+    expect(@presenter.accounts[0].connect.label).to eq('Reconnect')
   end
 
 end

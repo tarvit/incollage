@@ -11,4 +11,20 @@
       }
     }
   }
+
+  #collage_builder_sidenav {
+    .connect {
+      margin-top: 3px;
+      a {
+        background: #8AF18A;
+        color: #358648;
+        padding: 2px 7px;
+        text-decoration: none;
+        border-radius: 4px;
+        &:hover {
+          background: #56fb5b;
+        }
+      }
+    }
+  }
 }
