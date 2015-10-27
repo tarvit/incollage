@@ -30,6 +30,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :external_accounts do
+    get ':external_account_id/connect', action: :connect, as: :connect
+    get :callback, action: :callback, as: :callback
+  end
+
   #-------------
 
   # namespace :collage do
@@ -42,10 +47,7 @@ Rails.application.routes.draw do
   #   get :search
   # end
   #
-  # namespace :external_accounts do
-  #   get ':external_account_id/connect', action: :connect, as: :connect
-  #   get :callback, action: :callback, as: :callback
-  # end
+
   #
   # namespace :external_collections do
   #   get ':external_account_id/:linked_account_id/sync/:external_collection_id', action: :sync, as: :sync

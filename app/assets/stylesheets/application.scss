@@ -31,6 +31,10 @@ body, html {
 
       #sidebar-content {
         border-right: 1px solid #D6D0D0;
+        md-sidenav.md-locked-open {
+          min-width: 250px;
+          max-width: 250px;
+        }
       }
 
       #main-content {
