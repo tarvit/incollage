@@ -10,6 +10,8 @@ md-sidenav#collage_builder_sidenav.md-sidenav-left.md-whiteframe-z2  md-is-locke
       .connect
         a href="{{ account.connect.url }}"
           | {{ account.connect.label }}
+          md-tooltip md-direction="right"
+            | {{ account.connect.tooltip }}
     md-list-item ng-repeat=('collection in account.collections')
       .md-list-item-text layout="column"
         span.name

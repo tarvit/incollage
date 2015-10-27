@@ -12,6 +12,7 @@ class Api::StatsController < ApiController
         {
             url: Rails.application.routes.url_helpers.external_accounts_connect_path(external_account_id: object.id),
             label: (object.linked ? 'Reconnect' : 'Connect'),
+            tooltip: (object.linked ? 'Your external session may be expired.' : 'You will be able to sync your collections then.'),
         }
       end
     end
