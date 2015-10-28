@@ -26,7 +26,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resource :stats
+      resource :stats, only: :show
+
+      namespace :collage do
+        get :options
+      end
 
       namespace :external_accounts do
         get ':external_account_id/connect', action: :connect, as: :connect

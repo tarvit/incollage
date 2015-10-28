@@ -9,12 +9,10 @@ angular.module("Incollage").factory "Reloader", ->
     reload: =>
       return if @loading
       @loading = true
-      @promise = @load()
-      @promise.$promise.then((response)=>
+      @request = @load()
+      @promise = @request.$promise
+      @promise.then((response)=>
         @data = response
         @loading = false
         @loaded = true
       )
-
-    data: -> @data
-    loaded: -> @loaded

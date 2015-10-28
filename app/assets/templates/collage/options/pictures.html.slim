@@ -1,1 +1,7 @@
-h3 Pictures Search Options
+md-content
+  span Pictures Search Options
+  div flex="" layout="row" layout-wrap=""
+    .standard flex="50" ng-repeat=("item in items")
+      label
+        input ng-checked="exists(item, selected)" ng-click="toggle(item, selected)" type="checkbox" /
+        | {{ item }}

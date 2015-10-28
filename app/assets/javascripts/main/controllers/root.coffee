@@ -7,7 +7,7 @@ angular.module("Incollage").controller "RootCtrl", ($rootScope, $scope, $state, 
     $scope.reloadStats()
 
   $scope.reloadStats = ->
-    $scope.stats = new Reloader(->StatsService.query())
-    $scope.stats.reload()
+    $rootScope.stats = new Reloader(StatsService.query)
+    $rootScope.stats.reload()
 
   $scope.init()
