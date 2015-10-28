@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::V1::StatsController::StatsPresenter do
+describe AccountStatsPresenter do
 
   before :each do
     @stats = {
@@ -22,11 +22,10 @@ describe Api::V1::StatsController::StatsPresenter do
             }
         ]
     }
-    @presenter = Api::V1::StatsController::StatsPresenter.new(@stats)
+    @presenter = AccountStatsPresenter.new(@stats)
   end
 
   it 'should present statistics' do
-    pp @presenter._custom_hash
     expect(@presenter.accounts.count).to eq(1)
     expect(@presenter.accounts[0].label).to eq('External Account')
     expect(@presenter.accounts[0].connect.url).to eq('/api/v1/external_accounts/11/connect')
