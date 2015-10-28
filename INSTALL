@@ -36,6 +36,7 @@ $ cp config/secrets.yml.sample config/secrets.yml
 
 # Obtain Instagram API keys
 # info: https://instagram.com/developer/
+# Set Redirect Url to http://localhost:3000/api/v1/external_accounts/callback/ for development
 
 # Install Bower
 # info: http://bower.io
