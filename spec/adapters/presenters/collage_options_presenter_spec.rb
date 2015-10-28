@@ -8,7 +8,11 @@ describe CollageOptionsPresenter do
   end
 
   it 'should present options' do
-
+    expect(@presenter._custom_hash).to eq({
+      search: {
+          collections: []
+      }
+    })
   end
 
 end
