@@ -1,5 +1,5 @@
 module Incollage
-  class GetUserAccountsStatistics
+  class GetUserAccountStatistics
 
     def initialize(user_id)
       @user_id = user_id
@@ -42,14 +42,13 @@ module Incollage
       end
     end
 
-   def clippings_count(external_collection, linked_account_id)
-     return 0 unless linked_account_id
-     Repository.for_clipping.count(
-         user_id: @user_id,
-         collection_id: external_collection.id,
-         linked_account_id: linked_account_id
-     )
-   end
-
+    def clippings_count(external_collection, linked_account_id)
+      return 0 unless linked_account_id
+      Repository.for_clipping.count(
+          user_id: @user_id,
+          collection_id: external_collection.id,
+          linked_account_id: linked_account_id
+      )
+    end
   end
 end
