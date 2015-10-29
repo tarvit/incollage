@@ -1,15 +1,14 @@
 class CollageOptionsPresenter < BasePresenter
 
-  def _modify_hash(stats)
+  protected
+
+  def _modify_hash(account_stats)
+    collections = account_stats[:accounts].map{|x| x[:collections] }.flatten(1)
     {
-        search: {
-            collections: []
-        }
+        search: {  collections: collections },
     }
   end
 
-  def _add_rules(rules)
-
-  end
+  def _add_rules(rules); end
 
 end
