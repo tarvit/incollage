@@ -24,8 +24,8 @@ describe Incollage::SearchClippingsForCollage do
     expect(searcher(scope, [ '0000ff' ], 3 ).execute.map(&:id)).to eq([ 2, 1, 3 ])
   end
 
-  def searcher(collection, colors, count)
-    Incollage::SearchClippingsForCollage.new(collection, colors, count)
+  def searcher(scope, colors, count)
+    Incollage::SearchClippingsForCollage.new(scope, colors, count)
   end
 
 end
