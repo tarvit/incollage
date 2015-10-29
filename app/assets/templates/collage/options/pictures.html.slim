@@ -4,5 +4,3 @@ md-content#collections.md-padding
     .standard flex="100" ng-repeat="collection in options.data.search.collections"
       md-checkbox aria-label="collection.label" ng-init="collection.value=false" ng-model="collection.value"
         | {{ collection.label }}
-
-

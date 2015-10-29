@@ -9,5 +9,11 @@ md-content#collage-builder
 
     div.md-padding flex='' layout="row" layout-wrap=""
       md-content
-        md-button.md-fab.md-primary aria-label='Search'
+        md-button.md-fab.md-primary aria-label='Search' ng-click="search()"
           md-icon md-font-library="material-icons" search
+
+        md-button.md-fab.md-primary aria-label='Collage'
+          md-icon md-font-library="material-icons" picture_in_picture
+
+    div.md-padding flex='' layout="row" layout-wrap=""
+      img src="{{img.url}}" ng-repeat="img in searcher.data.pictures"
