@@ -6,8 +6,15 @@ class Api::V1::CollageController < ApiController
   end
 
   def search
-    response = Incollage::SearchClippingsForCollage.new(*search_params).execute
+    response = found_clippings.map do |clipping|
+      { id: clipping.id, picture_url: clipping.picture_url }
+    end
     success(SearchedClippingsPresenter.new({ clippings: response })._custom_hash)
+  end
+
+  def make
+    response = Incollage::MakeCollageFromClippings.new(found_clippings, current_user.id).execute
+    success collage: response.path.gsub(Rails.root.join('public').to_s, '')
   end
 
   protected
@@ -19,6 +26,10 @@ class Api::V1::CollageController < ApiController
       query[:collection_id] = collections
     end
     [query, colors, count]
+  end
+
+  def found_clippings
+    Incollage::SearchClippingsForCollage.new(*search_params).execute
   end
 
 end

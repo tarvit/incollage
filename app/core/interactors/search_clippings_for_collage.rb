@@ -14,9 +14,7 @@ module Incollage
     protected
 
     def prepare(results)
-      results[0..(@count-1)].map do |clipping|
-        { id: clipping.id, picture_url: clipping.picture_url }
-      end
+      results[0..(@count-1)]
     end
   end
 end

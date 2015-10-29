@@ -11,8 +11,15 @@ angular.module("Incollage").factory "Reloader", ->
       @loading = true
       @request = @load()
       @promise = @request.$promise
-      @promise.then((response)=>
-        @data = response
-        @loading = false
-        @loaded = true
-      )
+      @promise.then(@onSuccess, @onError)
+
+    onError: (reason)=>
+      @error = reason
+      @loading = false
+
+    onSuccess: (response)=>
+      @data = response
+      @error = null
+      @loading = false
+      @loaded = true
+

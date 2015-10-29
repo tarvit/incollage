@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       namespace :collage do
         get :options
         get :search
+        get :make
       end
 
       namespace :external_accounts do

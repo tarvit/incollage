@@ -4,6 +4,7 @@ angular.module("Incollage").controller "CollageBuilderCtrl", ($rootScope, $scope
   $scope.init = ->
     $scope.initOptions()
     $scope.initSearcher()
+    $scope.initCollageMaker()
 
   $scope.initOptions = ->
     $scope.options = new Reloader(CollageService.options)
@@ -11,10 +12,16 @@ angular.module("Incollage").controller "CollageBuilderCtrl", ($rootScope, $scope
 
   $scope.initSearcher = ->
     $scope.searcher = new Reloader(->
-      CollageService.search($scope.getSelectedOptions())
+      CollageService.search($scope.getSelectedOptions(8))
     )
-  $scope.getSelectedOptions = ->
-    res = { 'colors[]': [], 'collections[]': [], count: 10 }
+
+  $scope.initCollageMaker = ->
+    $scope.collageMaker = new Reloader(->
+      CollageService.make($scope.getSelectedOptions(4))
+    )
+
+  $scope.getSelectedOptions = (count)->
+    res = { 'colors[]': [], 'collections[]': [], count: count }
     for color in $scope.options.data.colors
       res['colors[]'].push color.hex if color.value
 
@@ -24,5 +31,8 @@ angular.module("Incollage").controller "CollageBuilderCtrl", ($rootScope, $scope
 
   $scope.search = ->
     $scope.searcher.reload()
+
+  $scope.make = ->
+    $scope.collageMaker.reload()
 
   $scope.init()

@@ -12,8 +12,12 @@ md-content#collage-builder
         md-button.md-fab.md-primary aria-label='Search' ng-click="search()"
           md-icon md-font-library="material-icons" search
 
-        md-button.md-fab.md-primary aria-label='Collage'
+        md-button.md-fab.md-primary aria-label='Collage' ng-click="make()"
           md-icon md-font-library="material-icons" picture_in_picture
 
+    #collage-file ng-if="collageMaker.data.collage"
+      img ng-src="{{collageMaker.data.collage}}"
+      a href="{{collageMaker.data.collage}}"
+        | Download
     div.md-padding flex='' layout="row" layout-wrap=""
-      img src="{{img.url}}" ng-repeat="img in searcher.data.pictures"
+      img ng-src="{{img.url}}" ng-repeat="img in searcher.data.pictures"
