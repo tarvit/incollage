@@ -1,9 +1,8 @@
-md-content
+md-content#collections.md-padding
   div flex='' layout="row" layout-wrap=""
+    h3 flex="100"  Collections
     .standard flex="100" ng-repeat="collection in options.data.search.collections"
       md-checkbox aria-label="collection.label" ng-init="collection.value=false" ng-model="collection.value"
         | {{ collection.label }}
-  div flex='' layout="row" layout-wrap=""
-    md-content
-      md-button.md-fab.md-primary aria-label='Search'
-        md-icon md-font-library="material-icons" search
+
+

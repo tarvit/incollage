@@ -3,13 +3,11 @@ md-content#collage-builder
     .md-toolbar-tools
       h3 Collage Builder
   md-content
-    md-tabs md-border-bottom="" md-dynamic-height=""
-      md-tab label="Pictures"
-        md-content.md-padding
-          div ng-include='"collage/options/pictures.html"'
-      md-tab label="Colors"
-        md-content.md-padding
-          div ng-include='"collage/options/colors.html"'
-      md-tab label="Collage"
-        md-content.md-padding
-          div ng-include='"collage/options/collage_options.html"'
+    div flex='' layout="row"
+      div flex="30" ng-include='"collage/options/pictures.html"'
+      div flex="70" ng-include='"collage/options/colors.html"'
+
+    div.md-padding flex='' layout="row" layout-wrap=""
+      md-content
+        md-button.md-fab.md-primary aria-label='Search'
+          md-icon md-font-library="material-icons" search
