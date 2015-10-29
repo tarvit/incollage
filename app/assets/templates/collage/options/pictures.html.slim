@@ -1,7 +1,9 @@
 md-content
-  span Pictures Search Options
-  div flex="" layout="row" layout-wrap=""
-    .standard flex="50" ng-repeat=("item in items")
-      label
-        input ng-checked="exists(item, selected)" ng-click="toggle(item, selected)" type="checkbox" /
-        | {{ item }}
+  div flex='' layout="row" layout-wrap=""
+    .standard flex="100" ng-repeat="collection in options.data.search.collections"
+      md-checkbox aria-label="collection.label" ng-init="collection.value=false" ng-model="collection.value"
+        | {{ collection.label }}
+  div flex='' layout="row" layout-wrap=""
+    md-content
+      md-button.md-fab.md-primary aria-label='Search'
+        md-icon md-font-library="material-icons" search

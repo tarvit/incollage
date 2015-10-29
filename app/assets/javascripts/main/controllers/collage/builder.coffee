@@ -5,11 +5,7 @@ angular.module("Incollage").controller "CollageBuilderCtrl", ($rootScope, $scope
     $scope.initOptions()
 
   $scope.initOptions = ->
-    $rootScope.stats.promise.then((resp)->
-      $scope.initPicturesOptions(resp)
-    )
-
-  $scope.initPicturesOptions = (stats)->
-   stats
+    $scope.options = new Reloader(CollageService.options)
+    $scope.options.reload()
 
   $scope.init()

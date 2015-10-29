@@ -23,7 +23,7 @@ module Incollage
 
     def collections
       Holder.for_clippings_collections.added_collections.map do |c|
-        { id: c.id, name: c.name }
+        { id: c.id, label: c.label }
       end
     end
 
