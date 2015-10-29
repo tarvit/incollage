@@ -17,7 +17,8 @@ md-content#collage-builder
 
     #collage-file ng-if="collageMaker.data.collage"
       img ng-src="{{collageMaker.data.collage}}"
-      a href="{{collageMaker.data.collage}}"
-        | Download
+      div flex=""
+        md-button ng-href="{{collageMaker.data.collage}}" target="_blank" Download Collage
+
     div.md-padding flex='' layout="row" layout-wrap=""
       img ng-src="{{img.url}}" ng-repeat="img in searcher.data.pictures"
