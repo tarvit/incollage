@@ -1,11 +1,20 @@
-h1 Log in!
+md-toolbar
+  .md-toolbar-tools
+    h1 Log in!
 
-= form_for :user, url: auth_authenticate_path, method: :post do |f|
-  p
-    label Username:
-    = f.text_field :username
-  p
-    label Password:
-    = f.password_field :password
-  p
-    = f.submit 'log in'
+= render partial: 'auth/partials/error' if @error
+
+.md-padding
+  = form_for :user, url: auth_authenticate_path, method: :post, layout: '', 'layout-sm' => 'column' do |f|
+    md-input-container flex=""
+      label Username:
+      = f.text_field :username
+    md-input-container flex=""
+      label Password:
+      = f.password_field :password
+    section layout="row" layout-align="left center" layout-sm="column" layout-wrap=""
+      md-button.md-raised.md-primary Log In
+      md-button ng-href="#{ auth_sign_up_path }" target="_blank"
+        | Sign up
+        md-tooltip md-direction="right"
+          | It's very easy. It takes less than 1 minute to go!

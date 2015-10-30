@@ -1,0 +1,15 @@
+#incollage.auth {
+  #main {
+    width: 500px;
+    margin: auto;
+
+    md-toolbar.error {
+      background: #D63636;
+    }
+
+    #log-in, #sign-up {
+      background-color: white;
+      margin: 20px;
+    }
+  }
+}

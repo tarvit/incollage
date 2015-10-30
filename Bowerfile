@@ -1,7 +1,6 @@
 asset 'underscore'
 
 asset 'jquery'
-asset 'bootstrap'
 asset 'lodash'
 
 asset 'angular'
@@ -11,7 +10,6 @@ asset 'angular-resource'
 asset 'angular-animate'
 asset 'angular-aria'
 asset 'angular-material'
-asset 'angular-bootstrap'
 
 asset 'ngtimeago'
 asset 'angular-cookies'

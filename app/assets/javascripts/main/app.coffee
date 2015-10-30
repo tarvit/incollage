@@ -8,7 +8,6 @@ App = angular.module 'Incollage', [
   'ngResource'
   'ngRoute'
   'ui.router'
-  'ui.bootstrap'
   'ngtimeago'
   'ngCookies'
   'ngMaterial'
@@ -27,5 +26,3 @@ App.config ($urlRouterProvider, $stateProvider) ->
       sidebar:
         templateUrl: "collage/sidenav.html"
   )
-
-

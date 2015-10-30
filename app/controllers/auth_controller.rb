@@ -7,7 +7,7 @@ class AuthController < ApplicationController
     if user_session.authorized?
       redirect_to root_path
     else
-      @error = 'Credentials are invalid'
+      @error = 'Credentials are invalid.'
       render :login
     end
   end
@@ -17,7 +17,7 @@ class AuthController < ApplicationController
     Incollage::RegisterUser.new(attrs).execute
     redirect_to auth_login_path
   rescue Exception => ex
-    @error = ex.message
+    @error = 'Sign up error.'#ex.message
     render :sign_up
   end
 

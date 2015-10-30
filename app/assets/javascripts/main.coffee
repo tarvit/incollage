@@ -1,7 +1,6 @@
 #= require turbolinks
 
 #= require jquery
-#= require bootstrap
 
 #= require angular
 #= require angular-route
@@ -11,7 +10,6 @@
 #= require angular-aria
 #= require angular-material
 #= require lodash
-#= require angular-bootstrap
 #= require angular-rails-templates
 
 #= require ngtimeago

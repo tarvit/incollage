@@ -4,18 +4,11 @@ md-toolbar
       #logo
         = image_tag '/pics/incollage_logo_w.png'
     div flex=""
-    .user-block layout="row" layout-align="center center"
-      .username
-        strong= current_user.username
-      span
-        = link_to auth_logout_path
-          md-button.md-icon-button aria-label="Log out"
-            md-icon md-font-library="material-icons" exit_to_app
-/.header-container
-  span.logo.fl
-    = link_to root_path
-      | In Collage
-  .header-content
     - if authorized?
-
-    = yield(:header)
+      .user-block layout="row" layout-align="center center"
+        .username
+          strong= current_user.username
+        span
+          = link_to auth_logout_path
+            md-button.md-icon-button aria-label="Log out"
+              md-icon md-font-library="material-icons" exit_to_app

@@ -15,7 +15,7 @@ module IncollageApp
   extend TarvitHelpers::RecursiveLoader::Context
 
   def self.load_all_modules
-    load_method = Rails.env.development? ? :load : :require
+    load_method = :require
 
     # load Core modules
     load_modules(Rails.root.join('app/core'), %w{ base entities interactors adapters components holders }, load_method)

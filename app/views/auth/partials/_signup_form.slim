@@ -1,15 +1,21 @@
-h1 Signup!
+md-toolbar
+  .md-toolbar-tools
+    h1 Sign Up!
 
-= form_for :user, url: auth_register_path do |f|
-  p
-    label Full Name:
-    = f.text_field :full_name
-  p
-    label Username:
-    = f.text_field :username
-  p
-    label Password:
-    = f.password_field :password
+= render partial: 'auth/partials/error' if @error
 
-  p
-    = f.submit 'Submit'
+.md-padding
+  = form_for :user, url: auth_register_path do |f|
+    md-input-container flex=""
+      label Full Name:
+      = f.text_field :full_name
+    md-input-container flex=""
+      label Username:
+      = f.text_field :username
+    md-input-container flex=""
+      label Password:
+      = f.password_field :password
+    section layout="row" layout-align="left center" layout-sm="column" layout-wrap=""
+      md-button.md-raised.md-primary Sign Up
+      md-button ng-href="#{ auth_login_path }" target="_blank"
+        | Log In

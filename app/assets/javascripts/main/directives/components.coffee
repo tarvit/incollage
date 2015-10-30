@@ -1,1 +1,1 @@
-angular.module("Incollage.components", ['ui.bootstrap'])
+angular.module("Incollage.components", [])

@@ -1,5 +1,5 @@
 doctype html
-html lang="en"
+html lang="en" ng-app="IncollageMini"
   head
     meta charset="utf-8"
     title Incollage
@@ -11,15 +11,10 @@ html lang="en"
     #incollage.auth
       #container
         header#header
-          /= render partial: 'shared/header'
+          = render partial: 'shared/header'
 
-        #content
-          #sidebar
-            .content
-              = yield(:sidebar)
-          #main
-            .content
-              = yield
+        #main
+          = yield
 
         footer#footer
           = render partial: 'shared/footer'

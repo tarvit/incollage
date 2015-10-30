@@ -2,7 +2,6 @@ md-sidenav#collage_builder_sidenav.md-sidenav-left.md-whiteframe-z2  md-is-locke
   md-toolbar
     .md-toolbar-tools
       h2 Accounts & Collections
-  /md-progress-linear md-mode="indeterminate" ng-if="!stats.loaded"
   md-list.account ng-repeat=('account in stats.data.accounts') ng-if="stats.loaded"
     md-subheader.md-no-sticky ng-class=("{ 'linked': account.linked }")
       .label
