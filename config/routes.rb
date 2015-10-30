@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   def level_paths
-    (1..10).map do |index|
+    (1..5).map do |index|
       (1..index).map{|k| ":level#{k}" }.join(?/)
     end
   end
