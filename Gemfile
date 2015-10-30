@@ -14,9 +14,6 @@ gem 'turbolinks'
 gem 'bower-rails', '~> 0.10.0'
 gem 'angular-rails-templates', '0.2.0'
 
-# Heroku
-gem 'rails_12factor'
-gem 'pg'
 
 # Documentaiton
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -30,14 +27,23 @@ gem 'bcrypt'
 # Helpers
 gem 'tarvit-helpers'
 
+group :development, :production do
+  gem 'pg'
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'pry'
+  gem 'sqlite3'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails', '~> 3.0'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
