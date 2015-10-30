@@ -14,8 +14,8 @@ gem 'turbolinks'
 gem 'bower-rails', '~> 0.10.0'
 gem 'angular-rails-templates', '0.2.0'
 
-
-# Database
+# Heroku
+gem 'rails_12factor'
 gem 'pg'
 
 # Documentaiton
