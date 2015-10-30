@@ -20,6 +20,6 @@
 .rvmrc
 *~
 public/fs
-config/*.yml
+config/database.yml
 # vendor/assets
 
