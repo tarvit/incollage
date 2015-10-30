@@ -10,7 +10,8 @@ module InstagramAdapter
     def callback(controller, user_id)
       url = redirect_url(controller, user_id)
       response = Authentication.new(url).get_response(controller.params[:code])
-      on_connected(user_id, response.user.id, access_token: response.access_token )
+      meta_info = { access_token: response.access_token, user: response.user }
+      on_connected(user_id, response.user.id, meta_info )
       controller.redirect_to controller.root_path
     end
 
