@@ -14,4 +14,3 @@ asset 'angular-material'
 asset 'ngtimeago'
 asset 'angular-cookies'
 
-#= require_tree .

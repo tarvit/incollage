@@ -1,0 +1,17 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "underscore": "latest",
+    "jquery": "latest",
+    "lodash": "latest",
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-ui-router": "latest",
+    "angular-resource": "latest",
+    "angular-animate": "latest",
+    "angular-aria": "latest",
+    "angular-material": "latest",
+    "ngtimeago": "latest",
+    "angular-cookies": "latest"
+  }
+}
