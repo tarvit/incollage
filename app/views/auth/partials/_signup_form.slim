@@ -3,18 +3,17 @@ md-toolbar
     h1 Sign Up!
 
 = render partial: 'auth/partials/error' if @error
-
-.md-padding
+.md-padding ng-controller="SignupCtrl"
   = form_for :user, url: auth_register_path do |f|
     md-input-container flex=""
       label Full Name:
-      = f.text_field :full_name
+      = f.text_field :full_name, 'ng-model' => 'user.full_name', 'ng-required' => 'true'
     md-input-container flex=""
       label Username:
-      = f.text_field :username
+      = f.text_field :username, 'ng-model' => 'user.username', 'ng-required' => 'true'
     md-input-container flex=""
       label Password:
-      = f.password_field :password
+      = f.password_field :password, 'ng-model' => 'user.password', 'ng-required' => 'true'
     section layout="row" layout-align="left center" layout-sm="column" layout-wrap=""
       md-button.md-raised.md-primary Sign Up
       md-button ng-href="#{ auth_login_path }" target="_blank"
