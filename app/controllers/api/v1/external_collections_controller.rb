@@ -9,7 +9,7 @@ class Api::V1::ExternalCollectionsController < ApiController
     }
     Incollage::SynchronizeRecentClippings.new(attrs).execute
     Incollage::SynchronizePrecedingClippings.new(attrs).execute
-    success(sync: :done)
+    redirect_to :back
   end
 
   protected

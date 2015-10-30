@@ -7,7 +7,7 @@ md-sidenav#collage_builder_sidenav.md-sidenav-left.md-whiteframe-z2  md-is-locke
       .label
         | {{ account.label }}
       .connect
-        a href="{{ account.connect.url }}"
+        a href="{{ account.connect.url }}" target="_blank"
           | {{ account.connect.label }}
           md-tooltip md-direction="right"
             | {{ account.connect.tooltip }}
@@ -20,5 +20,5 @@ md-sidenav#collage_builder_sidenav.md-sidenav-left.md-whiteframe-z2  md-is-locke
             md-tooltip md-direction="right"
               | already synchronized pictures
         .connect ng-if="collection.sync.url"
-          a href="{{ collection.sync.url }}" Sync
+          a href="{{ collection.sync.url }}" target="_blank" Sync
     md-divider
