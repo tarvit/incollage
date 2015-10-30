@@ -16,7 +16,7 @@ gem 'angular-rails-templates', '0.2.0'
 
 
 # Database
-gem 'sqlite3'
+gem (ENV['DB_DRIVER'] || 'sqlite3')
 
 # Documentaiton
 gem 'sdoc', '~> 0.4.0', group: :doc
