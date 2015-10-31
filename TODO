@@ -1,13 +1,12 @@
 ## Current Priorities
 
 # Top
-- Implement better UI (AngularJS, etc)
+- Implement non FS storage for heroku
 - Add clippings filters
 
 # Middle
 - Implement more options for Collage
 - implement TestCase dependencies
-- Add background processing
 
 ## Future
 - Add ordering mechanism for repositories
