@@ -8,7 +8,7 @@ module Incollage
     end
 
     def execute
-      Service.for_collage_maker_factory.get(files, result_path).make
+      MakeCollage.new(files, result_path).execute
     end
 
     protected
@@ -18,7 +18,7 @@ module Incollage
     end
 
     def files
-      clippings.map do |img|
+      @files ||= clippings.map do |img|
         Service.for_collage_filestorage.save_clipping(img.picture_url, img.id).path
       end
     end
