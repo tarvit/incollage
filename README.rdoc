@@ -1,3 +1,0 @@
-== Incollage
-
-Ruby Application based on SOLID principals
