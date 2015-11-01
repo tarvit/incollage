@@ -27,7 +27,7 @@ gem 'colorscore'
 gem 'bcrypt'
 gem 'oj'
 
-# Presenters
+# Helpers
 gem 'tarvit-helpers'
 
 group :development, :production do

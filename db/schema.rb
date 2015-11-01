@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101100756) do
+ActiveRecord::Schema.define(version: 20151030182756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20151101100756) do
     t.string   "external_id"
     t.integer  "external_created_time"
     t.integer  "linked_account_id"
-    t.integer  "source_id"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|

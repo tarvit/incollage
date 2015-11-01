@@ -12,22 +12,24 @@ describe InstagramAdapter::MediaClipping do
     entity_attrs = @media_clipping.to_entity_attrs
     expect(entity_attrs).to eq({
       user_id: 1,
-      external_id: 4,
-      external_created_time: 5,
       collection_id: 2,
       linked_account_id: 1,
-      picture_url: 'media_url',
-      histogram: { 1 => '00ff00' }
+      picture: {
+          url: 'media_url',
+          external_created_time: 5,
+          external_id: 4,
+          histogram: { 1 => '00ff00' },
+      },
     })
+    entity = Incollage::Clipping.new(entity_attrs)
+    expect(entity.valid?).to be_truthy
   end
 
   def fake_media_item
-    resolution = OpenStruct.new(url: 'media_url')
-    images = OpenStruct.new(low_resolution: resolution)
-    OpenStruct.new({
+    TarvitHelpers::HashPresenter.present({
         id: 4,
         created_time: 5,
-        images: images
+        images: { low_resolution: { url: 'media_url' } }
      })
   end
 

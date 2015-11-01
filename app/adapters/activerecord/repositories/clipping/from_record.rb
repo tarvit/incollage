@@ -26,7 +26,6 @@ class ClippingActiveRecord::FromRecord
     {
         url: record.picture_url,
         external_id: record.external_id,
-        source_id: record.source_id,
         external_created_time: record.external_created_time,
         histogram: Incollage::Histogram.new(histogram_field)
     }
