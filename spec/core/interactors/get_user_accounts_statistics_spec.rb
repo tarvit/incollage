@@ -18,6 +18,7 @@ describe Incollage::GetUserAccountStatistics do
                 :label => 'External Account',
                 :linked_account_id => nil,
                 :linked => false,
+                linked_username: nil,
                 collections: [
                     {
                         :id => 1,
@@ -54,6 +55,7 @@ describe Incollage::GetUserAccountStatistics do
                :label => 'External Account',
                :linked_account_id => 99,
                :linked => true,
+               linked_username: 'jdex',
                collections: [
                    {
                        :id => @external_collection.id,
@@ -90,6 +92,7 @@ describe Incollage::GetUserAccountStatistics do
                    :label => 'External Account',
                    :linked_account_id => 99,
                    :linked => true,
+                   linked_username: 'jdex',
                    collections: [
                        {
                            :id => @external_collection.id,

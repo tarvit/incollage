@@ -13,22 +13,29 @@ module Incollage
 
     def accounts_data
       accounts_data = Holder.for_external_accounts.added_accounts.map do |external_account|
-        linked_account_id = linked_account(external_account).try(:id)
-        {
-            id: external_account.id,
-            name: external_account.name,
-            label: external_account.label,
-            linked: (!!linked_account_id),
-            linked_account_id: linked_account_id,
-            collections: collections_data(external_account, linked_account_id)
-        }
-
-      end
+        linked_accounts(external_account).map do |lacc|
+          linked_account_id = lacc.try(:id)
+          {
+              id: external_account.id,
+              name: external_account.name,
+              label: external_account.label,
+              linked: (!!linked_account_id),
+              linked_account_id: linked_account_id,
+              linked_username: username(lacc),
+              collections: collections_data(external_account, linked_account_id)
+          }
+        end
+      end.flatten(1)
       { accounts: accounts_data }
     end
 
-    def linked_account(external_account)
-      Repository.for_linked_account.find(user_id: @user_id, external_account_id: external_account.id)
+    def username(linked_account)
+      linked_account.external_meta_info[:user][:username] rescue nil
+    end
+
+    def linked_accounts(external_account)
+      res = Repository.for_linked_account.find_all(user_id: @user_id, external_account_id: external_account.id)
+      res.empty? ? [ nil ] : res
     end
 
     def collections_data(external_account, linked_account_id)

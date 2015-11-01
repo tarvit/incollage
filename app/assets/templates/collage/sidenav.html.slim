@@ -6,6 +6,8 @@ md-sidenav#collage_builder_sidenav.md-sidenav-left.md-whiteframe-z2  md-is-locke
     md-subheader.md-no-sticky ng-class=("{ 'linked': account.linked }")
       .label
         | {{ account.label }}
+        strong
+          | &nbsp; {{ account.linked_username }}
       .connect
         a href="{{ account.connect.url }}" target="_blank"
           | {{ account.connect.label }}
