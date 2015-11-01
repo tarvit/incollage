@@ -1,11 +1,15 @@
 ## Current Priorities
 
 # Top
+- Add Cloudinary
+- Setup CircleCI
 - Add clippings filters
+- Add Interactor for "Find Clippings and Make Collage" UseCase
 
 # Middle
+- Add manual picture upload(Local Collection)
 - Implement more options for Collage
-- implement TestCase dependencies
+- Implement TestCase dependencies
 
 ## Future
 - Add ordering mechanism for repositories
