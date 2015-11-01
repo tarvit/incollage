@@ -13,8 +13,8 @@ class Api::V1::CollageController < ApiController
   end
 
   def make
-    response = Incollage::MakeCollageFromClippings.new(found_clippings, current_user.id).execute
-    success collage: response.path.gsub(Rails.root.join('public').to_s, '')
+    collage_url = Incollage::MakeCollageFromClippings.new(found_clippings, current_user.id).execute
+    success collage: collage_url
   end
 
   protected
