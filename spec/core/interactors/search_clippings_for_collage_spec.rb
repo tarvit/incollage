@@ -4,9 +4,9 @@ describe Incollage::SearchClippingsForCollage do
 
   before :each do
     [
-        { id: 1, histogram: Incollage::Histogram.new({ 0.5 => 'ff0000', 0.45 => '00ff00', 0.05 => '0000ff' }) },
-        { id: 2, histogram: Incollage::Histogram.new({ 0.7 => 'ff0000', 0.2 => '00ff00', 0.1 => '0000ff' }) },
-        { id: 3, histogram: Incollage::Histogram.new({ 0.9 => 'ff0000', 0.1 => '00ff00', 0.0 => '0000ff' }) },
+        { id: 1, picture: picture({ 0.5 => 'ff0000', 0.45 => '00ff00', 0.05 => '0000ff' }) },
+        { id: 2, picture: picture({ 0.7 => 'ff0000', 0.2 => '00ff00', 0.1 => '0000ff' }) },
+        { id: 3, picture: picture({ 0.9 => 'ff0000', 0.1 => '00ff00', 0.0 => '0000ff' }) },
     ].each do |att|
       attrs = TestFactories::ClippingFactory.defaults.merge(att)
       TestFactories::ClippingFactory.create(attrs)
@@ -26,6 +26,12 @@ describe Incollage::SearchClippingsForCollage do
 
   def searcher(scope, colors, count)
     Incollage::SearchClippingsForCollage.new(scope, colors, count)
+  end
+
+  def picture(scores)
+    TestFactories::PictureFactory.get({
+      histogram: TestFactories::HistogramFactory.get(scores)
+    })
   end
 
 end

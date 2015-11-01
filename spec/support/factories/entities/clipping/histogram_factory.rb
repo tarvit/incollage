@@ -3,6 +3,10 @@ module TestFactories
 
     class << self
 
+      def get(opts=nil)
+        entity.new(opts || defaults)
+      end
+
       def entity
         Incollage::Histogram
       end

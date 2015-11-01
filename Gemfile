@@ -17,7 +17,7 @@ gem 'angular-rails-templates', '0.2.0'
 # Background
 gem 'delayed_job_active_record'
 
-# Documentaiton
+# Documentation
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Adapters
@@ -25,8 +25,9 @@ gem 'instagram'
 gem 'color'
 gem 'colorscore'
 gem 'bcrypt'
+gem 'oj'
 
-# Helpers
+# Presenters
 gem 'tarvit-helpers'
 
 group :development, :production do
