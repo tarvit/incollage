@@ -7,13 +7,13 @@ class Api::V1::CollageController < ApiController
 
   def search
     response = found_clippings.map do |clipping|
-      { id: clipping.id, picture_url: clipping.picture_url }
+      { id: clipping.id, picture_url: clipping.picture.url }
     end
     success(SearchedClippingsPresenter.new({ clippings: response })._custom_hash)
   end
 
   def make
-    collage_url = Incollage::MakeCollageFromClippings.new(found_clippings, current_user.id).execute
+    collage_url = Incollage::MakeCollage.new(found_clippings, current_user.id).execute
     success collage: collage_url
   end
 

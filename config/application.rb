@@ -33,7 +33,7 @@ module IncollageApp
     Incollage::Repository.register(:linked_account, LinkedAccountActiveRecord::Repository.new)
 
     Incollage::Service.register(:downloader, SimpleHttpDownloader.new)
-    Incollage::Service.register(:uploader, PublicDirUploader.new(['public', Rails.root, 'fs']*?/))
+    Incollage::Service.register(:uploader, PublicDirUploader.new(['fs', Rails.env]*?/))
     Incollage::Service.register(:local_filestorage, LocalFileStorage .new(Rails.root.join('tmp')))
 
     Incollage::Service.register(:color_matcher, Imagemagick::PaletteColorMatcher.new)

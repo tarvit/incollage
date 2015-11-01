@@ -24,7 +24,7 @@ class PublicDirUploader < LocalFileStorage
   end
 
   def next_safe_path(file_path)
-    full_path(safe_path + file_path.extname)
+    full_path(safe_path + Pathname.new(file_path.to_s).extname)
   end
 
   def url(path)
