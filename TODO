@@ -2,7 +2,6 @@
 
 # Top
 - Add Cloudinary
-- Setup CircleCI
 - Add clippings filters
 - Add Interactor for "Find Clippings and Make Collage" UseCase
 
@@ -13,3 +12,5 @@
 
 ## Future
 - Add ordering mechanism for repositories
+- Add Facebook Source
+- Add possibility to disconnect  External Account
