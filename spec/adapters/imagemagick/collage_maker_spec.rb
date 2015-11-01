@@ -2,13 +2,18 @@ require 'spec_helper'
 
 describe Imagemagick::CollageMaker do
 
-  it 'should make histograms' do
-    res = Imagemagick::CollageMaker.new([picture_file('flowers/1.jpg')], temp_file).make
-    expect(File.exists?(res)).to be_truthy
+  before :each do
+    @fakes = {
+        'http://fake/1/.url' => picture_file('flowers/1.jpg'),
+        'http://fake/2/url' => picture_file('flowers/2.jpg'),
+        'http://fake/3/url' => picture_file('flowers/3.jpg'),
+    }
+    Incollage::Service.register(:downloader, TestSupport::FakeHttpDownloader.new(@fakes))
   end
 
-  def temp_file
-    app_root.join("tmp/imagemagick_collage_maker_#{rand(1000)}.png").to_s
+  it 'should make histograms' do
+    collage = Imagemagick::CollageMaker.new.make(@fakes.keys)
+    expect(collage).to be
   end
 
 end

@@ -33,11 +33,11 @@ module IncollageApp
     Incollage::Repository.register(:linked_account, LinkedAccountActiveRecord::Repository.new)
 
     Incollage::Service.register(:downloader, SimpleHttpDownloader.new)
-    Incollage::Service.register(:collage_filestorage, LocalCollageFilestorage .new(Rails.root.join('public/fs')))
+    Incollage::Service.register(:local_filestorage, LocalFileStorage .new(Rails.root.join('tmp')))
 
     Incollage::Service.register(:color_matcher, Imagemagick::PaletteColorMatcher.new)
-    Incollage::Service.register(:histogram_maker_factory, Imagemagick::HistogramMaker)
-    Incollage::Service.register(:collage_maker_factory, Imagemagick::CollageMaker)
+    Incollage::Service.register(:histogram_maker, Imagemagick::HistogramMaker.new)
+    Incollage::Service.register(:collage_maker, Imagemagick::CollageMaker.new)
 
     @settings = SpecificSettings.new
     Incollage::Holder.register(:clippings_collections, @settings.collections_holder)

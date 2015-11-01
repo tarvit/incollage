@@ -21,11 +21,12 @@ RSpec.configure do |config|
     Incollage::Repository.register(:linked_account, Incollage::Repository::LinkedAccountInMemoryRepository.new)
 
     Incollage::Service.register(:downloader, TestSupport::FakeHttpDownloader.new)
-    Incollage::Service.register(:collage_filestorage, LocalCollageFilestorage .new(app_root.join('/tmp')))
+    Incollage::Service.register(:uploader, TestSupport::FakeUploader.new)
+    Incollage::Service.register(:local_filestorage, LocalFileStorage.new(app_root.join('tmp')))
 
     Incollage::Service.register(:color_matcher, TestSupport::DirectColorMatcher.new)
-    Incollage::Service.register(:collage_maker_factory, TestSupport::FakeCollageMaker)
-    Incollage::Service.register(:histogram_maker_factory, TestSupport::FakeHistogramMaker)
+    Incollage::Service.register(:collage_maker, TestSupport::FakeCollageMaker.new)
+    Incollage::Service.register(:histogram_maker, TestSupport::FakeHistogramMaker.new)
 
     Incollage::Holder.register(:clippings_collections, collections_holder)
     Incollage::Holder.register(:external_accounts, external_accounts_holder)

@@ -25,9 +25,7 @@ module InstagramAdapter
     protected
 
     def make_histogram(url)
-      file = Incollage::Service.for_collage_filestorage.save_clipping(url, media_item.id)
-      histogram_maker = Incollage::Service.for_histogram_maker_factory.get(file.path)
-      histogram_maker.make
+      Incollage::Service.for_histogram_maker.make(url)
     end
 
     def make_picture_url
