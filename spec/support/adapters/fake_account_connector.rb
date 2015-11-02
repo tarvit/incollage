@@ -7,6 +7,12 @@ module TestSupport
 
     def callback(context, user_id)
       context.linked(user_id)
+      {
+          external_user_id: "#{user_id}_ext",
+          meta_info: {
+              access_token: 'perfect_token',
+          },
+      }
     end
 
   end

@@ -10,12 +10,18 @@ module InstagramAdapter
     def callback(controller, user_id)
       url = redirect_url(controller, user_id)
       response = fetch_response(url, controller.params[:code])
-      meta_info = { access_token: response.access_token, user: response.user }
-      on_connected(user_id, response.user.id, meta_info )
       controller.redirect_to controller.root_path
+      result(response)
     end
 
     protected
+
+    def result(response)
+      {
+          external_user_id: response.user.id,
+          meta_info: { access_token: response.access_token, user: response.user }
+      }
+    end
 
     def redirect_url(controller, user_id)
       controller.api_v1_external_accounts_callback_url(
