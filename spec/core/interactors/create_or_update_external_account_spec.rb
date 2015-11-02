@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Incollage::LinkExternalAccount do
+describe Incollage::CreateOrUpdateExternalAccount do
 
   before :each do
     @user = TestFactories::UserFactory.create
@@ -15,14 +15,14 @@ describe Incollage::LinkExternalAccount do
 
   it 'should link an account' do
     expect(->{
-      @linked_account = Incollage::LinkExternalAccount.new(@attrs).execute
+      @linked_account = Incollage::CreateOrUpdateExternalAccount.new(@attrs).execute
     }).to change{ Incollage::Repository.for_linked_account.count }.by(1)
 
     expect(@linked_account.external_meta_info[:token]).to eq('token1')
 
     expect(->{
       attrs = @attrs.merge(external_meta_info: { token: 'token2' })
-      @second_linked_account = Incollage::LinkExternalAccount.new(attrs).execute
+      @second_linked_account = Incollage::CreateOrUpdateExternalAccount.new(attrs).execute
     }).to change{ Incollage::Repository.for_linked_account.count }.by(0)
 
     expect(@second_linked_account.id).to eq(@linked_account.id)

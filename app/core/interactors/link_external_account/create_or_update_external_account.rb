@@ -1,5 +1,5 @@
 module Incollage
-  class LinkExternalAccount
+  class CreateOrUpdateExternalAccount
 
     def initialize(attrs)
       @attributes = attrs

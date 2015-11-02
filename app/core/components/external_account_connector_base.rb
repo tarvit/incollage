@@ -25,7 +25,7 @@ module Incollage
             external_user_id: external_user_id,
             external_meta_info: meta_info
         }
-        Incollage::LinkExternalAccount.new(attrs).execute
+        Incollage::CreateOrUpdateExternalAccount.new(attrs).execute
       end
 
     end

@@ -2,7 +2,7 @@ class Api::V1::ExternalAccountsController < ApiController
   before_filter :init_connector, only: [ :connect, :callback ]
 
   def connect
-   @connector.connect(self, current_user.id)
+    @connector.connect(self, current_user.id)
   end
 
   def callback
