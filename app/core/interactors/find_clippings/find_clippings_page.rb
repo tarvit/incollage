@@ -1,15 +1,14 @@
 module Incollage
   class FindClippingsPage
-    attr_reader :finder
+    attr_reader :page_number, :per_page
 
     def initialize(attrs)
       @attrs = attrs
       @page_number, @per_page = attrs[:page_number], attrs[:per_page]
-      @finder = ClippingsFinder.new(search_attrs)
     end
 
     def execute
-      finder.find_page(@page_number, @per_page)
+      Repository.for_clipping.find_all_on_page(search_attrs, page_number, per_page)
     end
 
     protected

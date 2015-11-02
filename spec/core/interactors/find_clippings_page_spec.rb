@@ -14,7 +14,7 @@ describe Incollage::FindClippingsPage do
 
   it 'should find a clippings page' do
     fcp = Incollage::FindClippingsPage.new(@attrs)
-    expect(fcp.finder).to receive(:find_page).with(5,4)
+    expect(Incollage::Repository.for_clipping).to receive(:find_all_on_page)
     fcp.execute
   end
 
