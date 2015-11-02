@@ -9,7 +9,7 @@ module InstagramAdapter
 
     def callback(controller, user_id)
       url = redirect_url(controller, user_id)
-      response = Authentication.new(url).get_response(controller.params[:code])
+      response = fetch_response(url, controller.params[:code])
       meta_info = { access_token: response.access_token, user: response.user }
       on_connected(user_id, response.user.id, meta_info )
       controller.redirect_to controller.root_path
@@ -23,6 +23,10 @@ module InstagramAdapter
           external_account_id: self.external_account_id,
           user_id: user_id
       )
+    end
+
+    def fetch_response(url, code)
+      Authentication.new(url).get_response(code)
     end
   end
 end
