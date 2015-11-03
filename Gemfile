@@ -47,6 +47,10 @@ group :development do
   gem 'rspec-rails', '~> 3.0'
 end
 
+group :test do
+  gem 'codeclimate-test-reporter', group: :test, require: nil
+end
+
 group :production do
   gem 'rails_12factor'
 end

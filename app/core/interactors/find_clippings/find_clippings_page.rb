@@ -19,6 +19,5 @@ module Incollage
       res.delete :per_page
       res
     end
-
   end
 end
