@@ -1,35 +1,38 @@
 module Incollage
-  class LinkExternalAccount
+  module LinkExternalAccount
 
-    def initialize(attrs)
-      @attributes = attrs
+    class Base
+      attr_reader :user_id, :external_account_id, :context, :connector
+
+      def initialize(user_id, external_account_id, context)
+        @user_id, @external_account_id, @context = user_id, external_account_id, context
+        @connector = Holder.for_external_accounts.get(external_account_id).connector
+      end
     end
 
-    def execute
-      create_or_update_account
+    class Connect < Base
+      def execute
+        connector.connect(context, user_id)
+      end
     end
 
-    protected
+    class Callback < Base
+      def execute
+        response = connector.callback(context, user_id)
+        CreateOrUpdateExternalAccount.new(attributes(response)).execute
+      end
 
-    def create_or_update_account
-      Repository.for_linked_account.save(existing_account || build_entity)
+      protected
+
+      def attributes(response)
+        {
+            user_id: user_id,
+            external_account_id: external_account_id,
+            external_meta_info: response[:meta_info],
+            external_user_id: response[:external_user_id],
+        }
+      end
+
     end
-
-    def search_attributes
-      attrs = @attributes.clone
-      attrs.delete :external_meta_info
-      attrs
-    end
-
-    def existing_account
-      acc = Repository.for_linked_account.find(search_attributes)
-      acc.external_meta_info = @attributes[:external_meta_info] if acc
-      acc
-    end
-
-    def build_entity
-      LinkedAccount.new(@attributes)
-    end
-
   end
 end

@@ -14,5 +14,4 @@ module InstagramAdapter
       Instagram.get_access_token(code, :redirect_uri => redirect_uri)
     end
   end
-
 end

@@ -1,28 +1,24 @@
 module InstagramAdapter
-
-  class ExternalConnector < Incollage::ExternalAccountConnector::Base
-
-    def connect(controller, user_id)
-      url = redirect_url(controller, user_id)
-      controller.redirect_to Authentication.new(url).authorize_url
-    end
+  class ExternalConnector < OAuthAdapter::ExternalAccountConnector::Base
 
     def callback(controller, user_id)
       url = redirect_url(controller, user_id)
       response = fetch_response(url, controller.params[:code])
-      meta_info = { access_token: response.access_token, user: response.user }
-      on_connected(user_id, response.user.id, meta_info )
       controller.redirect_to controller.root_path
+      result(response)
     end
 
     protected
 
-    def redirect_url(controller, user_id)
-      controller.api_v1_external_accounts_callback_url(
-          trailing_slash: true,
-          external_account_id: self.external_account_id,
-          user_id: user_id
-      )
+    def authorize_url(url)
+      Authentication.new(url).authorize_url
+    end
+
+    def result(response)
+      {
+          external_user_id: response.user.id,
+          meta_info: { access_token: response.access_token, user: response.user }
+      }
     end
 
     def fetch_response(url, code)

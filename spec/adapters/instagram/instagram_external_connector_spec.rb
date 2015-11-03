@@ -17,10 +17,10 @@ describe InstagramAdapter::ExternalConnector do
 
   it 'should respond to Instagram callback' do
     allow(@connector).to receive(:fetch_response).and_return(instagram_response)
-    expect(@connector).to receive(:on_connected)
-
-    @connector.callback(@controller, @user.id)
+    result = @connector.callback(@controller, @user.id)
     expect(@controller.redirects).to eq([ ?/ ])
+    expect(result[:external_user_id]).to eq('5511')
+    expect(result[:meta_info][:access_token]).to eq('super_token')
   end
 
   def instagram_response
