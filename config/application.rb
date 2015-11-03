@@ -19,6 +19,7 @@ module IncollageApp
     load_modules(Rails.root.join('app/core'), %w{ base entities interactors adapters components holders })
 
     # load application adapters
+    load_modules(Rails.root.join('app/adapters/actioncontroller'), [])
     load_modules(Rails.root.join('app/adapters'), [])
 
     # load application specific settings
