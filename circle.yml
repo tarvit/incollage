@@ -5,4 +5,4 @@ machine:
 test:
   override:
     - bundle exec rspec spec/core
-    - bundle exec rspec
+    - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN_CI bundle exec rspec
