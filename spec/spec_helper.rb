@@ -13,7 +13,6 @@ RSpec.configure do |config|
 
   load_modules(app_root.join('app/core'), %w{ base entities interactors adapters components holders })
   load_modules(app_root.join('app/adapters/imagemagick'), [])
-  load_modules(app_root.join('app/adapters/actioncontroller'), [])
   load_modules(app_root.join('spec/support'), [])
 
   def register_repos
