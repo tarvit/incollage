@@ -25,8 +25,6 @@ module Incollage
           end
         end
 
-        public
-
         class << self
 
           def global_collection
