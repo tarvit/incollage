@@ -22,4 +22,5 @@
 public/fs
 config/database.yml
 # vendor/assets
+coverage/*
 

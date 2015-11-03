@@ -1,10 +1,16 @@
 RSpec.configure do |config|
+  # Core Dependencies
   require 'active_support/all'
   require 'active_model'
-  require 'pry'
   require 'tarvit-helpers'
 
+  # Test Setup
+  require 'pry'
   extend TarvitHelpers::RecursiveLoader::Context
+
+  # CodeClimate
+  require 'codeclimate-test-reporter'
+  CodeClimate::TestReporter.start
 
   def app_root
     require 'pathname'
