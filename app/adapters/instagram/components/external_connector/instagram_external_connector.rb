@@ -22,7 +22,7 @@ module InstagramAdapter
     end
 
     def fetch_response(url, code)
-      Authentication.new(url).get_response(code)
+      Authentication.new(url).metadata(code)
     end
   end
 end

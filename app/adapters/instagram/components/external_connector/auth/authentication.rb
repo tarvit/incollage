@@ -10,7 +10,7 @@ module InstagramAdapter
       Instagram.authorize_url(:redirect_uri => redirect_uri)
     end
 
-    def get_response(code)
+    def metadata(code)
       Instagram.get_access_token(code, :redirect_uri => redirect_uri)
     end
   end

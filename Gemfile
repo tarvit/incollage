@@ -26,6 +26,7 @@ gem 'color'
 gem 'colorscore'
 gem 'bcrypt'
 gem 'oj'
+gem 'koala'
 
 # Helpers
 gem 'tarvit-helpers'
