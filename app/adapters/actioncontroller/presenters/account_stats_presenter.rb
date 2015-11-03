@@ -1,7 +1,7 @@
 class AccountStatsPresenter < BasePresenter
 
   def _add_rules(rules)
-    rules.when([ :accounts, :connect ]) do |value, object|
+    rules.when([ :accounts, :connect ]) do |_value, object|
       {
           url: _route.api_v1_external_accounts_connect_path(external_account_id: object.id),
           label: (object.linked ? 'Reconnect' : 'Connect'),
@@ -9,7 +9,7 @@ class AccountStatsPresenter < BasePresenter
       }
     end
 
-    rules.when([ :accounts, :collections, :sync ]) do |value, object|
+    rules.when([ :accounts, :collections, :sync ]) do |_value, object|
       if object._parent.linked
         {
             url:  _route.api_v1_external_collections_sync_path(

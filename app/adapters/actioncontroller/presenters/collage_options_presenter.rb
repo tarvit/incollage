@@ -9,6 +9,4 @@ class CollageOptionsPresenter < BasePresenter
     }
   end
 
-  def _add_rules(rules); end
-
 end
