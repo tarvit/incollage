@@ -8,11 +8,11 @@ module Incollage
         @external_account_id = external_account_id
       end
 
-      def connect(context, user_id)
+      def connect(_context, _user_id)
         raise NotImplemented
       end
 
-      def callback(context, user_id)
+      def callback(_context, _user_id)
         raise NotImplemented
       end
 

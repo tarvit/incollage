@@ -3,17 +3,17 @@ module FacebookAdapter
 
     class Base
 
-      def recent_clippings(user_clippings_collection, external_id)
+      def recent_clippings(_user_clippings_collection, _external_id)
         raise NotImplementedError
       end
 
-      def preceding_clippings(user_clippings_collection, external_id)
+      def preceding_clippings(_user_clippings_collection, _external_id)
         raise NotImplementedError
       end
 
       protected
 
-      def feed(client, options={})
+      def feed(_client, _options={})
         raise NotImplementedError
       end
 

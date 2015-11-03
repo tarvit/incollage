@@ -16,11 +16,11 @@ module OAuthAdapter
 
       protected
 
-      def authorize_url(url)
+      def authorize_url(_url)
         raise NotImplemented
       end
 
-      def fetch_response(url, code)
+      def fetch_response(_url, _code)
         raise NotImplemented
       end
 

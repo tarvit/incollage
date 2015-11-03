@@ -79,11 +79,11 @@ class ActiveRecordBaseRepository
     raise NotImplementedError
   end
 
-  def from_entity(entity)
+  def from_entity(_entity)
     raise NotImplementedError
   end
 
-  def entity_attributes(record)
+  def entity_attributes(_record)
     raise NotImplementedError
   end
 
