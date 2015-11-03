@@ -177,7 +177,7 @@ rules:
   - 4
   max-len:
   - 0
-  - 80
+  - 120
   - 4
   max-nested-callbacks:
   - 0
