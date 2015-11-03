@@ -24,12 +24,15 @@ describe InstagramAdapter::ExternalConnector do
   end
 
   def instagram_response
-    TarvitHelpers::HashPresenter.present({
-       access_token: 'super_token',
-       user: {
-           id: '5511',
-           username: 'jdex'
-       }
-   })
+    {
+        external_user_id: '5511',
+        meta_info: {
+            access_token: 'super_token',
+            user: {
+                id: '5511',
+                username: 'jdex'
+            }
+        }
+    }
   end
 end

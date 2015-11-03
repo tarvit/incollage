@@ -1,18 +1,17 @@
 module InstagramAdapter
   class ExternalConnector < OAuthAdapter::ExternalAccountConnector::Base
 
-    def callback(controller, user_id)
-      url = redirect_url(controller, user_id)
-      response = fetch_response(url, controller.params[:code])
-      controller.redirect_to controller.root_path
-      result(response)
-    end
-
     protected
 
     def authorize_url(url)
       Authentication.new(url).authorize_url
     end
+
+    def fetch_response(url, code)
+      result(Authentication.new(url).metadata(code))
+    end
+
+    private
 
     def result(response)
       {
@@ -21,8 +20,5 @@ module InstagramAdapter
       }
     end
 
-    def fetch_response(url, code)
-      Authentication.new(url).metadata(code)
-    end
   end
 end
