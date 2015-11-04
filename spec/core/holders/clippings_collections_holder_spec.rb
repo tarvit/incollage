@@ -16,8 +16,9 @@ describe Incollage::ExternalClippingsCollectionsHolder do
     @holder.add(@collection_args)
     expect(@holder.added_collections.count).to eq(1)
 
-    # duplicated adding of the collection with the same ID
-    @holder.add(@collection_args)
+    expect(->{
+      @holder.add(@collection_args)
+    }).to raise_error(ArgumentError)
     expect(@holder.added_collections.count).to eq(1)
 
     # querying works

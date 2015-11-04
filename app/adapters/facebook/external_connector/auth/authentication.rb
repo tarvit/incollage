@@ -7,7 +7,7 @@ module FacebookAdapter
     end
 
     def authorize_url
-      oauth.url_for_oauth_code
+      oauth.url_for_oauth_code + permissions_scope
     end
 
     def metadata(code)
@@ -18,13 +18,28 @@ module FacebookAdapter
     end
 
     def client(token)
-      Koala::Facebook::API.new(token)
+      self.class.client(token)
+    end
+
+    def self.client(token)
+      Koala::Facebook::API.new(token, FacebookConfig.app_secret)
     end
 
     protected
 
     def oauth
       Koala::Facebook::OAuth.new(FacebookConfig.app_id, FacebookConfig.app_secret, redirect_uri)
+    end
+
+    def permissions_scope
+      permissions = [
+          :public_profile,
+          :user_events,
+          :user_photos,
+          :user_posts,
+          :'user_actions.news',
+      ]
+      '&scope='+permissions*?,
     end
 
   end

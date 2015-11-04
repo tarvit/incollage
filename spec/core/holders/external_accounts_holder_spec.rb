@@ -21,8 +21,9 @@ describe Incollage::ExternalAccountsHolder do
     @holder.add(@account_args)
     expect(@holder.added_accounts.count).to eq(1)
 
-    # duplicated adding of the collection with the same ID
-    @holder.add(@account_args)
+    expect(->{
+      @holder.add(@account_args)
+    }).to raise_error(ArgumentError)
     expect(@holder.added_accounts.count).to eq(1)
 
     # querying works
