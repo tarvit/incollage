@@ -30,6 +30,7 @@ module Incollage
     protected
 
     def add_account(account)
+      raise ArgumentError.new("Account ID #{account.id} is already occupied!") if accounts[account.id]
       accounts[account.id] = account
     end
 

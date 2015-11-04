@@ -34,6 +34,7 @@ module Incollage
     protected
 
     def add_collection(collection)
+      raise ArgumentError.new("Collection ID #{collection.id} is already occupied!") if collections[collection.id]
       collections[collection.id] = collection
     end
 
