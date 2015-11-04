@@ -9,13 +9,13 @@ module FacebookAdapter
 
     def result(response)
       {
-          external_user_id: response.user.id,
-          meta_info: { access_token: response.access_token, user: response.user }
+          external_user_id: response[:user]['id'],
+          meta_info: response
       }
     end
 
     def fetch_response(url, code)
-      Authentication.new(url).metadata(code)
+      result Authentication.new(url).metadata(code)
     end
   end
 end
