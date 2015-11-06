@@ -32,12 +32,6 @@ module Incollage
           super
         end
       end
-
-      private
-
-      def registered_types
-        gateways.keys
-      end
     end
 
   end
