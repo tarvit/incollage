@@ -73,7 +73,7 @@ class Incollage::Repository::InMemoryBase
   end
 
   def validate_entity!(entity)
-    entity.check_validity!
+    entity.validate!
   end
 
   private

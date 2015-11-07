@@ -9,7 +9,7 @@ module Incollage
         errors.messages
       end
 
-      def check_validity!
+      def validate!
         raise EntityIsInvalidError.new(errors_messages) unless valid?
       end
 

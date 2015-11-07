@@ -3,7 +3,7 @@ module Incollage
 
     def add(attrs)
       account = ExternalAccount.new(attrs)
-      account.check_validity!
+      account.validate!
       add_account(account)
     end
 

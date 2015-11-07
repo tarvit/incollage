@@ -1,7 +1,7 @@
 class ActiveRecordBaseRepository
 
   def save(entity)
-    entity.check_validity!
+    entity.validate!
     record = from_entity(entity)
     record.save!
     entity.id = record.id
