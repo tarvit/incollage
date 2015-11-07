@@ -75,6 +75,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.2)
       faraday (>= 0.7.4, < 0.10)
+    flickraw (0.9.8)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
@@ -228,6 +229,7 @@ DEPENDENCIES
   color
   colorscore
   delayed_job_active_record
+  flickraw
   instagram
   jbuilder (~> 2.0)
   kaminari

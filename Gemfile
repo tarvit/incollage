@@ -22,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Adapters
 gem 'instagram'
+gem 'flickraw'
 gem 'color'
 gem 'colorscore'
 gem 'bcrypt'
