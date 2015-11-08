@@ -1,10 +1,12 @@
 module FlickrAdapter
   class Client
+
     class << self
       def get(opts={})
         result = new_client
-        result.access_token = opts[:access_token] if opts[:access_token]
-        result.access_secret = opts[:access_secret] if opts[:access_secret]
+        result.access_token = opts[:oauth_token] if opts[:oauth_token]
+        result.access_secret = opts[:oauth_token_secret] if opts[:oauth_token_secret]
+        puts opts.inspect
         result
       end
 

@@ -12,6 +12,7 @@ class SpecificSettings
     collections = [
         InstagramSettings.feed_collection_opts,
         InstagramSettings.posts_collection_opts,
+        FlickrSettings.feed_collection_opts,
     ]
     collections.each do |collection|
       @collections_holder.add(collection)
@@ -21,6 +22,7 @@ class SpecificSettings
   def init_accounts_holder
     @accounts_holder = Incollage::ExternalAccountsHolder.new
     @accounts_holder.add(InstagramSettings.account_opts(collections_holder))
+    @accounts_holder.add(FlickrSettings.account_opts(collections_holder))
   end
 
 end

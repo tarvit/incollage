@@ -8,7 +8,7 @@ module FlickrAdapter
       controller.redirect_to auth_url(token['oauth_token'])
     end
 
-    def callback(controller, user_id)
+    def callback(controller, _user_id)
       oauth_token,  verifier = controller.params[:oauth_token], controller.params[:oauth_verifier]
       oauth_secret = fetch_secret(controller, oauth_token)
       response = fetch_response(oauth_token, oauth_secret, verifier)
