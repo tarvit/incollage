@@ -7,8 +7,8 @@ class Api::V1::ExternalCollectionsController < ApiController
         collection_id: @external_collection_id,
         linked_account_id: @linked_account_id,
     }
-    Incollage::SynchronizeRecentClippings.new(attrs).delay.execute
-    Incollage::SynchronizePrecedingClippings.new(attrs).delay.execute
+    Incollage::SynchronizeRecentClippings.new(attrs).execute
+    Incollage::SynchronizePrecedingClippings.new(attrs).execute
     redirect_to :back
   end
 

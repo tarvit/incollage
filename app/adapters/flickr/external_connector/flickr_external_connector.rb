@@ -19,11 +19,11 @@ module FlickrAdapter
     protected
 
     def remember_secret(controller, token, secret)
-      controller.session[token] = secret
+      controller.session['flickr_secret'] = secret
     end
 
     def fetch_secret(controller, token)
-      controller.session[token]
+      controller.session['flickr_secret']
     end
 
     def result(response)

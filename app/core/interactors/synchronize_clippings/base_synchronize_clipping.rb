@@ -9,7 +9,6 @@ module Incollage
 
     def execute
       clippings = non_imported_clippings(next_clippings)
-
       while !clippings.empty?
         clippings.each do |clipping|
           AddClipping.new(clipping).execute
@@ -26,7 +25,7 @@ module Incollage
 
     def non_imported_clippings(clippings)
       clippings.select do |clipping|
-        !Repository.for_clipping.find(search_attrs.merge(external_id: clipping[:external_id]))
+        !Repository.for_clipping.find(search_attrs.merge(external_id: clipping[:picture][:external_id]))
       end
     end
 
