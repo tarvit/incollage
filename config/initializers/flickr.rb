@@ -1,11 +1,2 @@
-class FlickrConfig
-  class << self
-    def app_id
-      Rails.application.secrets.flickr_id
-    end
-
-    def app_secret
-      Rails.application.secrets.flickr_secret
-    end
-  end
-end
+FlickRaw.api_key = Rails.application.secrets.flickr_id
+FlickRaw.shared_secret = Rails.application.secrets.flickr_secret

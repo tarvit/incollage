@@ -19,6 +19,10 @@ module TestSupport
       render(*args)
     end
 
+    def session
+      @session ||= {}
+    end
+
     protected
 
     def routes
