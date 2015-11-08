@@ -19,14 +19,13 @@ module FlickrAdapter
       def query(ucc, options={})
         client = flickr_client(ucc)
         account = linked_account(ucc)
-        params = { user_id: account.external_user_id }.merge!(options)
+        params = { user_id: account.external_user_id, extras: 'date_upload,url_m' }.merge!(options)
         client.photos.search(params)
       end
 
       def clippings_for(ucc, options)
-        binding.pry
         query(ucc, options).map do |item|
-          MediaClipping.new(item, user_clippings_collection).to_entity_attrs
+          MediaClipping.new(item, ucc).to_entity_attrs
         end
       end
 
