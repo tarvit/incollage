@@ -17,10 +17,9 @@ module FlickrAdapter
       end
 
       def query(ucc, options={})
-        client = flickr_client(ucc)
         account = linked_account(ucc)
         params = { user_id: account.external_user_id, extras: 'date_upload,url_m' }.merge!(options)
-        client.photos.search(params)
+        flickr_client.photos.search(params)
       end
 
       def clippings_for(ucc, options)
@@ -29,8 +28,8 @@ module FlickrAdapter
         end
       end
 
-      def flickr_client(ucc)
-        @client ||= Client.get(linked_account(ucc).external_meta_info.slice(:oauth_token, :oauth_token_secret))
+      def flickr_client
+        @client ||= Client.get
       end
 
       def linked_account(ucc)
