@@ -18,7 +18,7 @@ class ClippingActiveRecord < ActiveRecord::Base
     end
 
     def recent_query(opts)
-      query(opts).order('external_created_time asc, external_id desc')
+      query(opts).order('external_created_time desc, external_id desc')
     end
 
     def active_record
