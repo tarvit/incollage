@@ -14,10 +14,10 @@ describe InstagramAdapter::MediaClipping do
       user_id: 1,
       collection_id: 2,
       linked_account_id: 1,
+      external_id: 4,
       picture: {
           url: 'media_url',
           external_created_time: 5,
-          external_id: 4,
           histogram: { 1 => '00ff00' },
       },
     })

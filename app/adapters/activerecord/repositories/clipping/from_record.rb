@@ -17,6 +17,7 @@ class ClippingActiveRecord::FromRecord
         id: record.id,
         user_id: record.user_id,
         collection_id: record.collection_id,
+        external_id: record.external_id,
         linked_account_id: record.linked_account_id,
         picture: picture_fields,
     }

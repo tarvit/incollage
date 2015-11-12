@@ -25,7 +25,7 @@ module Incollage
 
     def non_imported_clippings(clippings)
       clippings.select do |clipping|
-        !Repository.for_clipping.find(search_attrs.merge(external_id: clipping[:picture][:external_id]))
+        !Repository.for_clipping.find(search_attrs.merge(external_id: clipping[:external_id]))
       end
     end
 

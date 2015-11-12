@@ -16,6 +16,7 @@ module TestFactories
             user_id: 1,
             collection_id: 1,
             linked_account_id: 1,
+            external_id: 1,
             picture: PictureFactory.get,
         }
       end

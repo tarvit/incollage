@@ -20,6 +20,7 @@ class ClippingActiveRecord::ToRecord
     record.user_id = entity.user_id
     record.collection_id = entity.collection_id
     record.linked_account_id = entity.linked_account_id
+    record.external_id = entity.external_id
   end
 
   def fill_picture_fields
