@@ -1,5 +1,3 @@
-#= require turbolinks
-
 #= require angular
 #= require angular-animate
 #= require angular-aria

@@ -1,5 +1,3 @@
-#= require turbolinks
-
 #= require jquery
 
 #= require angular
