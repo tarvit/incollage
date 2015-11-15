@@ -15,9 +15,9 @@ describe FlickrAdapter::MediaClipping do
       collection_id: 2,
       linked_account_id: 1,
       external_id: 4,
+      external_created_time: 22,
       picture: {
           url: 'media_url',
-          external_created_time: 22,
           histogram: { 1 => '00ff00' },
       },
     })

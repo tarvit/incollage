@@ -17,6 +17,7 @@ module TestFactories
             collection_id: 1,
             linked_account_id: 1,
             external_id: 1,
+            external_created_time: Time.now.to_i,
             picture: PictureFactory.get,
         }
       end

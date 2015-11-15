@@ -13,9 +13,9 @@ module FlickrAdapter
           linked_account_id: user_clippings_collection.linked_account_id,
           collection_id: user_clippings_collection.collection_id,
           external_id: media_item.id,
+          external_created_time: media_item.dateupload,
           picture: {
               url:  media_item.url_m,
-              external_created_time: media_item.dateupload,
               histogram: make_histogram(media_item.url_m),
           }
       }

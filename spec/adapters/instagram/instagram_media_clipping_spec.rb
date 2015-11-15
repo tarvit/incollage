@@ -15,9 +15,9 @@ describe InstagramAdapter::MediaClipping do
       collection_id: 2,
       linked_account_id: 1,
       external_id: 4,
+      external_created_time: 5,
       picture: {
           url: 'media_url',
-          external_created_time: 5,
           histogram: { 1 => '00ff00' },
       },
     })
