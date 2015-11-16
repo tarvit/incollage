@@ -1,5 +1,7 @@
 class Incollage::UserClippingsCollection < Incollage::Entity::Base
 
-  attr_accessor :user_id, :collection_id, :linked_account_id
+  attribute :user_id, Integer
+  attribute :collection_id, Integer
+  attribute :linked_account_id, Integer
 
 end

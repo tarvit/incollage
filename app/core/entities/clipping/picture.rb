@@ -3,7 +3,7 @@ module Incollage
 
     values do
       attribute :url, String
-      attribute :histogram, Incollage::Histogram
+      attribute :histogram, Histogram
     end
 
     validates_presence_of  :url, :histogram

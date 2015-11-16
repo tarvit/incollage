@@ -1,9 +1,9 @@
-class Incollage::Histogram < Incollage::Entity::Base
+class Incollage::Histogram < Incollage::ValueObject::Base
 
-  attr_accessor :scores
+  attribute :scores, Hash
 
   def initialize(scores)
-    @scores = scores
+    super(scores: scores)
   end
 
 end

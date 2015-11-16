@@ -20,9 +20,9 @@ module Incollage
 
   module Entity
     class Base
-      include ActiveModel::Model
+      include Virtus.model
       include Incollage::Validateable
-      attr_accessor :id
+      attribute :id, Integer
     end
   end
 

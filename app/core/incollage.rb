@@ -17,7 +17,11 @@ module Incollage
     def load_priorities
       %w{
         abstract base
-        entities interactors adapters components holders
+        components entities interactors adapters holders
+
+        external_clippings_collection
+        external_account
+
         histogram picture clipping
       }
     end

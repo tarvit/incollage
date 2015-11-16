@@ -1,5 +1,5 @@
 class Incollage::Collage < Incollage::Entity::Base
 
-  attr_accessor :picture_url
+  attribute :picture_url, String
 
 end

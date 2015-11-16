@@ -1,9 +1,10 @@
 class Incollage::User < Incollage::Entity::Base
 
-  attr_accessor :full_name, :username
+  attribute :full_name, String
+  attribute :username, String
+  attribute :password_digest, String
 
   include ActiveModel::SecurePassword
-  attr_accessor :password_digest
   has_secure_password
 
   validates_presence_of :username
