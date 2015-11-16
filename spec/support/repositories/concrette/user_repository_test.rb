@@ -24,7 +24,7 @@ module UserRepositoryTest
         it 'should not save an entity without username' do
           expect(->{
             @repo.save(new_entity(username: nil))
-          }).to raise_error(Incollage::Entity::EntityIsInvalidError)
+          }).to raise_error(Incollage::Validateable::BusinessObjectIsInvalidError)
         end
 
         it 'should not save user without password' do
@@ -34,7 +34,7 @@ module UserRepositoryTest
 
           expect(->{
             @repo.save(new_entity(password: nil))
-          }).to raise_error(Incollage::Entity::EntityIsInvalidError)
+          }).to raise_error(Incollage::Validateable::BusinessObjectIsInvalidError)
         end
 
         it 'should save an entities with uniq usernames only' do
@@ -46,7 +46,7 @@ module UserRepositoryTest
           # the existing username causes error on saving
           expect(->{
             @repo.save(new_entity(username: 'some'))
-          }).to raise_error(Incollage::Entity::EntityIsInvalidError)
+          }).to raise_error(Incollage::Validateable::BusinessObjectIsInvalidError)
         end
 
       end

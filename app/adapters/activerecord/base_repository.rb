@@ -7,7 +7,7 @@ class ActiveRecordBaseRepository
     entity.id = record.id
     entity
   rescue ActiveRecord::RecordInvalid => ex
-    raise Incollage::Entity::EntityIsInvalidError.new(ex.message)
+    raise Incollage::Validateable::BusinessObjectIsInvalidError.new(ex.message)
   end
 
   def delete_all

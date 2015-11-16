@@ -7,7 +7,7 @@ class Incollage::Repository::UserInMemoryRepository < Incollage::Repository::InM
   protected
 
   def validate_entity!(entity)
-    raise Incollage::Entity::EntityIsInvalidError unless valid_username?(entity)
+    raise Incollage::Validateable::BusinessObjectIsInvalidError unless valid_username?(entity)
     super
   end
 

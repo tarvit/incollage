@@ -6,7 +6,7 @@ describe Incollage::ExternalAccount do
     expect(->{
       account = Incollage::ExternalAccount.new(name: 'ex name', label: :label, connector: Object.new, collections: [])
       account.validate!
-    }).to raise_error(Incollage::Entity::EntityIsInvalidError)
+    }).to raise_error(Incollage::Validateable::BusinessObjectIsInvalidError)
 
     expect(->{
       account = Incollage::ExternalAccount.new(name: 'ex name', label: :label,

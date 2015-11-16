@@ -12,7 +12,7 @@ describe Incollage::RegisterUser do
     # Saving without a password causes error
     expect(->{
       Incollage::RegisterUser.new(@user_data).execute
-    }).to raise_error(Incollage::Entity::EntityIsInvalidError)
+    }).to raise_error(Incollage::Validateable::BusinessObjectIsInvalidError)
 
     expect(Incollage::Repository.for_user.count).to eq(0)
 

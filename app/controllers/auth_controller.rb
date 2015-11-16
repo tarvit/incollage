@@ -16,7 +16,7 @@ class AuthController < ApplicationController
     attrs = params.require(:user).permit(:username, :full_name, :password)
     Incollage::RegisterUser.new(attrs).execute
     redirect_to auth_login_path
-  rescue UsernameTakenError, Incollage::Entity::EntityIsInvalidError
+  rescue UsernameTakenError, Incollage::Validateable::BusinessObjectIsInvalidError
     @error = 'Sign up error.'
     render :sign_up
   end
