@@ -3,6 +3,7 @@ RSpec.configure do |config|
   require 'active_support/all'
   require 'active_model'
   require 'tarvit-helpers'
+  require 'virtus'
 
   # Test Setup
   require 'pry'
@@ -17,7 +18,9 @@ RSpec.configure do |config|
     Pathname.new(ENV['INCOLLAGE_ROOT'])
   end
 
-  load_modules(app_root.join('app/core'), %w{ base entities interactors adapters components holders })
+  require app_root.join('app/core/incollage')
+  Incollage.load
+
   load_modules(app_root.join('app/adapters/imagemagick'), [])
   load_modules(app_root.join('spec/support'), [])
 

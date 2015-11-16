@@ -16,7 +16,8 @@ module IncollageApp
 
   def self.load_all_modules
     # load Core modules
-    load_modules(Rails.root.join('app/core'), %w{ base entities interactors adapters components holders })
+    require Rails.root.join('app/core/incollage')
+    Incollage.load
 
     # load application adapters
     load_modules(Rails.root.join('app/adapters'), %w{ actioncontroller })

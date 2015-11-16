@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Core
+gem 'virtus'
+
 # Backend
 gem 'rails', '4.2.4'
 gem 'slim'
