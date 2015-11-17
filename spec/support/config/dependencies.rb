@@ -44,8 +44,8 @@ module TestSupport
     end
 
     def with_holders
-      Incollage::Holder.register(:clippings_collections, collections_holder)
-      Incollage::Holder.register(:external_accounts, external_accounts_holder)
+      Incollage::Holder.register(:clippings_collections, TestFactories::CollectionsHolderFactory.get)
+      Incollage::Holder.register(:external_accounts, TestFactories::ExternalAccountsHolderFactory.get)
     end
 
     def with_histogram_maker
@@ -66,31 +66,6 @@ module TestSupport
 
     def clear_gateways
       [ Incollage::Repository, Incollage::Service, Incollage::Holder ].each(&:clear)
-    end
-
-    private
-
-    def collections_holder
-      holder = Incollage::ExternalClippingsCollectionsHolder.new
-      holder.add(
-          id: 1,
-          name: :test_collection,
-          label: 'Test Collection',
-          source: Incollage::ClippingsSource::InMemory::Source.new
-      )
-      holder
-    end
-
-    def external_accounts_holder
-      holder = Incollage::ExternalAccountsHolder.new
-      holder.add(
-          id: 1,
-          name: :test_account,
-          label: 'External Account',
-          connector: TestSupport::FakeAccountConnector.new(1),
-          collections: [ Incollage::Holder.for_clippings_collections.get(:test_collection) ]
-      )
-      holder
     end
   end
 end
