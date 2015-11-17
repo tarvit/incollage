@@ -1,46 +1,18 @@
 module Incollage
-  class ExternalClippingsCollectionsHolder
-
-    def add(attrs)
-      collection = ExternalClippingsCollection.new(attrs)
-      collection.validate!
-      add_collection(collection)
-    end
-
-    def get(identifier)
-      return get_collection_by_id(identifier) if identifier.is_a?(Numeric)
-      return get_collection_by_name(identifier) if identifier.is_a?(Symbol)
-      nil
-    end
-
-    def get_collection_by_id(collection_id)
-      collections[collection_id]
-    end
-
-    def get_collection_by_name(name)
-      collections.values.find do |c|
-        c.name == name
-      end
-    end
+  class ExternalClippingsCollectionsHolder < ObjectsHolder::NamedEntityBase
 
     def added_collections
-      collections.values
+      added
     end
 
     def first_collection
-      added_collections.first
+      added.first
     end
 
     protected
 
-    def add_collection(collection)
-      raise ArgumentError.new("Collection ID #{collection.id} is already occupied!") if collections[collection.id]
-      collections[collection.id] = collection
+    def entity_klass
+      ExternalClippingsCollection
     end
-
-    def collections
-      @collections ||= {}
-    end
-
   end
 end

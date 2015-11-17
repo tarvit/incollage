@@ -23,7 +23,7 @@ describe Incollage::ExternalClippingsCollectionsHolder do
 
     # querying works
     expect(@holder.get(@clippings_collection.id).id).to eq(@clippings_collection.id)
-    expect(@holder.get_collection_by_name(:test).id).to eq(@clippings_collection.id)
+    expect(@holder.get(:test).id).to eq(@clippings_collection.id)
 
     expect(@holder.added_collections.map &:id).to eq([ @clippings_collection.id ])
     expect(@holder.first_collection.id).to eq(@clippings_collection.id)
