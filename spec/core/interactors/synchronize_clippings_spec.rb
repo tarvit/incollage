@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe Incollage::SynchronizePrecedingClippings do
 
-  before :each do
+  before :each do |example|
+    example.with_holders
+    example.with_clipping_repo
+
     @uc_collection = clippings_collection
     @source = clippings_source(@uc_collection)
     @source.class.clean

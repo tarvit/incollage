@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Incollage::UserSession do
 
-  before :each do
+  before :each do |example|
+    example.with_user_repo
+
     @session = Incollage::UserSession.new({})
     @user = TestFactories::UserFactory.create
   end

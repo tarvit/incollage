@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe Incollage::SearchClippingsForCollage do
 
-  before :each do
+  before :each do |example|
+    example.with_clipping_repo
+    example.with_color_matcher
+
     [
         { id: 1, picture: picture({ 0.5 => 'ff0000', 0.45 => '00ff00', 0.05 => '0000ff' }) },
         { id: 2, picture: picture({ 0.7 => 'ff0000', 0.2 => '00ff00', 0.1 => '0000ff' }) },

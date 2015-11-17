@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe Imagemagick::CollageMaker do
 
-  before :each do
+  before :each do |example|
+    example.with_local_filestorage
+    example.with_uploader
+
     @fakes = {
         'http://fake/1/.url' => picture_file('flowers/1.jpg'),
         'http://fake/2/url' => picture_file('flowers/2.jpg'),

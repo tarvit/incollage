@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Incollage::FindClippingsPage do
 
-  before :each do
+  before :each do |example|
+    example.with_clipping_repo
+
     @attrs = {
         user_id: 1,
         collection_id: 2,

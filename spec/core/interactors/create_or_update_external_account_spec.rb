@@ -2,7 +2,11 @@ require 'spec_helper'
 
 describe Incollage::LinkExternalAccount::CreateOrUpdateExternalAccount do
 
-  before :each do
+  before :each do |example|
+    example.with_user_repo
+    example.with_linked_account_repo
+    example.with_holders
+
     @user = TestFactories::UserFactory.create
     @account = Incollage::Holder.for_external_accounts.added_accounts.first
 

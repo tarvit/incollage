@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe Incollage::GetUserAccountStatistics do
 
-  before :each do
+  before :each do |example|
+    example.with_repos
+    example.with_holders
+
     @user = TestFactories::UserFactory.create(id: 88)
   end
 

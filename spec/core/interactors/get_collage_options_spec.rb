@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Incollage::GetCollageOptions do
 
-  before :each do
+  before :each do |example|
+    example.with_holders
+
     @response = Incollage::GetCollageOptions.new.execute
     @response_object = TarvitHelpers::HashPresenter.present(@response)
   end

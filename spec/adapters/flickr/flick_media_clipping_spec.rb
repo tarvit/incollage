@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe FlickrAdapter::MediaClipping do
 
-  before :each do
+  before :each do |example|
+    example.with_histogram_maker
+
     @collection = Incollage::UserClippingsCollection.new(user_id: 1, collection_id: 2, linked_account_id: 1)
     @media_item = fake_media_item
   end

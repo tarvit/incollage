@@ -2,7 +2,10 @@ require 'rails_helper'
 
 describe InstagramAdapter::ExternalConnector do
 
-  before :each do
+  before :each do |example|
+    example.with_holders
+    example.with_user_repo
+
     external_account_id = Incollage::Holder.for_external_accounts.added_accounts.first.id
     @user = TestFactories::UserFactory.create(id: 28)
     @controller = TestSupport::FakeController.new

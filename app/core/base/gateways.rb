@@ -17,6 +17,10 @@ module Incollage
         @gateways ||= {}
       end
 
+      def clear
+        @gateways = {}
+      end
+
       protected
 
       class InvalidGatewayTypeError < StandardError

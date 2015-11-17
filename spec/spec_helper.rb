@@ -7,6 +7,7 @@ RSpec.configure do |config|
 
   # Test Setup
   require 'pry'
+  require_relative './support/config/dependencies'
   extend TarvitHelpers::RecursiveLoader::Context
 
   # CodeClimate
@@ -24,25 +25,10 @@ RSpec.configure do |config|
   load_modules(app_root.join('app/adapters/imagemagick'), [])
   load_modules(app_root.join('spec/support'), [])
 
-  def register_repos
-    Incollage::Repository.register(:user, Incollage::Repository::UserInMemoryRepository.new)
-    Incollage::Repository.register(:clipping, Incollage::Repository::ClippingInMemoryRepository.new)
-    Incollage::Repository.register(:linked_account, Incollage::Repository::LinkedAccountInMemoryRepository.new)
-
-    Incollage::Service.register(:downloader, TestSupport::FakeHttpDownloader.new)
-    Incollage::Service.register(:uploader, TestSupport::FakeUploader.new)
-    Incollage::Service.register(:local_filestorage, LocalFileStorage.new(app_root.join('tmp')))
-
-    Incollage::Service.register(:color_matcher, TestSupport::DirectColorMatcher.new)
-    Incollage::Service.register(:collage_maker, TestSupport::FakeCollageMaker.new)
-    Incollage::Service.register(:histogram_maker, TestSupport::FakeHistogramMaker.new)
-
-    Incollage::Holder.register(:clippings_collections, collections_holder)
-    Incollage::Holder.register(:external_accounts, external_accounts_holder)
-  end
 
   config.before :each do |example|
-    register_repos
+    example.extend TestSupport::Dependencies
+    example.clear_gateways
   end
 
   # Methods
@@ -53,29 +39,6 @@ RSpec.configure do |config|
 
   def picture_file(picture)
     fixture_file([ 'pictures', picture ]*?/)
-  end
-
-  def collections_holder
-    holder = Incollage::ExternalClippingsCollectionsHolder.new
-    holder.add(
-        id: 1,
-        name: :test_collection,
-        label: 'Test Collection',
-        source: Incollage::ClippingsSource::InMemory::Source.new
-    )
-    holder
-  end
-
-  def external_accounts_holder
-    holder = Incollage::ExternalAccountsHolder.new
-    holder.add(
-        id: 1,
-        name: :test_account,
-        label: 'External Account',
-        connector: TestSupport::FakeAccountConnector.new(1),
-        collections: [ Incollage::Holder.for_clippings_collections.get(:test_collection) ]
-    )
-    holder
   end
 
 end

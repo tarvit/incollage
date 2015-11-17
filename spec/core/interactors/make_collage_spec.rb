@@ -2,9 +2,12 @@ require 'spec_helper'
 
 describe Incollage::MakeCollage do
 
-  before :each do
+  before :each do |example|
     @downloader = TestSupport::FakeHttpDownloader.new
     @maker = TestSupport::FakeCollageMaker.new
+
+    example.with_downloader(@downloader)
+    example.with_collage_maker(@maker)
 
     @clippings = [ 1, 2, 3, 4 ].map do |i|
       name = "flowers/#{i}.jpg"
@@ -15,9 +18,6 @@ describe Incollage::MakeCollage do
       picture = TestFactories::PictureFactory.get(url: url)
       TestFactories::ClippingFactory.get(id: i, picture: picture)
     end
-
-    Incollage::Service.register(:downloader, @downloader)
-    Incollage::Service.register(:collage_maker, @maker)
   end
 
   it 'should add a clipping' do

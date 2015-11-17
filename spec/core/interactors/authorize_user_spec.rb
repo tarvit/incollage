@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Incollage::AuthenticateUser do
 
-  before :each do
+  before :each do |example|
+    example.with_user_repo
+
     @user = TestFactories::UserFactory.create(username: 'coolname', password: 'coolpass_123')
     @session = TestSupport::FakeAbstractService.new(:certify_user)
   end

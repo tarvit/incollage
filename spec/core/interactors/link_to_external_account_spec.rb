@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Incollage::LinkExternalAccount do
 
-  before :each do
+  before :each do |example|
+    example.for_interactor
+
     @external_account_id = Incollage::Holder.for_external_accounts.added_accounts.first.id
     @user = TestFactories::UserFactory.create(id: 44)
     @context = TestSupport::FakeAbstractService.new
