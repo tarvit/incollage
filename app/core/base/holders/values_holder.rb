@@ -6,10 +6,6 @@ module Incollage
         add_to_content(object)
       end
 
-      def get(object)
-        object if has?(object)
-      end
-
       def has?(id)
         !!get(id)
       end
@@ -19,6 +15,10 @@ module Incollage
       end
 
       protected
+
+      def get(object)
+        object if content[object]
+      end
 
       def content
         @content ||= {}
