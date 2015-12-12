@@ -8,7 +8,7 @@ describe Incollage::AddClipping do
 
   subject do
     ->{
-      Incollage::AddClipping.new( TestFactories::ClippingFactory.defaults ).execute
+      described_class.new(TestFactories::ClippingFactory.defaults).execute
     }
   end
 

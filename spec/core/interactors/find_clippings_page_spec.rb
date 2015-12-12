@@ -1,11 +1,8 @@
 require 'spec_helper'
 
 describe Incollage::FindClippingsPage do
-
-  before :each do |example|
-    example.with_clipping_repo
-
-    @attrs = {
+  let(:attrs) do
+    {
         user_id: 1,
         collection_id: 2,
         linked_account_id: 3,
@@ -13,11 +10,15 @@ describe Incollage::FindClippingsPage do
         page_number: 5,
     }
   end
+  let(:instance) { described_class.new(attrs) }
 
-  it 'should find a clippings page' do
-    fcp = Incollage::FindClippingsPage.new(@attrs)
+  before do |example|
+    example.with_clipping_repo
+  end
+
+  it 'should call find_all_on_page in a repo' do
     expect(Incollage::Repository.for_clipping).to receive(:find_all_on_page)
-    fcp.execute
+    instance.execute
   end
 
 end

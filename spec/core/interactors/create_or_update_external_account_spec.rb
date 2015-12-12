@@ -21,25 +21,21 @@ describe Incollage::LinkExternalAccount::CreateOrUpdateExternalAccount do
   describe 'link an account' do
     subject do
       -> {
-
+        described_class.new(attrs).execute
       }
     end
+
+    it 'adds a record' do
+      is_expected.to change { Incollage::Repository.for_linked_account.count }.by(1)
+    end
+
+    it 'populates token' do
+      expect(subject.call.external_meta_info[:token]).to eq('token1')
+    end
+
+    it 'does not link twice' do
+      expect(subject).to change { Incollage::Repository.for_linked_account.count }.by(1)
+      expect(subject).to change { Incollage::Repository.for_linked_account.count }.by(0)
+    end
   end
-
-  it 'should link an account' do
-    expect(->{
-      @linked_account = Incollage::LinkExternalAccount::CreateOrUpdateExternalAccount.new(attrs).execute
-    }).to change{ Incollage::Repository.for_linked_account.count }.by(1)
-
-    expect(@linked_account.external_meta_info[:token]).to eq('token1')
-
-    expect(->{
-      attributes = attrs.merge(external_meta_info: { token: 'token2' })
-      @second_linked_account = Incollage::LinkExternalAccount::CreateOrUpdateExternalAccount.new(attributes).execute
-    }).to change{ Incollage::Repository.for_linked_account.count }.by(0)
-
-    expect(@second_linked_account.id).to eq(@linked_account.id)
-    expect(@second_linked_account.external_meta_info[:token]).to eq('token2')
-  end
-
 end

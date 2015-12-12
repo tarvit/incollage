@@ -1,19 +1,19 @@
 require 'spec_helper'
 
 describe Incollage::GetUserAccountStatistics do
+  let(:user) { TestFactories::UserFactory.create(id: 88) }
 
-  before :each do |example|
+  before do |example|
     example.with_repos
     example.with_holders
-
-    @user = TestFactories::UserFactory.create(id: 88)
   end
+
+  subject { described_class.new(user.id).execute }
 
   context 'No Linked Accounts' do
 
     it 'should calculate user account statistics' do
-      response = Incollage::GetUserAccountStatistics.new(@user.id).execute
-      expect(response).to eq({
+      is_expected.to eq({
         accounts: [
             {
                 :id => 1,
@@ -37,20 +37,19 @@ describe Incollage::GetUserAccountStatistics do
   end
 
   context 'User has a Linked Account' do
-
-    before :each do
-      @external_account = Incollage::Holder.for_external_accounts.added_accounts.first
-      @external_collection = @external_account.collections.first
-      @linked_account = TestFactories::LinkedAccountFactory.create({
+    let(:external_account) { Incollage::Holder.for_external_accounts.added_accounts.first }
+    let(:external_collection) { external_account.collections.first }
+    let(:accounts_attrs) do
+      {
           id: 99,
-          user_id: @user.id,
-          external_account_id: @external_account.id,
-      })
+          user_id: user.id,
+          external_account_id: external_account.id,
+      }
     end
+    let!(:linked_account) { TestFactories::LinkedAccountFactory.create(accounts_attrs) }
 
     it 'should calculate user account statistics with a linked account' do
-      response = Incollage::GetUserAccountStatistics.new(@user.id).execute
-      expect(response).to eq({
+      is_expected.to eq({
         accounts: [
            {
                :id => 1,
@@ -61,7 +60,7 @@ describe Incollage::GetUserAccountStatistics do
                linked_username: 'jdex',
                collections: [
                    {
-                       :id => @external_collection.id,
+                       :id => external_collection.id,
                        :name => :test_collection,
                        :label => 'Test Collection',
                        :clippings_count => 0,
@@ -73,21 +72,21 @@ describe Incollage::GetUserAccountStatistics do
     end
 
     context 'User has a synchronized Clippings within a Collection' do
+      let :clipping_attrs do
+        {
+            user_id: user.id,
+            external_id: external_account.id,
+            collection_id: external_collection.id,
+            linked_account_id: linked_account.id,
+        }
+      end
 
-      before :each do
-        3.times do
-          TestFactories::ClippingFactory.create({
-            user_id: @user.id,
-            external_id: @external_account.id,
-            collection_id: @external_collection.id,
-            linked_account_id: @linked_account.id,
-          })
-        end
+      let! :create_clippings do
+        3.times { TestFactories::ClippingFactory.create(clipping_attrs) }
       end
 
       it 'should calculate user account statistics with Clippings synchronized' do
-        response = Incollage::GetUserAccountStatistics.new(@user.id).execute
-        expect(response).to eq({
+        is_expected.to eq({
            accounts: [
                {
                    :id => 1,
@@ -98,7 +97,7 @@ describe Incollage::GetUserAccountStatistics do
                    linked_username: 'jdex',
                    collections: [
                        {
-                           :id => @external_collection.id,
+                           :id => external_collection.id,
                            :name => :test_collection,
                            :label => 'Test Collection',
                            :clippings_count => 3,

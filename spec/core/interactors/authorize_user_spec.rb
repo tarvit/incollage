@@ -11,7 +11,7 @@ describe Incollage::AuthenticateUser do
   end
 
   def execute
-    Incollage::AuthenticateUser.new(session, username: username, password: password).execute
+    described_class.new(session, username: username, password: password).execute
   end
 
   context 'when valid credentials' do
@@ -25,7 +25,7 @@ describe Incollage::AuthenticateUser do
     shared_examples 'authentication error' do
       it do
         expect(session).to_not receive(:certify_user)
-        expect{ execute }.to raise_error(Incollage::AuthenticateUser::AuthenticationFailedError)
+        expect{ execute }.to raise_error(described_class::AuthenticationFailedError)
       end
     end
 
