@@ -4,11 +4,9 @@ describe InstagramAdapter::ClippingsSource do
 
   include BaseSourceTest
 
-  def fake_instagram_client
-    TestSupport::FakeInstagramClient.new
-  end
+  let(:fake_instagram_client) { TestSupport::FakeInstagramClient.new }
 
-  before :each do
+  before do
     allow(::Instagram).to receive(:client).and_return(fake_instagram_client)
   end
 
