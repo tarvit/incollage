@@ -23,7 +23,7 @@ describe Incollage::SearchClippingsForCollage do
     subject { searcher(scope, colors, count ).execute.map(&:id) }
 
     def searcher(scope, colors, count)
-      Incollage::SearchClippingsForCollage.new(scope, colors, count)
+      described_class.new(scope, colors, count)
     end
 
     it { is_expected.to eq ids }
