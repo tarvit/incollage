@@ -3,6 +3,12 @@ class ClippingActiveRecord < ActiveRecord::Base
 
   class Repository < ActiveRecordBaseRepository
 
+    def find_for_collage(opts, colors, count)
+      find_all(opts).sort_by{|cl|
+        -Incollage::Service.for_color_matcher.score(cl.picture.histogram.scores, colors)
+      }[0...count]
+    end
+
     def most_recent(opts)
       to_entity recent_query(opts).first
     end
