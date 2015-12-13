@@ -1,18 +1,29 @@
 require 'spec_helper'
 
 describe Incollage::ExternalAccount do
-
-  it 'should raise error if source is invalid' do
-    expect(->{
-      account = Incollage::ExternalAccount.new(name: 'ex name', label: :label, connector: Object.new, collections: [])
-      account.validate!
-    }).to raise_error(Incollage::Validateable::BusinessObjectIsInvalidError)
-
-    expect(->{
-      account = Incollage::ExternalAccount.new(name: 'ex name', label: :label,
-                                               connector: TestSupport::FakeAccountConnector.new(nil), collections: [])
-      account.validate!
-    }).to_not raise_error
+  let(:account) do
+    Incollage::ExternalAccount.new(name: 'ex name', label: :label, connector: connector, collections: [])
   end
 
+  subject do
+    -> { account.validate! }
+  end
+
+  describe 'initialization' do
+    context 'when connection is an instance of a wrong class' do
+      let(:connector) { Object.new }
+
+      it do
+        is_expected.to raise_error(Incollage::Validateable::BusinessObjectIsInvalidError)
+      end
+    end
+
+    context 'when connection is an instance of a correct class' do
+      let(:connector) { TestSupport::FakeAccountConnector.new(nil) }
+
+      it do
+        is_expected.to_not raise_error
+      end
+    end
+  end
 end

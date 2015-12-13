@@ -1,18 +1,15 @@
 require 'spec_helper'
 
 describe Incollage::GetCollageOptions do
+  let(:response) { Incollage::GetCollageOptions.new.execute }
+  subject { TarvitHelpers::HashPresenter.present(response) }
 
-  before :each do |example|
+  before do |example|
     example.with_holders
-
-    @response = Incollage::GetCollageOptions.new.execute
-    @response_object = TarvitHelpers::HashPresenter.present(@response)
   end
 
-  it 'should get options' do
-    expect(@response_object.search).to be
-    expect(@response_object.collage).to be
-    expect(@response_object.colors).to be
-  end
+  it { expect(subject.search).to be }
+  it { expect(subject.collage).to be }
+  it { expect(subject.colors).to be }
 
 end

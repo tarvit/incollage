@@ -1,42 +1,63 @@
 require 'spec_helper'
 
 describe Incollage::ExternalAccountsHolder do
-
-  before :each do
-    @source = TestSupport::EmptyClippingsSource
-    @holder = Incollage::ExternalAccountsHolder.new
-    @account_args = {
-        id: 4,
+  let(:source) { TestSupport::EmptyClippingsSource }
+  let(:holder) { Incollage::ExternalAccountsHolder.new }
+  let(:account) { Incollage::ExternalAccount.new(account_args) }
+  let(:account_id) { 4 }
+  let(:account_args) do
+    {
+        id: account_id,
         name: :third_party_service,
         label: 'label',
-        connector: TestSupport::FakeAccountConnector.new(4),
+        connector: TestSupport::FakeAccountConnector.new(account_id),
         collections: [ TestSupport::FakeAbstractService.new ]
     }
-    @account = Incollage::ExternalAccount.new(@account_args)
   end
 
-  it 'should add/get clippings collections' do
-    expect(@holder.added_accounts.count).to eq(0)
+  describe 'adding' do
+    subject { holder.added_accounts.count }
 
-    @holder.add(@account_args)
-    expect(@holder.added_accounts.count).to eq(1)
+    context 'when empty' do
+      it { is_expected.to eq 0 }
+    end
 
-    expect(->{
-      @holder.add(@account_args)
-    }).to raise_error(ArgumentError)
-    expect(@holder.added_accounts.count).to eq(1)
+    context 'when item added' do
+      before { holder.add(account_args) }
 
-    # querying works
-    expect(@holder.get(@account.id).id).to eq(@account.id)
-    expect(@holder.get(:third_party_service).id).to eq(@account.id)
+      it { is_expected.to eq 1 }
 
-    expect(@holder.added_accounts.map &:id).to eq([ @account.id ])
+      context 'when trying to add a duplicated object' do
+        subject do
+          -> { holder.add(account_args) }
+        end
+
+        it { is_expected.to raise_error(ArgumentError) }
+      end
+
+      describe 'get by id' do
+        subject { holder.get(account.id).id }
+
+        it { is_expected.to eq account.id }
+      end
+
+      describe 'get by name' do
+        subject { holder.get(account.name).id }
+
+        it { is_expected.to eq account.id }
+      end
+    end
   end
 
-  it 'should be valid' do
-    expect(@account.valid?).to be_truthy
-    @account.label = nil
-    expect(@account.valid?).to be_falsey
-  end
+  describe 'validation' do
+    subject { account.valid? }
 
+    it { is_expected.to be_truthy }
+
+    context 'when required field is nil' do
+      before { account.label = nil }
+
+      it { is_expected.to be_falsey }
+    end
+  end
 end

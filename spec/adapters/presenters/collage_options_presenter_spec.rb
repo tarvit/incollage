@@ -1,14 +1,11 @@
 require 'rails_helper'
 
 describe CollageOptionsPresenter do
-
-  before :each do
-    @stats = TestFactories::StatsFactory.get
-    @presenter = CollageOptionsPresenter.new(@stats)
+  let(:presenter) do
+    described_class.new(TestFactories::StatsFactory.get)
   end
 
   it 'should present options' do
-    expect(@presenter._custom_hash).to be
+    expect(presenter._custom_hash).to be
   end
-
 end

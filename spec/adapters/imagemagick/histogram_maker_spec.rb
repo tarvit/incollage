@@ -1,20 +1,22 @@
 require 'spec_helper'
 
 describe Imagemagick::HistogramMaker do
+  let(:url) { 'http://flowers.com/flower.jpg' }
+  let(:file) { picture_file('flowers/1.jpg') }
+  let(:fs) { TestSupport::FakeFileStorage.new(url => file) }
 
-  before :each do
-    @url = 'http://flowers.com/flower.jpg'
-    @file = picture_file('flowers/1.jpg')
-
-    @fs = TestSupport::FakeFileStorage.new(@url => @file)
-    Incollage::Service.register(:local_filestorage, @fs)
+  before do
+    Incollage::Service.register(:local_filestorage, fs)
   end
 
-  it 'should make histograms' do
-    data = Imagemagick::HistogramMaker.new.make(@url)
-    expect(data).to be_a(Hash)
-    expect(data.values).to include('000000')
-    expect(data.values).to include('ffffff')
-  end
+  subject { described_class.new.make(url) }
 
+  it { is_expected.to be_a(Hash) }
+
+  context 'values' do
+    subject  { super().values }
+
+    it { is_expected.to include('000000') }
+    it { is_expected.to include('ffffff') }
+  end
 end

@@ -6,15 +6,7 @@ module Incollage
     end
 
     def execute
-      all = Repository.for_clipping.find_all(@options)
-      results = all.sort_by{|cl| -Service.for_color_matcher.score(cl.picture.histogram.scores, @palette_colors) }
-      prepare(results)
-    end
-
-    protected
-
-    def prepare(results)
-      results[0..(@count-1)]
+      Repository.for_clipping.find_for_collage(@palette_colors, @options, @count)
     end
   end
 end
