@@ -1,7 +1,7 @@
 describe Incollage::StandardColorsHolder do
   let(:holder) { described_class.new }
   let(:args) do
-    { name: 'Green', hex_value: '00ff00' }
+    { id: 2, name: 'Green', hex_value: '00ff00' }
   end
 
   it 'should contain colors' do
@@ -17,7 +17,7 @@ describe Incollage::StandardColorsHolder do
       holder.add(args)
     }).to raise_error(ArgumentError)
 
-    holder.add(name: 'Red', hex_value: 'ff0000')
+    holder.add(id: 3, name: 'Red', hex_value: 'ff0000')
 
     expect(holder.added_colors.map &:name).to eq(%w(Green Red))
   end

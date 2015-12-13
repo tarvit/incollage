@@ -1,10 +1,8 @@
 module Incollage
-  class Color < ValueObject::Base
+  class Color < Entity::Base
 
-    values do
-      attribute :name, String
-      attribute :hex_value, String
-    end
+    attribute :name, String
+    attribute :hex_value, String
 
     validates_presence_of  :name, :hex_value
   end
