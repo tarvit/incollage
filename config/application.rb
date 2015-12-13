@@ -44,6 +44,7 @@ module IncollageApp
     @settings = SpecificSettings.new
     Incollage::Holder.register(:clippings_collections, @settings.collections_holder)
     Incollage::Holder.register(:external_accounts, @settings.accounts_holder)
+    Incollage::Holder.register(:access_codes, @settings.access_codes_holder)
   end
 
 end

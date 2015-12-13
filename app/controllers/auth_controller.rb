@@ -13,10 +13,13 @@ class AuthController < ApplicationController
   end
 
   def register
-    attrs = params.require(:user).permit(:username, :full_name, :password)
-    Incollage::RegisterUser.new(attrs).execute
+    attrs = params.require(:user).permit(:username, :full_name, :password, :access_code)
+    code = attrs.delete(:access_code)
+    Incollage::RegisterUser.new(attrs, code).execute
     redirect_to auth_login_path
-  rescue UsernameTakenError, Incollage::Validateable::BusinessObjectIsInvalidError
+  rescue Incollage::RegisterUser::UsernameTakenError,
+      Incollage::Validateable::BusinessObjectIsInvalidError,
+      Incollage::RegisterUser::AccessCodeInvalidError
     @error = 'Sign up error.'
     render :sign_up
   end
@@ -25,5 +28,4 @@ class AuthController < ApplicationController
     user_session.disallow_current_user
     redirect_to root_path
   end
-
 end

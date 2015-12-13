@@ -1,10 +1,11 @@
 class SpecificSettings
   require_relative '../specific/instagram/instagram_settings'
-  attr_reader :collections_holder, :accounts_holder
+  attr_reader :collections_holder, :accounts_holder, :access_codes_holder
 
   def initialize
     init_collections_holder
     init_accounts_holder
+    init_access_codes_holder
   end
 
   def init_collections_holder
@@ -25,4 +26,8 @@ class SpecificSettings
     @accounts_holder.add(FlickrSettings.account_opts(collections_holder))
   end
 
+  def init_access_codes_holder
+    @access_codes_holder = Incollage::AccessCodesHolder.new
+    @access_codes_holder.add ENV['ACCESS_CODE']
+  end
 end

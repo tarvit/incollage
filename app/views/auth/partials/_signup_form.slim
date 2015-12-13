@@ -14,6 +14,9 @@ md-toolbar
     md-input-container flex=""
       label Password:
       = f.password_field :password, 'ng-model' => 'user.password', 'ng-required' => 'true'
+    md-input-container flex=""
+      label Access Code:
+      = f.text_field :access_code, 'ng-model' => 'user.access_code', 'ng-required' => 'true'
     section layout="row" layout-align="left center" layout-sm="column" layout-wrap=""
       md-button.md-raised.md-primary Sign Up
       md-button ng-href="#{ auth_login_path }"

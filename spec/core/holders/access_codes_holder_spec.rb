@@ -1,25 +1,22 @@
 describe Incollage::AccessCodesHolder do
 
-  before :each do
-    @holder = Incollage::AccessCodesHolder.new
-  end
+  let(:holder) { Incollage::AccessCodesHolder.new }
 
   it 'should contain codes' do
-    expect(@holder.codes).to be_empty
+    expect(holder.codes).to be_empty
 
-    expect(@holder.has?('abc')).to be_falsey
+    expect(holder.has?('abc')).to be_falsey
 
-    @holder.add('abc')
+    holder.add('abc')
 
-    expect(@holder.has?('abc')).to be_truthy
+    expect(holder.has?('abc')).to be_truthy
 
     expect(->{
-      @holder.add('abc')
+      holder.add('abc')
     }).to raise_error(ArgumentError)
 
-    @holder.add('xyz')
+    holder.add('xyz')
 
-    expect(@holder.codes).to eq(%w{ abc xyz })
+    expect(holder.codes).to eq(%w{ abc xyz })
   end
-
 end
