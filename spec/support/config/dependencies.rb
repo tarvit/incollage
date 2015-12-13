@@ -47,6 +47,7 @@ module TestSupport
       Incollage::Holder.register(:clippings_collections, TestFactories::CollectionsHolderFactory.get)
       Incollage::Holder.register(:external_accounts, TestFactories::ExternalAccountsHolderFactory.get)
       Incollage::Holder.register(:access_codes, TestFactories::AccessCodesHolderFactory.get)
+      Incollage::Holder.register(:standard_colors, TestFactories::StandardColorsHolderFactory.get)
     end
 
     def with_histogram_maker

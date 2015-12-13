@@ -1,11 +1,12 @@
 class SpecificSettings
-  require_relative '../specific/instagram/instagram_settings'
-  attr_reader :collections_holder, :accounts_holder, :access_codes_holder
+  attr_reader :collections_holder, :accounts_holder, :access_codes_holder,
+              :standard_colors_holder
 
   def initialize
     init_collections_holder
     init_accounts_holder
     init_access_codes_holder
+    init_standard_colors_holder
   end
 
   def init_collections_holder
@@ -29,5 +30,26 @@ class SpecificSettings
   def init_access_codes_holder
     @access_codes_holder = Incollage::AccessCodesHolder.new
     @access_codes_holder.add ENV['ACCESS_CODE']
+  end
+
+  def init_standard_colors_holder
+    @standard_colors_holder = Incollage::StandardColorsHolder.new
+    [
+        { name: :White,	hex_value: 'FFFFFF' },
+        { name: :Yellow,hex_value:'FFFF00' },
+        { name: :Fuchsia,	hex_value: 'FF00FF' },
+        { name: :Red,	hex_value: 'FF0000' },
+        { name: :Silver, hex_value: 'C0C0C0' },
+        { name: :Olive,	hex_value: '808000' },
+        { name: :Purple, hex_value:'800080' },
+        { name: :Maroon, hex_value:'800000' },
+        { name: :Aqua, hex_value: '00FFFF' },
+        { name: :Lime, hex_value: '00FF00' },
+        { name: :Green,	hex_value: '008000' },
+        { name: :Blue, hex_value: '0000FF' },
+        { name: :Black, hex_value: '000000' },
+    ].each do |color_attrs|
+      @standard_colors_holder.add color_attrs
+    end
   end
 end
