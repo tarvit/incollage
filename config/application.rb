@@ -33,7 +33,7 @@ module IncollageApp
     Incollage::Repository.register(:clipping, ClippingActiveRecord::IndexedColorRepository.new)
     Incollage::Repository.register(:linked_account, LinkedAccountActiveRecord::Repository.new)
 
-    Incollage::Service.register(:downloader, HttpClientDownloader.new)
+    Incollage::Service.register(:downloader, HttpClientDownloader.new(receive_timeout: 5.minutes))
     Incollage::Service.register(:uploader, PublicDirUploader.new(['fs', Rails.env]*?/))
     Incollage::Service.register(:local_filestorage, LocalFileStorage .new(Rails.root.join('tmp')))
 
