@@ -89,6 +89,7 @@ GEM
       activesupport (>= 4.1.0)
     hashie (3.4.2)
     hike (1.2.3)
+    httpclient (2.7.0.1)
     i18n (0.7.0)
     ice_nine (0.11.1)
     instagram (1.1.6)
@@ -243,6 +244,7 @@ DEPENDENCIES
   colorscore
   delayed_job_active_record
   flickraw
+  httpclient
   instagram
   jbuilder (~> 2.0)
   kaminari

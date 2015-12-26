@@ -33,7 +33,7 @@ module IncollageApp
     Incollage::Repository.register(:clipping, ClippingActiveRecord::IndexedColorRepository.new)
     Incollage::Repository.register(:linked_account, LinkedAccountActiveRecord::Repository.new)
 
-    Incollage::Service.register(:downloader, SimpleHttpDownloader.new)
+    Incollage::Service.register(:downloader, HttpClientDownloader.new)
     Incollage::Service.register(:uploader, PublicDirUploader.new(['fs', Rails.env]*?/))
     Incollage::Service.register(:local_filestorage, LocalFileStorage .new(Rails.root.join('tmp')))
 
@@ -47,7 +47,6 @@ module IncollageApp
     Incollage::Holder.register(:access_codes, @settings.access_codes_holder)
     Incollage::Holder.register(:standard_colors, @settings.standard_colors_holder)
   end
-
 end
 
 IncollageApp.load_all_modules

@@ -20,7 +20,7 @@ class Api::V1::CollageController < ApiController
   protected
 
   def search_params
-    collections, colors, count = params[:collections], (params[:colors] || ['000']), (params[:count] || 10).to_i
+    collections, colors, count = params[:collections], (params[:colors] || ['000000']), (params[:count] || 10).to_i
     query = { user_id: current_user.id }
     unless collections.nil?
       query[:collection_id] = collections

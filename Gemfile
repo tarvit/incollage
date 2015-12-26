@@ -30,6 +30,7 @@ gem 'colorscore'
 gem 'bcrypt'
 gem 'oj'
 gem 'koala'
+gem 'httpclient'
 
 # Helpers
 gem 'tarvit-helpers'
