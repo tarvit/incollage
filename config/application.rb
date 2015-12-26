@@ -30,7 +30,7 @@ module IncollageApp
 
   def self.set_adapters
     Incollage::Repository.register(:user, UserActiveRecord::Repository.new)
-    Incollage::Repository.register(:clipping, ClippingActiveRecord::IndexedColorRepository.new)
+    Incollage::Repository.register(:clipping, ClippingActiveRecord::IndexedColorRandomizedRepository.new)
     Incollage::Repository.register(:linked_account, LinkedAccountActiveRecord::Repository.new)
 
     Incollage::Service.register(:downloader, HttpClientDownloader.new(receive_timeout: 5.minutes))
